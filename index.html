@@ -216,9 +216,44 @@ html[dir=ltr] .tb th,html[dir=ltr] .tb td,html[dir=ltr] .bk-c,html[dir=ltr] .cl{
 body.seller .del,body.seller #bkOpen,body.seller #coOpen,body.seller #prOpen,body.seller #coEditC,body.seller #pgInv .sum,body.seller .prices span:nth-child(1),body.seller .prices span:nth-child(3),body.seller div:has(>#buy),body.seller #pgSal .sum .pf,body.seller #vList .bst span:last-child{display:none!important}
 #fDlg,#puDlg{width:min(560px,94vw)}
 @media print{#fDlg,#puDlg,#navG,#navS{display:none!important}}
-#nameTr,#bnTr,#coTr{display:none!important}
+#nameTr,#bnTr,#coTr,#descTr,#bdescTr{display:none!important}
 #gdDlg{width:min(560px,94vw)}
 @media print{#gdDlg,#cloudBtn{display:none!important}}
+.of-wrap{overflow-x:auto;background:#d9ddd5;padding:10px;border-radius:12px;margin-top:12px}
+.of{background:#fff;color:#111;font-size:12.5px;line-height:1.5;min-width:640px;max-width:820px;margin:0 auto;padding:22px;-webkit-print-color-adjust:exact;print-color-adjust:exact;box-shadow:0 1px 6px rgba(0,0,0,.18)}
+.of *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+.of-h{display:flex;justify-content:space-between;align-items:flex-start;gap:14px;border-bottom:3px solid #2f5a32;padding-bottom:10px;margin-bottom:10px}
+.of-co{display:flex;align-items:center;gap:10px}.of-co img{max-height:58px;max-width:90px;object-fit:contain}
+.of-co b{display:block;font-size:19px;color:#2f5a32}.of-co span{display:block;font-size:11.5px;color:#555}
+.of-t{text-align:end}.of-t b{display:block;font-size:20px;color:#fff;background:#2f5a32;padding:4px 14px;border-radius:6px;margin-bottom:4px}
+.of-t span{display:block;font-size:11.5px;color:#444}
+.of-in{background:#f1f5ec;border:1px solid #d5dfc9;border-radius:6px;padding:6px 10px;margin-bottom:10px;font-size:12px;white-space:pre-line}
+.of-c{display:grid;grid-template-columns:1fr 1fr;gap:8px 18px;margin-bottom:12px}
+.of-c div{display:flex;align-items:flex-end;gap:6px;border-bottom:1px solid #444;min-height:24px;font-size:12px}
+.of-c small{white-space:nowrap;color:#333;font-weight:700}
+.of-tb{width:100%;border-collapse:collapse}
+.of-tb th{background:#2f5a32;color:#fff;padding:6px 5px;font-size:12px;text-align:start}
+.of-tb td{border:1px solid #b9c4ae;padding:4px 6px;vertical-align:middle}
+.of-cat td{background:#e1ebdb;color:#2f5a32;font-weight:800;font-size:13px;border-color:#b9c4ae}
+.of-r{height:36px}.of-r:nth-child(even) td{background:#fafcf8}
+.of-n{width:26px;text-align:center;color:#666;font-size:11px}
+.of-i{width:40px;padding:2px!important;text-align:center}.of-i img{width:34px;height:34px;object-fit:cover;border-radius:5px;display:block;margin:auto}
+.of-i span{display:flex;width:34px;height:34px;margin:auto;border-radius:5px;background:#e1ebdb;color:#2f5a32;font-weight:800;align-items:center;justify-content:center}
+.of-p b{font-size:13px}.of-p small{display:block;color:#555;font-size:10.5px;line-height:1.35;margin-top:1px}
+.of-p em{font-style:normal;font-size:10px;background:#fbe6d6;color:#a8481f;border-radius:99px;padding:0 6px;font-weight:700;white-space:nowrap}
+.of-m{text-align:center;font-weight:800;color:#2f5a32;width:70px}.of-q{width:62px}.of-a{width:80px}
+.of-tot{display:flex;justify-content:flex-end;margin:8px 0 12px}
+.of-tot div{display:flex;align-items:center;gap:10px;border:2px solid #2f5a32;border-radius:6px;padding:6px 12px;font-weight:800;min-width:240px;justify-content:space-between}
+.of-tot i{display:inline-block;min-width:100px;border-bottom:1px solid #444;height:18px}
+.of-ft{display:grid;grid-template-columns:1.4fr auto 1fr;gap:14px;align-items:stretch;border-top:2px solid #2f5a32;padding-top:10px}
+.of-how b{display:block;color:#2f5a32;margin-bottom:2px}.of-how span{display:block;font-size:12px}
+.of-how strong{font-size:15px;color:#1b7a3d}
+.of-qr{text-align:center}.of-qr svg{display:block;margin:auto;border:1px solid #ccc}.of-qr small{display:block;font-size:10px;color:#444;max-width:120px;margin:2px auto 0}
+.of-sg{display:flex;flex-direction:column;justify-content:flex-end;font-size:11.5px;color:#333}.of-sg i{display:block;border-bottom:1px solid #444;height:34px;margin-bottom:3px}
+.of-nt{margin-top:8px;font-size:11.5px}.of-nt small{font-weight:700}.of-nt i{display:block;border-bottom:1px solid #aaa;height:20px}
+.of-fo{margin-top:10px;text-align:center;font-size:10.5px;color:#666;border-top:1px dashed #bbb;padding-top:6px}
+.of-em td{text-align:center;color:#777;padding:18px}
+@media print{.of{box-shadow:none;max-width:none;min-width:0;padding:0}.of-r,.of-cat{break-inside:avoid;page-break-inside:avoid}.of-cat{break-after:avoid}.of-tb thead{display:table-header-group}.of-ft,.of-tot,.of-nt{break-inside:avoid}}
 </style>
 </head>
 <body>
@@ -378,6 +413,8 @@ body.seller .del,body.seller #bkOpen,body.seller #coOpen,body.seller #prOpen,bod
 <div class="g">
 <div class="full"><label>اسم الباقة</label><input id="bn" required placeholder="مثال: باقة زراعة منزلية"></div>
 <div class="full"><label>اسم الباقة بالإنجليزية (اختياري)</label><input id="bnEn" dir="ltr" placeholder="Home gardening kit"><button type="button" id="bnTr" style="margin-top:6px">ترجمة تلقائية</button></div>
+<div class="full"><label>وصف الباقة (يظهر في نموذج الطلب، اختياري - وإلا تُعرض محتوياتها)</label><textarea id="bdesc" rows="2"></textarea></div>
+<div class="full"><label>وصف الباقة بالإنجليزية (اختياري)</label><textarea id="bdescEn" dir="ltr" rows="2"></textarea><button type="button" id="bdescTr" style="margin-top:6px">ترجمة الوصف تلقائياً</button></div>
 <div class="full"><label>رمز الباركود (يُولَّد تلقائياً، ويمكنك تعديله)</label><input id="bcode" dir="ltr" placeholder="B000001" autocomplete="off"></div>
 <div class="full"><label>أضف قطعة من المخزون</label><div class="add2"><select id="bsel"></select><input id="bq" type="number" min="0" step="any" value="1" inputmode="decimal" aria-label="العدد"><button type="button" id="bad">إضافة</button></div></div>
 <div class="full" id="bc"></div>
@@ -394,6 +431,8 @@ body.seller .del,body.seller #bkOpen,body.seller #coOpen,body.seller #prOpen,bod
   <div class="full imgbox"><img id="pv" alt="" hidden><div><label>صورة المنتج</label><input id="file" type="file" accept="image/*"></div></div>
   <div class="full"><label>اسم المنتج</label><input id="name" required placeholder="مثال: سماد يوريا"></div>
   <div class="full"><label>الاسم بالإنجليزية (للفواتير الإنجليزية، اختياري)</label><input id="nameEn" dir="ltr" placeholder="Urea fertilizer"><button type="button" id="nameTr" style="margin-top:6px">ترجمة تلقائية</button></div>
+  <div class="full"><label>الوصف (يظهر في نموذج الطلب والكتالوج، اختياري)</label><textarea id="desc" rows="2" placeholder="مثال: سماد نيتروجيني عالي الجودة، كيس 50 كجم"></textarea></div>
+  <div class="full"><label>الوصف بالإنجليزية (اختياري)</label><textarea id="descEn" dir="ltr" rows="2"></textarea><button type="button" id="descTr" style="margin-top:6px">ترجمة الوصف تلقائياً</button></div>
   <div><label>التصنيف</label><input id="cat" list="cats" placeholder="أسمدة، بذور، مبيدات..."><datalist id="cats"></datalist></div>
   <div><label>الوحدة</label><select id="unit"><option value="قطعة">قطعة</option><option value="كيس">كيس</option><option value="كرتون">كرتون</option><option value="لتر">لتر</option><option value="كجم">كجم</option><option value="علبة">علبة</option></select></div>
   <div><label>سعر الشراء (ر.ع.)</label><input id="buy" type="number" min="0" step="0.001" inputmode="decimal" required></div>
@@ -652,6 +691,7 @@ body.seller .del,body.seller #bkOpen,body.seller #coOpen,body.seller #prOpen,bod
       if (u && k) { S.dirty = true; rev++; persist(); setTimeout(syncNow, 100); } else setRS("off");
     },
     test: function (u, k) { return api("meta", null, {u: u, k: k}); },
+    call: function (action, extra) { return cfg() ? api(action, extra) : Promise.reject({code: "off"}); },
     store: function () { return S; }
   };
 
@@ -744,7 +784,7 @@ function setPv(){$("pv").hidden=!img;if(img)$("pv").src=img}
 function openForm(i){
   editId=i?i.id:null;$("dt").textContent=i?"تعديل المنتج":"إضافة منتج";
   $("f").reset();img=i&&i.img||"";setPv();
-  if(i){["name","cat","unit","buy","sell","wprice","qty","min","exp","note"].forEach(function(k){$(k).value=i[k]==null?"":i[k]});$("nameEn").value=i.en||""}
+  if(i){["name","cat","unit","buy","sell","wprice","qty","min","exp","note","desc"].forEach(function(k){$(k).value=i[k]==null?"":i[k]});$("nameEn").value=i.en||"";$("descEn").value=i.descEn||""}
   profitPrev();$("dlg").showModal();
 }
 $("add").onclick=function(){openForm(null)};
@@ -759,7 +799,7 @@ $("file").addEventListener("change",function(e){
 });
 $("f").addEventListener("submit",function(e){
   e.preventDefault();
-  var o={name:$("name").value.trim(),en:$("nameEn").value.trim(),cat:$("cat").value.trim(),unit:$("unit").value,buy:+$("buy").value,sell:+$("sell").value,wprice:+$("wprice").value||0,qty:+$("qty").value,min:$("min").value===""?5:+$("min").value,exp:$("exp").value,note:$("note").value.trim(),img:img};
+  var o={name:$("name").value.trim(),en:$("nameEn").value.trim(),cat:$("cat").value.trim(),unit:$("unit").value,buy:+$("buy").value,sell:+$("sell").value,wprice:+$("wprice").value||0,qty:+$("qty").value,min:$("min").value===""?5:+$("min").value,exp:$("exp").value,note:$("note").value.trim(),desc:$("desc").value.trim(),descEn:$("descEn").value.trim(),img:img};
   if(!o.name)return;
   if(editId){var i=items.find(function(x){return x.id===editId}),oq=i.qty;Object.assign(i,o);if(o.qty!==oq)logMove(i,o.qty-oq,"adjust","","")}else{o.id=Date.now()+Math.random();items.push(o);if(o.qty)logMove(o,o.qty,"opening","","")}
   save();$("dlg").close();render();
@@ -817,7 +857,7 @@ function prevB(){
 function openB(b){
   if(!items.length){alert("أضف منتجات في المخزون أولاً.");return}
   bid=b?b.id:null;$("bdt").textContent=b?"تعديل الباقة":"باقة جديدة";
-  $("bn").value=b?b.name:"";$("bnEn").value=b&&b.en||"";$("bcode").value=b?(b.code||""):nextCode();$("bp").value=b&&b.price!==null&&b.price!==undefined?b.price:"";$("bq").value=1;
+  $("bn").value=b?b.name:"";$("bnEn").value=b&&b.en||"";$("bdesc").value=b&&b.desc||"";$("bdescEn").value=b&&b.descEn||"";$("bcode").value=b?(b.code||""):nextCode();$("bp").value=b&&b.price!==null&&b.price!==undefined?b.price:"";$("bq").value=1;
   comps=b?b.comps.map(function(c){return{id:c.id,q:c.q}}):[];
   $("bsel").innerHTML=items.map(function(i){return'<option>'+esc(i.name)+'</option>'}).join("");
   prevB();$("bdlg").showModal();
@@ -840,7 +880,7 @@ $("bf").addEventListener("submit",function(e){
   var cd=$("bcode").value.trim()||nextCode();
   if(!/^[\x20-\x7E]{1,24}$/.test(cd)){alert("رمز الباركود يجب أن يكون حروفاً وأرقاماً إنجليزية (حتى 24 خانة).");return}
   if(bundles.some(function(x){return x.code===cd&&x.id!==bid})){alert("رمز الباركود مستخدم لباقة أخرى. اختر رمزاً مختلفاً.");return}
-  var o={name:n,en:$("bnEn").value.trim(),code:cd,comps:comps,price:$("bp").value===""?null:+$("bp").value};
+  var o={name:n,en:$("bnEn").value.trim(),desc:$("bdesc").value.trim(),descEn:$("bdescEn").value.trim(),code:cd,comps:comps,price:$("bp").value===""?null:+$("bp").value};
   if(bid){Object.assign(bundles.find(function(x){return x.id===bid}),o)}else{o.id=Date.now();bundles.push(o)}
   saveB();$("bdlg").close();renderB();
 });
@@ -1435,7 +1475,7 @@ $("prList").addEventListener("click",function(e){
     });
   }
 });
-var DICT=[["سعر الباقة", "Bundle price"], ["(باقة)", "(bundle)"], ["نقداً", "Cash"], ["تحويل", "Transfer"], ["آجل", "Credit"], ["،", ","],["تصدير كتالوج الزبائن للطلب عبر واتساب", "Export customer catalog for WhatsApp orders"], ["نوع المستند", "Document type"], ["سعر الجملة (ر.ع.) - اختياري", "Wholesale price (OMR) - optional"], ["فئة السعر", "Price tier"], ["حد الدين (ر.ع.)", "Credit limit (OMR)"], ["نسبة ضريبة القيمة المضافة % (0 = بدون ضريبة، الأسعار شاملة الضريبة)", "VAT rate % (0 = no tax; prices include VAT)"], ["الرقم الضريبي (اختياري)", "VAT number (optional)"], ["رقم واتساب لاستقبال الطلبات (مع رمز الدولة)", "WhatsApp number to receive orders (with country code)"],["إجمالي الديون", "Total receivables"], ["عدد المدينين", "Debtors"], ["ديون متأخرة (+30 يوماً)", "Overdue debts (30+ days)"], ["المحصّل هذا الشهر", "Collected this month"], ["بحث باسم الزبون أو الهاتف", "Search by customer name or phone"], ["المدينون فقط", "Debtors only"], ["كل الزبائن", "All customers"], ["الأقدم ديناً", "Oldest debt"], ["آخر الدفعات", "Recent payments"], ["تصدير الحسابات (Excel)", "Export accounts (Excel)"], ["كل الفترات", "All periods"], ["آخر 3 أشهر", "Last 3 months"], ["هذه السنة", "This year"], ["فترة مخصصة", "Custom period"], ["من تاريخ", "From date"], ["إلى تاريخ", "To date"], ["المبلغ (ر.ع.)", "Amount (OMR)"], ["تاريخ الدفعة", "Payment date"], ["ملاحظة (اختياري)", "Note (optional)"], ["حفظ الدفعة", "Save payment"],["استيراد من دليل الهاتف", "Import from phone contacts"], ["تصدير الزبائن لدليل الهاتف", "Export customers to phone contacts"], ["اختيار من دليل الهاتف", "Pick from phone contacts"], ["اختيار ملف (vCard / CSV)", "Choose file (vCard / CSV)"], ["بحث في جهات الاتصال", "Search contacts"], ["حفظ في دليل الهاتف بعد الإضافة", "Save to phone contacts after adding"], ["حفظ في دليل الهاتف", "Save to phone contacts"], ["حفظ بالهاتف", "Save to phone"], ["تنزيل ملف جهة الاتصال", "Download contact file"], ["نسخ الاسم والرقم", "Copy name and number"],["رقم الفاتورة القادم (6 خانات، يزيد تلقائياً ولا يتكرر)", "Next invoice number (6 digits, auto-increments, never repeats)"], ["رمز الباركود (يُولَّد تلقائياً، ويمكنك تعديله)", "Barcode (auto-generated, editable)"], ["امسح الباركود أو اكتب رمز الباقة", "Scan barcode or type the bundle code"], ["رمز الباركود يجب أن يكون حروفاً وأرقاماً إنجليزية (حتى 24 خانة).", "The barcode must use English letters and digits (up to 24 characters)."], ["رمز الباركود مستخدم لباقة أخرى. اختر رمزاً مختلفاً.", "This barcode is used by another bundle. Choose a different one."], ["لم يتم العثور على باقة بهذا الرمز.", "No bundle found with this code."],["بيانات الشركة", "Company details"], ["شعار الشركة (اختياري)", "Company logo (optional)"], ["اسم الشركة (عربي)", "Company name (Arabic)"], ["الهاتف / العنوان (عربي)", "Phone / address (Arabic)"], ["ملاحظة أسفل الفاتورة (عربي، اختياري)", "Invoice footer note (Arabic, optional)"], ["حذف الشعار", "Remove logo"], ["ترجمة تلقائية للأسماء الناقصة", "Auto-translate missing names"], ["ترجمة تلقائية", "Auto-translate"], ["تظهر هذه البيانات في الفواتير والكتالوج وتُحفظ لهذا المشروع. عدّلها متى شئت.", "These details appear on invoices and the catalog and are saved for this project. Edit them any time."], ["مثال: الزمرة الملكية", "Example: Royal Group"], ["مثال: البضاعة المباعة لا ترد ولا تستبدل", "Example: Sold goods are not returnable or exchangeable"], ["بيانات الشركة (الاسم والشعار)", "Company details (name and logo)"], ["الشركة", "Company"],["اختر المنتجات والباقات وعدد نسخ كل بطاقة. تحمل البطاقة اسم المنتج وسعر البيع بالريال العماني.", "Choose products and bundles and the number of copies of each card. Each card shows the product name and sale price in Omani Rial."], ["زر الحفظ يخزّن ملفاً جاهزاً للطباعة في التنزيلات، تفتحه لاحقاً وتطبعه أو تحفظه", "The save button stores a print-ready file in Downloads; open it later to print it or save it as"], ["تظهر تنبيهات للمنتج الذي وصلت كميته إلى حد التنبيه أو اقترب تاريخ انتهائه", "Alerts appear for products whose quantity reached the alert level or whose expiry date is near"], ["جهازك لا يدعم مشاركة الملف مباشرة. احفظ الفاتورة PDF ثم أرفقها في واتساب.", "Your device does not support sharing the file directly. Save the invoice as PDF then attach it in WhatsApp."], ["الاسترجاع يستبدل بيانات القسم الحالية، ويسألك البرنامج للتأكيد قبل ذلك.", "Restoring replaces the current section data, and the app asks you to confirm first."], ["بياناتك تُحفظ تلقائياً عند كل تعديل، والنسخ الاحتياطي حماية إضافية.", "Your data is saved automatically with every change; backup is extra protection."], ["كل بياناتك في ملف واحد: المنتجات والباقات والزبائن والمبيعات والصور", "All your data in one file: products, bundles, customers, sales and images"], ["لم أجد عمود «الاسم». استخدم ملف المنتجات الذي صدّرته من البرنامج.", "Could not find the “الاسم” (Name) column. Use the products file you exported from the app."], ["لا توجد باقات بعد. أنشئ أول باقة من القطع الموجودة في المخزون.", "No bundles yet. Create your first bundle from the pieces in stock."], ["منتج جديد. المنتجات غير الموجودة في الملف تبقى كما هي. متابعة؟", "new products. Products not in the file stay as they are. Continue?"], ["تعذر إنشاء ملف PDF. تأكد من الاتصال بالإنترنت وحاول مرة أخرى.", "Could not create the PDF file. Check your internet connection and try again."], ["سيتم استبدال بيانات المنتجات والباقات الحالية بمحتوى النسخة", "The current products and bundles data will be replaced with the backup contents"], ["إذا تركت سعر الباقة فارغاً يُحسب من مجموع أسعار بيع القطع.", "If you leave the bundle price empty it is calculated from the total sale prices of the pieces."], ["التصدير غير متاح في هذا العرض. افتح الرابط من المتصفح.", "Export is not available in this view. Open the link in your browser."], ["تعذر فتح واتساب من هنا. افتح الصفحة من المتصفح مباشرة.", "Could not open WhatsApp from here. Open the page directly in your browser."], ["سعر بيع الباقة (ر.ع.) - اتركه فارغاً لحسابه تلقائياً", "Bundle sale price (OMR) - leave empty to calculate automatically"], ["نصيحة: احفظ النسخة الكاملة كل أسبوع في مكان آمن مثل", "Tip: save the full backup every week in a safe place such as"], ["تعذرت المشاركة. احفظ الفاتورة PDF وأرسلها يدوياً.", "Sharing failed. Save the invoice as PDF and send it manually."], ["الاسم بالإنجليزية (للفواتير الإنجليزية، اختياري)", "English name (for English invoices, optional)"], ["لا توجد مبيعات بعد. اضغط «تسجيل بيع جديد» للبدء.", "No sales yet. Tap “New sale” to start."], ["لم تحفظ نسخة احتياطية بعد. احفظ نسخة كاملة الآن.", "You haven't saved a backup yet. Save a full backup now."], ["تعذر المزامنة - البيانات محفوظة على هذا الجهاز", "Sync failed - data is saved on this device"], ["الباقة منتج واحد يتكون من عدة قطع من المخزون.", "A bundle is one product made of several pieces from stock."], ["تعذرت الطباعة المباشرة. استخدم زر الحفظ كملف.", "Direct printing failed. Use the save-as-file button."], ["لا توجد منتجات بعد. اضغط «إضافة منتج» للبدء.", "No products yet. Tap “Add product” to start."], ["ابحث عن أي فاتورة سابقة ثم اطبعها أو احفظها", "Find any previous invoice then print it or save it as"], ["المساحة ممتلئة. احذف بعض الصور أو المنتجات.", "Storage is full. Delete some images or products."], ["لا يوجد زبائن بعد. اضغط «إضافة زبون» للبدء.", "No customers yet. Tap “Add customer” to start."], ["؟ تبقى فواتيره السابقة محفوظة في المبيعات.", "? His previous invoices remain saved in Sales."], ["تعذرت الطباعة المباشرة. استخدم زر حفظ PDF.", "Direct printing failed. Use the Save PDF button."], ["هل تريد إعادة الكميات المباعة إلى المخزون؟", "Do you want to return the sold quantities to stock?"], ["اختر منتجاً أو باقة لتظهر بطاقتها هنا.", "Choose a product or bundle to see its card here."], ["الموقع (الولاية / المنطقة / العنوان)", "Location (state / area / address)"], ["رقم الفاتورة أو اسم الزبون أو الهاتف", "Invoice number, customer name or phone"], ["رابط الموقع على الخريطة (اختياري)", "Map link (optional)"], ["أو أعد إرسالها للزبون عبر واتساب.", "or resend it to the customer via WhatsApp."], ["اسم الباقة بالإنجليزية (اختياري)", "Bundle name in English (optional)"], ["رقم الهاتف أو العنوان (اختياري)", "Phone or address (optional)"], ["بحث باسم الزبون أو رقم الفاتورة", "Search by customer name or invoice number"], ["البيانات تُحفظ على هذا الجهاز.", "Data is saved on this device."], ["بحث بالاسم أو الهاتف أو الموقع", "Search by name, phone or location"], ["خصم الكميات المباعة من المخزون", "Deduct sold quantities from stock"], ["الملف ليس نسخة احتياطية صالحة.", "The file is not a valid backup."], ["لا توجد صفوف منتجات في الملف.", "No product rows in the file."], ["لا توجد مبيعات في هذه الفترة.", "No sales in this period."], ["الباقات: صفحة كاملة لكل باقة", "Bundles: full page per bundle"], ["لا توجد منتجات متوفرة للعرض.", "No available products to display."], ["أضف منتجات في المخزون أولاً.", "Add products to stock first."], ["أضف عنصراً واحداً على الأقل.", "Add at least one item."], ["يوماً على آخر نسخة احتياطية.", "days since your last backup."], ["إدارة مشاريع الزمرة الملكية", "Royal Group Projects Management"], ["اسم الزبون / المحل / المشتل", "Customer / shop / nursery name"], ["اختر بطاقة واحدة على الأقل.", "Select at least one card."], ["النسخ الاحتياطي والاستعادة", "Backup & Restore"], ["ملاحظات / المورد (اختياري)", "Notes / supplier (optional)"], ["أضف منتجات أو باقات أولاً.", "Add products or bundles first."], ["المبلغ المدفوع الآن (ر.ع.)", "Amount paid now (OMR)"], ["أضف قطعة واحدة على الأقل.", "Add at least one piece."], ["الملف ليس نسخة صالحة لقسم", "The file is not a valid backup for the section"], ["تاريخ الانتهاء (اختياري)", "Expiry date (optional)"], ["محفوظ على هذا الجهاز فقط", "Saved on this device only"], ["الأسعار بالريال العماني", "Prices in Omani Rial"], ["مثال: باقة زراعة منزلية", "Example: Home gardening kit"], ["لا توجد منتجات للطباعة.", "No products to print."], ["لا توجد عمليات بيع بعد.", "No sales yet."], ["لم تحفظ نسخة كاملة بعد.", "No full backup saved yet."], ["منتهي أو قريب الانتهاء", "Expired or expiring soon"], ["تاريخ الانتهاء: الأقرب", "Expiry date: nearest"], ["أسمدة، بذور، مبيدات...", "Fertilizers, seeds, pesticides..."], ["الجدول بالريال العماني", "Table in Omani Rial"], ["زبون نقدي (بدون تسجيل)", "Cash customer (unregistered)"], ["لا توجد فواتير مطابقة.", "No matching invoices."], ["بحث بالاسم أو التصنيف", "Search by name or category"], ["المدفوع (فارغ = كامل)", "Paid (empty = full)"], ["لا توجد نتائج مطابقة.", "No matching results."], ["منتج محذوف من المخزون", "Product deleted from stock"], ["التصدير غير متاح هنا.", "Export is not available here."], ["آخر نسخة كاملة محفوظة", "Last full backup saved"], ["عدد المنتجات / القطع", "Products / pieces"], ["تكلفة المخزون (شراء)", "Stock cost (purchase)"], ["الكمية: الأكثر أولاً", "Quantity: highest first"], ["قيمة المخزون: الأعلى", "Stock value: highest"], ["عدد البطاقات في الصف", "Cards per row"], ["إجمالي القطع المباعة", "Total pieces sold"], ["الكمية: الأقل أولاً", "Quantity: lowest first"], ["حصتها من سعر الباقة", "its share of the bundle price"], ["أضف قطعة من المخزون", "Add a piece from stock"], ["ربح القطعة يظهر هنا", "Unit profit appears here"], ["عدد القطع في الباقة", "Pieces in bundle"], ["تكلفة الباقة (شراء)", "Bundle cost (purchase)"], ["لا توجد فواتير بعد.", "No invoices yet."], ["بيع المواد الزراعية", "Agricultural Materials Sales"], ["قيمة المخزون (بيع)", "Stock value (sale)"], ["ربح القطعة: الأعلى", "Unit profit: highest"], ["إضافة إلى الفاتورة", "Add to invoice"], ["استرجاع نسخة كاملة", "Restore full backup"], ["المبيعات والفواتير", "Sales & invoices"], ["سعر البيع: الأعلى", "Sale price: highest"], ["حفظ البطاقات كملف", "Save cards as file"], ["إظهار غير المتوفر", "Show unavailable"], ["حفظ الكتالوج كملف", "Save catalog as file"], ["ملاحظات (اختياري)", "Notes (optional)"], ["سعر الوحدة (ر.ع.)", "Unit price (OMR)"], ["سعر الشراء (ر.ع.)", "Purchase price (OMR)"], ["حد التنبيه (كمية)", "Alert level (quantity)"], ["لم تضف قطعاً بعد.", "No pieces added yet."], ["لم تضف عناصر بعد.", "No items added yet."], ["حذف هذه الفاتورة؟", "Delete this invoice?"], ["سعر البيع: الأقل", "Sale price: lowest"], ["إنشاء باقة جديدة", "Create new bundle"], ["إجمالي المشتريات", "Total purchases"], ["مثال: سماد يوريا", "Example: Urea fertilizer"], ["سعر البيع (ر.ع.)", "Sale price (OMR)"], ["أكبر من المتوفر)", "more than available)"], ["النسخ الاحتياطي", "Backup"], ["جارٍ الاتصال...", "Connecting..."], ["بطاقتان في الصف", "2 cards per row"], ["الباقات: بطاقات", "Bundles: cards"], ["معاينة البطاقات", "Cards preview"], ["كتالوج المنتجات", "Product catalog"], ["الديون المتبقية", "Outstanding debts"], ["ديون غير محصّلة", "Uncollected debts"], ["المخزون يكفي لـ", "Stock is enough for"], ["متزامن مع حسابك", "Synced with your account"], ["تعذر حفظ الملف.", "Could not save the file."], ["المشروع الحالي:", "Current project:"], ["طباعة البطاقات", "Print cards"], ["بطاقات في الصف", "cards per row"], ["طباعة الكتالوج", "Print catalog"], ["تسجيل بيع جديد", "New sale"], ["الفاتورة: عربي", "Invoice: Arabic"], ["أرشيف الفواتير", "Invoice archive"], ["حفظ نسخة كاملة", "Save full backup"], ["منتهي الصلاحية", "Expired"], ["سعر بيع الباقة", "Bundle sale price"], ["باقة). متابعة؟", "bundles). Continue?"], ["الربح المتوقع", "Expected profit"], ["المخزون منخفض", "Low stock"], ["تخطيط الباقات", "Bundle layout"], ["إلغاء التحديد", "Clear selection"], ["آخر عملية بيع", "Last sale"], ["من سعر البيع)", "of sale price)"], ["البيع منفرداً", "Sold separately"], ["تعذر المزامنة", "Sync failed"], ["بمحتوى النسخة", "with the backup contents"], ["الفرز: الاسم", "Sort: name"], ["عدد الفواتير", "Invoices"], ["الأكثر ديناً", "Most in debt"], ["الأكثر شراءً", "Top buyers"], ["مبيعات اليوم", "Today's sales"], ["مبيعات الشهر", "This month's sales"], ["لغة الفاتورة", "Invoice language"], ["تعديل المنتج", "Edit product"], ["تعديل الباقة", "Edit bundle"], ["المتبقي عليه", "Balance owed"], ["تعديل الزبون", "Edit customer"], ["سيتم استبدال", "Will replace"], ["السلام عليكم", "Hello"], ["كل المنتجات", "All products"], ["ربح كل قطعة", "The profit of each piece"], ["سعر شرائها.", "its purchase price."], ["عدد الأعمدة", "Number of columns"], ["منتجات أخرى", "Other products"], ["عدد الزبائن", "Customers"], ["تاريخ البيع", "Sale date"], ["طريقة الدفع", "Payment method"], ["صورة المنتج", "Product image"], ["كل الفواتير", "All invoices"], ["غير المسددة", "Unpaid"], ["كمية منخفضة", "Low quantity"], ["منتج وإضافة", "products and add"], ["إضافة منتج", "Add product"], ["(30 يوماً)", "(30 days)"], ["تحديد الكل", "Select all"], ["اسم المتجر", "Shop name"], ["إضافة زبون", "Add customer"], ["كل الأنواع", "All types"], ["رقم الهاتف", "Phone number"], ["حفظ الزبون", "Save customer"], ["نوع العنصر", "Item type"], ["خصم (ر.ع.)", "Discount (OMR)"], ["باقة جديدة", "New bundle"], ["اسم الباقة", "Bundle name"], ["حفظ الباقة", "Save bundle"], ["اسم المنتج", "Product name"], ["نسخة كاملة", "Full backup"], ["ربح القطعة", "Unit profit"], ["منتج محذوف", "Deleted product"], ["ربح الباقة", "Bundle profit"], ["سيتم تحديث", "Will update"], ["كشف الحساب", "Account statement"], ["فاتورة رقم", "Invoice No."], ["فاتورة بيع", "Sales invoice"], ["تسجيل دفعة", "Record payment"], ["مشاركة PDF", "Share PDF"], ["احفظ الآن", "Save now"], ["ربح الشهر", "This month's profit"], ["حفظ البيع", "Save sale"], ["نسخة JSON", "JSON backup"], ["ينتهي بعد", "Expires in"], ["عدد القطع", "Pieces"], ["السعر لكل", "Price per"], ["عدد النسخ", "Number of copies"], ["زبون نقدي", "Cash customer"], ["بيع جديد", "New sale"], ["المنتجات", "Products"], ["المبيعات", "Sales"], ["الإجمالي", "Total"], ["الفاتورة", "the invoice"], ["المشاريع", "Projects"], ["استرجاع", "Restore"], ["استيراد", "Import"], ["التكلفة", "Cost"], ["بعد خصم", "after discount"], ["حفظ PDF", "Save PDF"], ["الحالية", "current"], ["متابعة؟", "Continue?"], ["الباقات", "Bundles"], ["الزبائن", "Customers"], ["المخزون", "inventory"], ["المجموع", "Total"], ["المدفوع", "Paid"], ["المتبقي", "Remaining"], ["عمودان", "2 columns"], ["أعمدة", "columns"], ["تصدير", "Export"], ["ينتهي", "Expires"], ["منتج،", "products,"], ["متوفر", "available"], ["مثال", "Example"], ["ر.ع.", "OMR"], ["وفّر", "Save"], ["تكفي", "enough for"], ["مرّ", "It has been"], ["؟", "?"],["فاتورة ","Invoice "],["إرسال عبر واتساب","Send via WhatsApp"],["نسخ الرسالة","Copy message"],["مشاركة","Share"]],EXACT={"باقة": "Bundle", "الباقة": "Bundle", "منتج منفرد": "Single product", "المنتج": "Product", "الكمية": "Quantity", "الزبون": "Customer", "مشتل": "Nursery", "محل": "Shop", "مزرعة": "Farm", "فرد": "Individual", "أخرى": "Other", "قطعة": "pcs", "كيس": "bag", "كرتون": "carton", "لتر": "L", "كجم": "kg", "علبة": "box", "نقداً": "Cash", "تحويل": "Transfer", "آجل": "Credit", "الكل": "All", "اليوم": "Today", "هذا الشهر": "This month", "الصورة": "Image", "الصور": "Images", "التصنيف": "Category", "تاريخ الانتهاء": "Expiry date", "الوحدة": "Unit", "النوع": "Type", "التاريخ": "Date", "الربح": "Profit", "القطعة": "Piece", "السعر": "Price", "المبلغ": "Amount", "العدد": "Count", "المدفوع": "Paid", "المتبقي": "Remaining", "المجموع": "Total", "شراء": "Purchase", "بيع": "Sale", "حفظ": "Save", "تعديل": "Edit", "حذف": "Delete", "طباعة": "Print", "إضافة": "Add", "إلغاء": "Cancel", "إغلاق": "Close", "فتح": "Open", "الحالي": "Current", "زيادة": "Increase", "إنقاص": "Decrease", "إزالة": "Remove", "فاتورة": "Invoice", "الفواتير": "Invoices", "المخزون": "Inventory", "الباقات": "Bundles", "الزبائن": "Customers", "المبيعات": "Sales", "الكتالوج": "Catalog", "المشاريع": "Projects", "واتساب": "WhatsApp", "اتصال": "Call", "الخريطة": "Map", "الفرز": "Sort", "التصفية": "Filter", "الفترة": "Period", "المنتجات": "Products"},UNIT_EN={"قطعة":"pcs","كيس":"bag","كرتون":"carton","لتر":"L","كجم":"kg","علبة":"box","باقة":"bundle"};
+var DICT=[["الوصف (يظهر في نموذج الطلب والكتالوج، اختياري)", "Description (shown on the order form and catalog, optional)"], ["الوصف بالإنجليزية (اختياري)", "English description (optional)"], ["ترجمة الوصف تلقائياً", "Auto-translate description"], ["وصف الباقة (يظهر في نموذج الطلب، اختياري - وإلا تُعرض محتوياتها)", "Bundle description (shown on the order form, optional - otherwise its contents are listed)"], ["وصف الباقة بالإنجليزية (اختياري)", "Bundle description in English (optional)"], ["مثال: سماد نيتروجيني عالي الجودة، كيس 50 كجم", "Example: high-quality nitrogen fertilizer, 50 kg bag"], ["سعر الباقة", "Bundle price"], ["(باقة)", "(bundle)"], ["نقداً", "Cash"], ["تحويل", "Transfer"], ["آجل", "Credit"], ["،", ","],["تصدير كتالوج الزبائن للطلب عبر واتساب", "Export customer catalog for WhatsApp orders"], ["نوع المستند", "Document type"], ["سعر الجملة (ر.ع.) - اختياري", "Wholesale price (OMR) - optional"], ["فئة السعر", "Price tier"], ["حد الدين (ر.ع.)", "Credit limit (OMR)"], ["نسبة ضريبة القيمة المضافة % (0 = بدون ضريبة، الأسعار شاملة الضريبة)", "VAT rate % (0 = no tax; prices include VAT)"], ["الرقم الضريبي (اختياري)", "VAT number (optional)"], ["رقم واتساب لاستقبال الطلبات (مع رمز الدولة)", "WhatsApp number to receive orders (with country code)"],["إجمالي الديون", "Total receivables"], ["عدد المدينين", "Debtors"], ["ديون متأخرة (+30 يوماً)", "Overdue debts (30+ days)"], ["المحصّل هذا الشهر", "Collected this month"], ["بحث باسم الزبون أو الهاتف", "Search by customer name or phone"], ["المدينون فقط", "Debtors only"], ["كل الزبائن", "All customers"], ["الأقدم ديناً", "Oldest debt"], ["آخر الدفعات", "Recent payments"], ["تصدير الحسابات (Excel)", "Export accounts (Excel)"], ["كل الفترات", "All periods"], ["آخر 3 أشهر", "Last 3 months"], ["هذه السنة", "This year"], ["فترة مخصصة", "Custom period"], ["من تاريخ", "From date"], ["إلى تاريخ", "To date"], ["المبلغ (ر.ع.)", "Amount (OMR)"], ["تاريخ الدفعة", "Payment date"], ["ملاحظة (اختياري)", "Note (optional)"], ["حفظ الدفعة", "Save payment"],["استيراد من دليل الهاتف", "Import from phone contacts"], ["تصدير الزبائن لدليل الهاتف", "Export customers to phone contacts"], ["اختيار من دليل الهاتف", "Pick from phone contacts"], ["اختيار ملف (vCard / CSV)", "Choose file (vCard / CSV)"], ["بحث في جهات الاتصال", "Search contacts"], ["حفظ في دليل الهاتف بعد الإضافة", "Save to phone contacts after adding"], ["حفظ في دليل الهاتف", "Save to phone contacts"], ["حفظ بالهاتف", "Save to phone"], ["تنزيل ملف جهة الاتصال", "Download contact file"], ["نسخ الاسم والرقم", "Copy name and number"],["رقم الفاتورة القادم (6 خانات، يزيد تلقائياً ولا يتكرر)", "Next invoice number (6 digits, auto-increments, never repeats)"], ["رمز الباركود (يُولَّد تلقائياً، ويمكنك تعديله)", "Barcode (auto-generated, editable)"], ["امسح الباركود أو اكتب رمز الباقة", "Scan barcode or type the bundle code"], ["رمز الباركود يجب أن يكون حروفاً وأرقاماً إنجليزية (حتى 24 خانة).", "The barcode must use English letters and digits (up to 24 characters)."], ["رمز الباركود مستخدم لباقة أخرى. اختر رمزاً مختلفاً.", "This barcode is used by another bundle. Choose a different one."], ["لم يتم العثور على باقة بهذا الرمز.", "No bundle found with this code."],["بيانات الشركة", "Company details"], ["شعار الشركة (اختياري)", "Company logo (optional)"], ["اسم الشركة (عربي)", "Company name (Arabic)"], ["الهاتف / العنوان (عربي)", "Phone / address (Arabic)"], ["ملاحظة أسفل الفاتورة (عربي، اختياري)", "Invoice footer note (Arabic, optional)"], ["حذف الشعار", "Remove logo"], ["ترجمة تلقائية للأسماء الناقصة", "Auto-translate missing names"], ["ترجمة تلقائية", "Auto-translate"], ["تظهر هذه البيانات في الفواتير والكتالوج وتُحفظ لهذا المشروع. عدّلها متى شئت.", "These details appear on invoices and the catalog and are saved for this project. Edit them any time."], ["مثال: الزمرة الملكية", "Example: Royal Group"], ["مثال: البضاعة المباعة لا ترد ولا تستبدل", "Example: Sold goods are not returnable or exchangeable"], ["بيانات الشركة (الاسم والشعار)", "Company details (name and logo)"], ["الشركة", "Company"],["اختر المنتجات والباقات وعدد نسخ كل بطاقة. تحمل البطاقة اسم المنتج وسعر البيع بالريال العماني.", "Choose products and bundles and the number of copies of each card. Each card shows the product name and sale price in Omani Rial."], ["زر الحفظ يخزّن ملفاً جاهزاً للطباعة في التنزيلات، تفتحه لاحقاً وتطبعه أو تحفظه", "The save button stores a print-ready file in Downloads; open it later to print it or save it as"], ["تظهر تنبيهات للمنتج الذي وصلت كميته إلى حد التنبيه أو اقترب تاريخ انتهائه", "Alerts appear for products whose quantity reached the alert level or whose expiry date is near"], ["جهازك لا يدعم مشاركة الملف مباشرة. احفظ الفاتورة PDF ثم أرفقها في واتساب.", "Your device does not support sharing the file directly. Save the invoice as PDF then attach it in WhatsApp."], ["الاسترجاع يستبدل بيانات القسم الحالية، ويسألك البرنامج للتأكيد قبل ذلك.", "Restoring replaces the current section data, and the app asks you to confirm first."], ["بياناتك تُحفظ تلقائياً عند كل تعديل، والنسخ الاحتياطي حماية إضافية.", "Your data is saved automatically with every change; backup is extra protection."], ["كل بياناتك في ملف واحد: المنتجات والباقات والزبائن والمبيعات والصور", "All your data in one file: products, bundles, customers, sales and images"], ["لم أجد عمود «الاسم». استخدم ملف المنتجات الذي صدّرته من البرنامج.", "Could not find the “الاسم” (Name) column. Use the products file you exported from the app."], ["لا توجد باقات بعد. أنشئ أول باقة من القطع الموجودة في المخزون.", "No bundles yet. Create your first bundle from the pieces in stock."], ["منتج جديد. المنتجات غير الموجودة في الملف تبقى كما هي. متابعة؟", "new products. Products not in the file stay as they are. Continue?"], ["تعذر إنشاء ملف PDF. تأكد من الاتصال بالإنترنت وحاول مرة أخرى.", "Could not create the PDF file. Check your internet connection and try again."], ["سيتم استبدال بيانات المنتجات والباقات الحالية بمحتوى النسخة", "The current products and bundles data will be replaced with the backup contents"], ["إذا تركت سعر الباقة فارغاً يُحسب من مجموع أسعار بيع القطع.", "If you leave the bundle price empty it is calculated from the total sale prices of the pieces."], ["التصدير غير متاح في هذا العرض. افتح الرابط من المتصفح.", "Export is not available in this view. Open the link in your browser."], ["تعذر فتح واتساب من هنا. افتح الصفحة من المتصفح مباشرة.", "Could not open WhatsApp from here. Open the page directly in your browser."], ["سعر بيع الباقة (ر.ع.) - اتركه فارغاً لحسابه تلقائياً", "Bundle sale price (OMR) - leave empty to calculate automatically"], ["نصيحة: احفظ النسخة الكاملة كل أسبوع في مكان آمن مثل", "Tip: save the full backup every week in a safe place such as"], ["تعذرت المشاركة. احفظ الفاتورة PDF وأرسلها يدوياً.", "Sharing failed. Save the invoice as PDF and send it manually."], ["الاسم بالإنجليزية (للفواتير الإنجليزية، اختياري)", "English name (for English invoices, optional)"], ["لا توجد مبيعات بعد. اضغط «تسجيل بيع جديد» للبدء.", "No sales yet. Tap “New sale” to start."], ["لم تحفظ نسخة احتياطية بعد. احفظ نسخة كاملة الآن.", "You haven't saved a backup yet. Save a full backup now."], ["تعذر المزامنة - البيانات محفوظة على هذا الجهاز", "Sync failed - data is saved on this device"], ["الباقة منتج واحد يتكون من عدة قطع من المخزون.", "A bundle is one product made of several pieces from stock."], ["تعذرت الطباعة المباشرة. استخدم زر الحفظ كملف.", "Direct printing failed. Use the save-as-file button."], ["لا توجد منتجات بعد. اضغط «إضافة منتج» للبدء.", "No products yet. Tap “Add product” to start."], ["ابحث عن أي فاتورة سابقة ثم اطبعها أو احفظها", "Find any previous invoice then print it or save it as"], ["المساحة ممتلئة. احذف بعض الصور أو المنتجات.", "Storage is full. Delete some images or products."], ["لا يوجد زبائن بعد. اضغط «إضافة زبون» للبدء.", "No customers yet. Tap “Add customer” to start."], ["؟ تبقى فواتيره السابقة محفوظة في المبيعات.", "? His previous invoices remain saved in Sales."], ["تعذرت الطباعة المباشرة. استخدم زر حفظ PDF.", "Direct printing failed. Use the Save PDF button."], ["هل تريد إعادة الكميات المباعة إلى المخزون؟", "Do you want to return the sold quantities to stock?"], ["اختر منتجاً أو باقة لتظهر بطاقتها هنا.", "Choose a product or bundle to see its card here."], ["الموقع (الولاية / المنطقة / العنوان)", "Location (state / area / address)"], ["رقم الفاتورة أو اسم الزبون أو الهاتف", "Invoice number, customer name or phone"], ["رابط الموقع على الخريطة (اختياري)", "Map link (optional)"], ["أو أعد إرسالها للزبون عبر واتساب.", "or resend it to the customer via WhatsApp."], ["اسم الباقة بالإنجليزية (اختياري)", "Bundle name in English (optional)"], ["رقم الهاتف أو العنوان (اختياري)", "Phone or address (optional)"], ["بحث باسم الزبون أو رقم الفاتورة", "Search by customer name or invoice number"], ["البيانات تُحفظ على هذا الجهاز.", "Data is saved on this device."], ["بحث بالاسم أو الهاتف أو الموقع", "Search by name, phone or location"], ["خصم الكميات المباعة من المخزون", "Deduct sold quantities from stock"], ["الملف ليس نسخة احتياطية صالحة.", "The file is not a valid backup."], ["لا توجد صفوف منتجات في الملف.", "No product rows in the file."], ["لا توجد مبيعات في هذه الفترة.", "No sales in this period."], ["الباقات: صفحة كاملة لكل باقة", "Bundles: full page per bundle"], ["لا توجد منتجات متوفرة للعرض.", "No available products to display."], ["أضف منتجات في المخزون أولاً.", "Add products to stock first."], ["أضف عنصراً واحداً على الأقل.", "Add at least one item."], ["يوماً على آخر نسخة احتياطية.", "days since your last backup."], ["إدارة مشاريع الزمرة الملكية", "Royal Group Projects Management"], ["اسم الزبون / المحل / المشتل", "Customer / shop / nursery name"], ["اختر بطاقة واحدة على الأقل.", "Select at least one card."], ["النسخ الاحتياطي والاستعادة", "Backup & Restore"], ["ملاحظات / المورد (اختياري)", "Notes / supplier (optional)"], ["أضف منتجات أو باقات أولاً.", "Add products or bundles first."], ["المبلغ المدفوع الآن (ر.ع.)", "Amount paid now (OMR)"], ["أضف قطعة واحدة على الأقل.", "Add at least one piece."], ["الملف ليس نسخة صالحة لقسم", "The file is not a valid backup for the section"], ["تاريخ الانتهاء (اختياري)", "Expiry date (optional)"], ["محفوظ على هذا الجهاز فقط", "Saved on this device only"], ["الأسعار بالريال العماني", "Prices in Omani Rial"], ["مثال: باقة زراعة منزلية", "Example: Home gardening kit"], ["لا توجد منتجات للطباعة.", "No products to print."], ["لا توجد عمليات بيع بعد.", "No sales yet."], ["لم تحفظ نسخة كاملة بعد.", "No full backup saved yet."], ["منتهي أو قريب الانتهاء", "Expired or expiring soon"], ["تاريخ الانتهاء: الأقرب", "Expiry date: nearest"], ["أسمدة، بذور، مبيدات...", "Fertilizers, seeds, pesticides..."], ["الجدول بالريال العماني", "Table in Omani Rial"], ["زبون نقدي (بدون تسجيل)", "Cash customer (unregistered)"], ["لا توجد فواتير مطابقة.", "No matching invoices."], ["بحث بالاسم أو التصنيف", "Search by name or category"], ["المدفوع (فارغ = كامل)", "Paid (empty = full)"], ["لا توجد نتائج مطابقة.", "No matching results."], ["منتج محذوف من المخزون", "Product deleted from stock"], ["التصدير غير متاح هنا.", "Export is not available here."], ["آخر نسخة كاملة محفوظة", "Last full backup saved"], ["عدد المنتجات / القطع", "Products / pieces"], ["تكلفة المخزون (شراء)", "Stock cost (purchase)"], ["الكمية: الأكثر أولاً", "Quantity: highest first"], ["قيمة المخزون: الأعلى", "Stock value: highest"], ["عدد البطاقات في الصف", "Cards per row"], ["إجمالي القطع المباعة", "Total pieces sold"], ["الكمية: الأقل أولاً", "Quantity: lowest first"], ["حصتها من سعر الباقة", "its share of the bundle price"], ["أضف قطعة من المخزون", "Add a piece from stock"], ["ربح القطعة يظهر هنا", "Unit profit appears here"], ["عدد القطع في الباقة", "Pieces in bundle"], ["تكلفة الباقة (شراء)", "Bundle cost (purchase)"], ["لا توجد فواتير بعد.", "No invoices yet."], ["بيع المواد الزراعية", "Agricultural Materials Sales"], ["قيمة المخزون (بيع)", "Stock value (sale)"], ["ربح القطعة: الأعلى", "Unit profit: highest"], ["إضافة إلى الفاتورة", "Add to invoice"], ["استرجاع نسخة كاملة", "Restore full backup"], ["المبيعات والفواتير", "Sales & invoices"], ["سعر البيع: الأعلى", "Sale price: highest"], ["حفظ البطاقات كملف", "Save cards as file"], ["إظهار غير المتوفر", "Show unavailable"], ["حفظ الكتالوج كملف", "Save catalog as file"], ["ملاحظات (اختياري)", "Notes (optional)"], ["سعر الوحدة (ر.ع.)", "Unit price (OMR)"], ["سعر الشراء (ر.ع.)", "Purchase price (OMR)"], ["حد التنبيه (كمية)", "Alert level (quantity)"], ["لم تضف قطعاً بعد.", "No pieces added yet."], ["لم تضف عناصر بعد.", "No items added yet."], ["حذف هذه الفاتورة؟", "Delete this invoice?"], ["سعر البيع: الأقل", "Sale price: lowest"], ["إنشاء باقة جديدة", "Create new bundle"], ["إجمالي المشتريات", "Total purchases"], ["مثال: سماد يوريا", "Example: Urea fertilizer"], ["سعر البيع (ر.ع.)", "Sale price (OMR)"], ["أكبر من المتوفر)", "more than available)"], ["النسخ الاحتياطي", "Backup"], ["جارٍ الاتصال...", "Connecting..."], ["بطاقتان في الصف", "2 cards per row"], ["الباقات: بطاقات", "Bundles: cards"], ["معاينة البطاقات", "Cards preview"], ["كتالوج المنتجات", "Product catalog"], ["الديون المتبقية", "Outstanding debts"], ["ديون غير محصّلة", "Uncollected debts"], ["المخزون يكفي لـ", "Stock is enough for"], ["متزامن مع حسابك", "Synced with your account"], ["تعذر حفظ الملف.", "Could not save the file."], ["المشروع الحالي:", "Current project:"], ["طباعة البطاقات", "Print cards"], ["بطاقات في الصف", "cards per row"], ["طباعة الكتالوج", "Print catalog"], ["تسجيل بيع جديد", "New sale"], ["الفاتورة: عربي", "Invoice: Arabic"], ["أرشيف الفواتير", "Invoice archive"], ["حفظ نسخة كاملة", "Save full backup"], ["منتهي الصلاحية", "Expired"], ["سعر بيع الباقة", "Bundle sale price"], ["باقة). متابعة؟", "bundles). Continue?"], ["الربح المتوقع", "Expected profit"], ["المخزون منخفض", "Low stock"], ["تخطيط الباقات", "Bundle layout"], ["إلغاء التحديد", "Clear selection"], ["آخر عملية بيع", "Last sale"], ["من سعر البيع)", "of sale price)"], ["البيع منفرداً", "Sold separately"], ["تعذر المزامنة", "Sync failed"], ["بمحتوى النسخة", "with the backup contents"], ["الفرز: الاسم", "Sort: name"], ["عدد الفواتير", "Invoices"], ["الأكثر ديناً", "Most in debt"], ["الأكثر شراءً", "Top buyers"], ["مبيعات اليوم", "Today's sales"], ["مبيعات الشهر", "This month's sales"], ["لغة الفاتورة", "Invoice language"], ["تعديل المنتج", "Edit product"], ["تعديل الباقة", "Edit bundle"], ["المتبقي عليه", "Balance owed"], ["تعديل الزبون", "Edit customer"], ["سيتم استبدال", "Will replace"], ["السلام عليكم", "Hello"], ["كل المنتجات", "All products"], ["ربح كل قطعة", "The profit of each piece"], ["سعر شرائها.", "its purchase price."], ["عدد الأعمدة", "Number of columns"], ["منتجات أخرى", "Other products"], ["عدد الزبائن", "Customers"], ["تاريخ البيع", "Sale date"], ["طريقة الدفع", "Payment method"], ["صورة المنتج", "Product image"], ["كل الفواتير", "All invoices"], ["غير المسددة", "Unpaid"], ["كمية منخفضة", "Low quantity"], ["منتج وإضافة", "products and add"], ["إضافة منتج", "Add product"], ["(30 يوماً)", "(30 days)"], ["تحديد الكل", "Select all"], ["اسم المتجر", "Shop name"], ["إضافة زبون", "Add customer"], ["كل الأنواع", "All types"], ["رقم الهاتف", "Phone number"], ["حفظ الزبون", "Save customer"], ["نوع العنصر", "Item type"], ["خصم (ر.ع.)", "Discount (OMR)"], ["باقة جديدة", "New bundle"], ["اسم الباقة", "Bundle name"], ["حفظ الباقة", "Save bundle"], ["اسم المنتج", "Product name"], ["نسخة كاملة", "Full backup"], ["ربح القطعة", "Unit profit"], ["منتج محذوف", "Deleted product"], ["ربح الباقة", "Bundle profit"], ["سيتم تحديث", "Will update"], ["كشف الحساب", "Account statement"], ["فاتورة رقم", "Invoice No."], ["فاتورة بيع", "Sales invoice"], ["تسجيل دفعة", "Record payment"], ["مشاركة PDF", "Share PDF"], ["احفظ الآن", "Save now"], ["ربح الشهر", "This month's profit"], ["حفظ البيع", "Save sale"], ["نسخة JSON", "JSON backup"], ["ينتهي بعد", "Expires in"], ["عدد القطع", "Pieces"], ["السعر لكل", "Price per"], ["عدد النسخ", "Number of copies"], ["زبون نقدي", "Cash customer"], ["بيع جديد", "New sale"], ["المنتجات", "Products"], ["المبيعات", "Sales"], ["الإجمالي", "Total"], ["الفاتورة", "the invoice"], ["المشاريع", "Projects"], ["استرجاع", "Restore"], ["استيراد", "Import"], ["التكلفة", "Cost"], ["بعد خصم", "after discount"], ["حفظ PDF", "Save PDF"], ["الحالية", "current"], ["متابعة؟", "Continue?"], ["الباقات", "Bundles"], ["الزبائن", "Customers"], ["المخزون", "inventory"], ["المجموع", "Total"], ["المدفوع", "Paid"], ["المتبقي", "Remaining"], ["عمودان", "2 columns"], ["أعمدة", "columns"], ["تصدير", "Export"], ["ينتهي", "Expires"], ["منتج،", "products,"], ["متوفر", "available"], ["مثال", "Example"], ["ر.ع.", "OMR"], ["وفّر", "Save"], ["تكفي", "enough for"], ["مرّ", "It has been"], ["؟", "?"],["فاتورة ","Invoice "],["إرسال عبر واتساب","Send via WhatsApp"],["نسخ الرسالة","Copy message"],["مشاركة","Share"]],EXACT={"باقة": "Bundle", "الباقة": "Bundle", "منتج منفرد": "Single product", "المنتج": "Product", "الكمية": "Quantity", "الزبون": "Customer", "مشتل": "Nursery", "محل": "Shop", "مزرعة": "Farm", "فرد": "Individual", "أخرى": "Other", "قطعة": "pcs", "كيس": "bag", "كرتون": "carton", "لتر": "L", "كجم": "kg", "علبة": "box", "نقداً": "Cash", "تحويل": "Transfer", "آجل": "Credit", "الكل": "All", "اليوم": "Today", "هذا الشهر": "This month", "الصورة": "Image", "الصور": "Images", "التصنيف": "Category", "تاريخ الانتهاء": "Expiry date", "الوحدة": "Unit", "النوع": "Type", "التاريخ": "Date", "الربح": "Profit", "القطعة": "Piece", "السعر": "Price", "المبلغ": "Amount", "العدد": "Count", "المدفوع": "Paid", "المتبقي": "Remaining", "المجموع": "Total", "شراء": "Purchase", "بيع": "Sale", "حفظ": "Save", "تعديل": "Edit", "حذف": "Delete", "طباعة": "Print", "إضافة": "Add", "إلغاء": "Cancel", "إغلاق": "Close", "فتح": "Open", "الحالي": "Current", "زيادة": "Increase", "إنقاص": "Decrease", "إزالة": "Remove", "فاتورة": "Invoice", "الفواتير": "Invoices", "المخزون": "Inventory", "الباقات": "Bundles", "الزبائن": "Customers", "المبيعات": "Sales", "الكتالوج": "Catalog", "المشاريع": "Projects", "واتساب": "WhatsApp", "اتصال": "Call", "الخريطة": "Map", "الفرز": "Sort", "التصفية": "Filter", "الفترة": "Period", "المنتجات": "Products"},UNIT_EN={"قطعة":"pcs","كيس":"bag","كرتون":"carton","لتر":"L","كجم":"kg","علبة":"box","باقة":"bundle"};
 function trT(s){
   if(UI!=="en"||!s)return s;
   if(NDIRTY){rebuildNames();NDIRTY=false}
@@ -1447,7 +1487,7 @@ function trT(s){
   return o.replace(/(\d)(\s*)(قطعة|كيس|كرتون|لتر|كجم|علبة|باقة)/g,function(m,a,b,c){return a+b+UNIT_EN[c]}).replace(/(\d)(\s*)يوم(?![\u0600-\u06FF])/g,"$1$2days").replace(/(Price per )(قطعة|كيس|كرتون|لتر|كجم|علبة)/g,function(m,a,c){return a+UNIT_EN[c]});
 }
 function trM(m){return trT(String(m)).replace(/^حذف /,"Delete ")}
-function trSkip(n){var p=n.nodeType===1?n:n.parentNode;return !p||/^(SCRIPT|STYLE)$/.test(p.nodeName)||(p.closest&&p.closest("#invPrint,#invTmp,#stBody"))}
+function trSkip(n){var p=n.nodeType===1?n:n.parentNode;return !p||/^(SCRIPT|STYLE)$/.test(p.nodeName)||(p.closest&&p.closest("#invPrint,#invTmp,#stBody,#ordPaper"))}
 function trNode(n){
   if(trSkip(n))return;
   var v=n.nodeValue;if(!v||!/[\u0600-\u06FF]/.test(v))return;
@@ -1635,6 +1675,8 @@ function oneTr(src,dst,btn){
 }
 $("nameTr").onclick=function(){oneTr("name","nameEn","nameTr")};
 $("bnTr").onclick=function(){oneTr("bn","bnEn","bnTr")};
+$("descTr").onclick=function(){oneTr("desc","descEn","descTr")};
+$("bdescTr").onclick=function(){oneTr("bdesc","bdescEn","bdescTr")};
 function enOf(l){return l.en||(l.bid&&((bundles.find(function(b){return b.id===l.bid})||{}).en))||(l.pid&&((byId(l.pid)||{}).en))||TM[l.name]||l.name}
 function co0(en){
   var shop=$("cShop").value.trim(),info=$("cInfo").value.trim(),foot=$("cFoot").value.trim();
@@ -2127,7 +2169,7 @@ document.body.insertAdjacentHTML("beforeend",'<dialog id="fDlg"><form id="fForm"
 '<div class="full"><label>'+L("ملاحظات (اختياري)","Notes (optional)")+'</label><input id="puNote"></div>'+
 '<div class="full" id="puTot" style="padding:8px 10px;border-radius:8px;background:var(--g2);color:var(--g);font-weight:800;line-height:1.7"></div></div>'+
 '<div class="acts"><button class="pri" type="submit">'+L("حفظ فاتورة الشراء","Save purchase")+'</button><button type="button" id="puCancel">'+L("إلغاء","Cancel")+'</button></div></form></dialog>');
-var CATTPL="<!DOCTYPE html><html lang=\"__LANG__\" dir=\"__DIR__\"><head><meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"><title>__TITLE__<\/title>\n<style>\n:root{--g:#2f5a32;--bg:#eef1ea}*{box-sizing:border-box}\nbody{margin:0;font-family:Tahoma,Arial,sans-serif;background:var(--bg);color:#1f2a1c;padding-bottom:130px}\nheader{background:var(--g);color:#fff;padding:14px;text-align:center}\nheader img{max-height:60px;display:block;margin:0 auto 6px;background:#fff;border-radius:8px;padding:3px}\nheader b{font-size:20px}header div{font-size:12px;opacity:.9}\n.w{max-width:760px;margin:0 auto;padding:12px}\ninput{width:100%;font:inherit;padding:10px;border:1px solid #cfd6c8;border-radius:8px;margin-bottom:8px}\n#cats{display:flex;gap:6px;overflow-x:auto;margin-bottom:10px}\n#cats button{white-space:nowrap;border:1px solid #cfd6c8;background:#fff;border-radius:99px;padding:6px 12px;font:inherit}\n#cats button.on{background:var(--g);color:#fff;border-color:var(--g)}\n#g{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px}\n.c{background:#fff;border:1px solid #d9dfd2;border-radius:10px;padding:8px;text-align:center}\n.c img{width:100%;height:110px;object-fit:cover;border-radius:8px}\n.ph{height:110px;border-radius:8px;background:#e1ebdb;color:var(--g);font-size:34px;font-weight:700;display:flex;align-items:center;justify-content:center}\n.c b{display:block;margin:6px 0 2px}.p{color:var(--g);font-weight:700}.u{font-size:12px;color:#667060}\n.q{display:flex;align-items:center;justify-content:center;gap:8px;margin-top:6px}\n.q button{width:36px;height:36px;border-radius:8px;border:1px solid #cfd6c8;background:#fff;font-size:18px}\n.q span{min-width:24px;font-weight:700}\n#bar{position:fixed;left:0;right:0;bottom:0;background:#fff;border-top:1px solid #cfd6c8;padding:10px}\n#bar .in{max-width:760px;margin:0 auto}#bar input{margin-bottom:6px}\n#bar button{width:100%;font:inherit;font-weight:700;background:#25d366;color:#fff;border:0;border-radius:10px;padding:12px}\n#sm{font-weight:700;margin-bottom:6px}\n<\/style><\/head><body>\n<header>__LOGO__<b>__SHOP__<\/b><div>__INFO__<\/div><\/header>\n<div class=\"w\"><input id=\"s\"><div id=\"cats\"><\/div><div id=\"g\"><\/div><\/div>\n<div id=\"bar\"><div class=\"in\"><div id=\"sm\"><\/div><input id=\"nm\"><button id=\"go\"><\/button><\/div><\/div>\n<script>\nvar D=__DATA__,T=__T__,PH=\"__PHONE__\",cart={},cat=\"\",qs=\"\";\nvar $=function(i){return document.getElementById(i)};\n$(\"s\").placeholder=T.search;$(\"nm\").placeholder=T.name;$(\"go\").textContent=T.order;\nfunction esc(t){return String(t).replace(/[&<>\"]/g,function(c){return{\"&\":\"&amp;\",\"<\":\"&lt;\",\">\":\"&gt;\",'\"':\"&quot;\"}[c]})}\nfunction fmt(n){return n.toLocaleString(\"en-US\",{minimumFractionDigits:3,maximumFractionDigits:3})}\nfunction cats(){\n  var a=[];D.forEach(function(x){if(x.c&&a.indexOf(x.c)<0)a.push(x.c)});\n  $(\"cats\").innerHTML='<button data-c=\"\" class=\"'+(cat?\"\":\"on\")+'\">'+T.all+'<\/button>'+a.map(function(c){return'<button data-c=\"'+esc(c)+'\" class=\"'+(c===cat?\"on\":\"\")+'\">'+esc(c)+'<\/button>'}).join(\"\");\n}\nfunction grid(){\n  $(\"g\").innerHTML=D.map(function(x,i){\n    if(cat&&x.c!==cat)return\"\";\n    if(qs&&(x.n+\" \"+x.c).toLowerCase().indexOf(qs)<0)return\"\";\n    return'<div class=\"c\">'+(x.i?'<img src=\"'+x.i+'\" alt=\"\">':'<div class=\"ph\">'+esc(x.n.charAt(0))+'<\/div>')+'<b>'+esc(x.n)+'<\/b><div class=\"p\">'+fmt(x.p)+' OMR<\/div><div class=\"u\">'+esc(x.u)+'<\/div><div class=\"q\"><button data-i=\"'+i+'\" data-d=\"-1\">-<\/button><span>'+(cart[i]||0)+'<\/span><button data-i=\"'+i+'\" data-d=\"1\">+<\/button><\/div><\/div>';\n  }).join(\"\");\n}\nfunction sum(){\n  var n=0,t=0;\n  Object.keys(cart).forEach(function(k){if(cart[k]>0){n+=cart[k];t+=cart[k]*D[k].p}});\n  $(\"sm\").textContent=n+\" \"+T.items+\" | \"+T.total+\": \"+fmt(t)+\" OMR\";\n}\n$(\"cats\").onclick=function(e){var b=e.target.closest(\"button\");if(!b)return;cat=b.dataset.c;cats();grid()};\n$(\"s\").oninput=function(){qs=$(\"s\").value.trim().toLowerCase();grid()};\n$(\"g\").onclick=function(e){\n  var b=e.target.closest(\"button\");if(!b)return;\n  var i=b.dataset.i;cart[i]=Math.max(0,(cart[i]||0)+(+b.dataset.d));\n  var sp=b.parentNode.querySelector(\"span\");sp.textContent=cart[i];sum();\n};\n$(\"go\").onclick=function(){\n  var ks=Object.keys(cart).filter(function(k){return cart[k]>0});\n  if(!ks.length){alert(T.empty);return}\n  var t=0,L=[T.hello];\n  if($(\"nm\").value.trim())L.push(T.cust+\": \"+$(\"nm\").value.trim());\n  L.push(\"\");\n  ks.forEach(function(k,j){var x=D[k],a=cart[k]*x.p;t+=a;L.push((j+1)+\". \"+x.n+\" x \"+cart[k]+\" = \"+fmt(a)+\" OMR\")});\n  L.push(\"\");L.push(T.total+\": \"+fmt(t)+\" OMR\");\n  window.open(\"https://wa.me/\"+PH+\"?text=\"+encodeURIComponent(L.join(\"\\n\")),\"_blank\");\n};\ncats();grid();sum();\n<\/script><\/body><\/html>\n";
+var CATTPL="<!DOCTYPE html><html lang=\"__LANG__\" dir=\"__DIR__\"><head><meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"><title>__TITLE__<\/title>\n<style>\n:root{--g:#2f5a32;--bg:#eef1ea}*{box-sizing:border-box}\nbody{margin:0;font-family:Tahoma,Arial,sans-serif;background:var(--bg);color:#1f2a1c;padding-bottom:130px}\nheader{background:var(--g);color:#fff;padding:14px;text-align:center}\nheader img{max-height:60px;display:block;margin:0 auto 6px;background:#fff;border-radius:8px;padding:3px}\nheader b{font-size:20px}header div{font-size:12px;opacity:.9}\n.w{max-width:760px;margin:0 auto;padding:12px}\ninput{width:100%;font:inherit;padding:10px;border:1px solid #cfd6c8;border-radius:8px;margin-bottom:8px}\n#cats{display:flex;gap:6px;overflow-x:auto;margin-bottom:10px}\n#cats button{white-space:nowrap;border:1px solid #cfd6c8;background:#fff;border-radius:99px;padding:6px 12px;font:inherit}\n#cats button.on{background:var(--g);color:#fff;border-color:var(--g)}\n#g{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px}\n.c{background:#fff;border:1px solid #d9dfd2;border-radius:10px;padding:8px;text-align:center}\n.c img{width:100%;height:110px;object-fit:cover;border-radius:8px}\n.ph{height:110px;border-radius:8px;background:#e1ebdb;color:var(--g);font-size:34px;font-weight:700;display:flex;align-items:center;justify-content:center}\n.c b{display:block;margin:6px 0 2px}.p{color:var(--g);font-weight:700}.u{font-size:12px;color:#667060}\n.q{display:flex;align-items:center;justify-content:center;gap:8px;margin-top:6px}\n.q button{width:36px;height:36px;border-radius:8px;border:1px solid #cfd6c8;background:#fff;font-size:18px}\n.q span{min-width:24px;font-weight:700}\n#bar{position:fixed;left:0;right:0;bottom:0;background:#fff;border-top:1px solid #cfd6c8;padding:10px}\n#bar .in{max-width:760px;margin:0 auto}#bar input{margin-bottom:6px}\n#bar button{width:100%;font:inherit;font-weight:700;background:#25d366;color:#fff;border:0;border-radius:10px;padding:12px}\n#sm{font-weight:700;margin-bottom:6px}\n<\/style><\/head><body>\n<header>__LOGO__<b>__SHOP__<\/b><div>__INFO__<\/div><\/header>\n<div class=\"w\"><input id=\"s\"><div id=\"cats\"><\/div><div id=\"g\"><\/div><\/div>\n<div id=\"bar\"><div class=\"in\"><div id=\"sm\"><\/div><input id=\"nm\"><button id=\"go\"><\/button><\/div><\/div>\n<script>\nvar D=__DATA__,T=__T__,PH=\"__PHONE__\",cart={},cat=\"\",qs=\"\";\nvar $=function(i){return document.getElementById(i)};\nfunction go2(u){var w=null;try{w=window.open(u,\"_blank\")}catch(e){}if(!w){try{window.top.location.href=u}catch(e){location.href=u}}}\n$(\"s\").placeholder=T.search;$(\"nm\").placeholder=T.name;$(\"go\").textContent=T.order;\nfunction esc(t){return String(t).replace(/[&<>\"]/g,function(c){return{\"&\":\"&amp;\",\"<\":\"&lt;\",\">\":\"&gt;\",'\"':\"&quot;\"}[c]})}\nfunction fmt(n){return n.toLocaleString(\"en-US\",{minimumFractionDigits:3,maximumFractionDigits:3})}\nfunction cats(){\n  var a=[];D.forEach(function(x){if(x.c&&a.indexOf(x.c)<0)a.push(x.c)});\n  $(\"cats\").innerHTML='<button data-c=\"\" class=\"'+(cat?\"\":\"on\")+'\">'+T.all+'<\/button>'+a.map(function(c){return'<button data-c=\"'+esc(c)+'\" class=\"'+(c===cat?\"on\":\"\")+'\">'+esc(c)+'<\/button>'}).join(\"\");\n}\nfunction grid(){\n  $(\"g\").innerHTML=D.map(function(x,i){\n    if(cat&&x.c!==cat)return\"\";\n    if(qs&&(x.n+\" \"+x.c).toLowerCase().indexOf(qs)<0)return\"\";\n    return'<div class=\"c\">'+(x.i?'<img src=\"'+x.i+'\" alt=\"\">':'<div class=\"ph\">'+esc(x.n.charAt(0))+'<\/div>')+'<b>'+esc(x.n)+'<\/b><div class=\"p\">'+fmt(x.p)+' OMR<\/div><div class=\"u\">'+esc(x.u)+'<\/div>'+(x.d?'<div class=\"u\" style=\"margin-top:3px\">'+esc(x.d)+'<\/div>':'')+'<div class=\"q\"><button data-i=\"'+i+'\" data-d=\"-1\">-<\/button><span>'+(cart[i]||0)+'<\/span><button data-i=\"'+i+'\" data-d=\"1\">+<\/button><\/div><\/div>';\n  }).join(\"\");\n}\nfunction sum(){\n  var n=0,t=0;\n  Object.keys(cart).forEach(function(k){if(cart[k]>0){n+=cart[k];t+=cart[k]*D[k].p}});\n  $(\"sm\").textContent=n+\" \"+T.items+\" | \"+T.total+\": \"+fmt(t)+\" OMR\";\n}\n$(\"cats\").onclick=function(e){var b=e.target.closest(\"button\");if(!b)return;cat=b.dataset.c;cats();grid()};\n$(\"s\").oninput=function(){qs=$(\"s\").value.trim().toLowerCase();grid()};\n$(\"g\").onclick=function(e){\n  var b=e.target.closest(\"button\");if(!b)return;\n  var i=b.dataset.i;cart[i]=Math.max(0,(cart[i]||0)+(+b.dataset.d));\n  var sp=b.parentNode.querySelector(\"span\");sp.textContent=cart[i];sum();\n};\n$(\"go\").onclick=function(){\n  var ks=Object.keys(cart).filter(function(k){return cart[k]>0});\n  if(!ks.length){$(\"sm\").textContent=T.empty;return}\n  var t=0,L=[T.hello];\n  if($(\"nm\").value.trim())L.push(T.cust+\": \"+$(\"nm\").value.trim());\n  L.push(\"\");\n  ks.forEach(function(k,j){var x=D[k],a=cart[k]*x.p;t+=a;L.push((j+1)+\". \"+x.n+\" x \"+cart[k]+\" = \"+fmt(a)+\" OMR\")});\n  L.push(\"\");L.push(T.total+\": \"+fmt(t)+\" OMR\");\n  go2(\"https://wa.me/\"+PH+\"?text=\"+encodeURIComponent(L.join(\"\\n\")),\"_blank\");\n};\ncats();grid();sum();\n<\/script><\/body><\/html>\n";
 /* ===== v2 infrastructure ===== */
 var SET={vat:0,vatNo:"",wa:"",budget:0,partners:[],pin:""};
 try{SET=Object.assign(SET,JSON.parse(localStorage.getItem(K("inv-set"))||"{}"))}catch(e){}
@@ -2199,6 +2241,7 @@ var PAGES={
   c:{g:"inv",l:["الكتالوج","Catalog"],pg:"pgCat",r:function(){renderC()}},
   v:{g:"sal",l:["الفواتير","Invoices"],pg:"pgSal",r:function(){renderV()}},
   q:{g:"sal",l:["عروض الأسعار","Quotes"],pg:"pgQuo",r:function(){renderQuo()}},
+  o:{g:"sal",l:["نموذج الطلب","Order form"],pg:"pgOrd",r:function(){renderOrd()}},
   x:{g:"sal",l:["الصندوق اليومي","Daily cash"],pg:"pgCash",r:function(){renderCash()}},
   k:{g:"cus",l:["الزبائن","Customers"],pg:"pgCus",r:function(){renderCus()}},
   a:{g:"cus",l:["الحسابات","Accounts"],pg:"pgAcc",r:function(){renderAcc()}},
@@ -2210,7 +2253,7 @@ var PAGES={
 };
 var GR=[["inv","المخزون","Inventory","i"],["sal","المبيعات","Sales","v"],["cus","الزبائن والحسابات","Customers & accounts","k"],["buy","المشتريات والمصاريف","Purchases & expenses","u"],["rep","التقارير والمشروع","Reports & project","r"]];
 var ROLE="m";try{ROLE=localStorage.getItem("inv-role")==="s"?"s":"m"}catch(e){}
-var SELLER_OK=["i","b","p","c","v","q","k"];
+var SELLER_OK=["i","b","p","c","v","q","o","k"];
 function permOK(k){return ROLE!=="s"||SELLER_OK.indexOf(k)>-1}
 function mkPages(){
   Object.keys(PAGES).forEach(function(k){
@@ -2865,18 +2908,7 @@ function closeDay(){
     saveArr("z");renderCash();
   });
 }
-/* catalog export for customers */
-function exportCatalog(){
-  var en=invLang==="en",k=co(en),phone=waNum(SET.wa||"");
-  if(!phone){alert(L("اكتب رقم واتساب لاستقبال الطلبات في «بيانات الشركة» أولاً.","Enter the WhatsApp number for orders in “Company details” first."));return}
-  var data=[];
-  items.forEach(function(i){if(i.qty>0)data.push({n:en?(i.en||trN(i.name)):i.name,c:en?trN(i.cat||""):(i.cat||""),p:+i.sell,u:en?(UN[i.unit]||i.unit||""):(i.unit||""),i:i.img||""})});
-  bundles.forEach(function(b){var r=calc(b);if(r.max>0)data.push({n:en?(b.en||trN(b.name)):b.name,c:en?"Bundles":"الباقات",p:r.price,u:en?"bundle":"باقة",i:""})});
-  if(!data.length){alert(L("لا توجد منتجات متوفرة.","No available products."));return}
-  var T=en?{search:"Search products...",all:"All",add:"Add",order:"Send order via WhatsApp",name:"Your name",items:"items",total:"Total",hello:"New order",cust:"Customer",empty:"Add products to your order first."}:{search:"ابحث عن منتج...",all:"الكل",add:"إضافة",order:"إرسال الطلب عبر واتساب",name:"اسمك",items:"عنصر",total:"الإجمالي",hello:"طلب جديد",cust:"الزبون",empty:"أضف منتجات إلى طلبك أولاً."};
-  var html=CATTPL.split("__LANG__").join(en?"en":"ar").split("__DIR__").join(en?"ltr":"rtl").split("__TITLE__").join(esc(k.name)).split("__SHOP__").join(esc(k.name)).split("__INFO__").join(esc(k.info||"")).split("__LOGO__").join(logoData?'<img src="'+logoData+'" alt="">':"").split("__PHONE__").join(phone).split("__T__").join(JSON.stringify(T).split("<").join("\\u003c")).split("__DATA__").join(JSON.stringify(data).split("<").join("\\u003c"));
-  Promise.resolve(saveFile((en?"catalog-":"كتالوج-الزبائن-")+today()+".html",html)).then(function(){alert(L("تم حفظ ملف الكتالوج. أرسله لزبائنك (مثلاً عبر واتساب)، فيفتحونه ويرسلون طلباتهم إليك عبر واتساب. أعد تصديره بعد تغيير الأسعار أو الكميات.","The catalog file was saved. Send it to your customers (for example via WhatsApp); they open it and send their orders to you via WhatsApp. Export it again after changing prices or stock."))});
-}
+/* catalog export for customers: see order-form block */
 /* page events */
 $("xPages").addEventListener("click",function(e){
   var t=e.target;
@@ -2929,13 +2961,1476 @@ $("coVat").addEventListener("input",function(){SET.vat=Math.max(0,+$("coVat").va
 $("coVatNo").addEventListener("input",function(){SET.vatNo=$("coVatNo").value.trim();saveSET()});
 $("coWa").addEventListener("input",function(){SET.wa=$("coWa").value.trim();saveSET()});
 $("ctExpCat").onclick=exportCatalog;
+var QRM=(function(){var M={},C={};function req(n){n=n.replace("./","");if(C[n])return C[n].exports;var m={exports:{}};C[n]=m;M[n](m,m.exports);return m.exports}
+M["QRMode"]=function(module,exports){module.exports = {
+    MODE_NUMBER :       1 << 0,
+    MODE_ALPHA_NUM :    1 << 1,
+    MODE_8BIT_BYTE :    1 << 2,
+    MODE_KANJI :        1 << 3
+};
+
+};
+M["QRErrorCorrectLevel"]=function(module,exports){module.exports = {
+	L : 1,
+	M : 0,
+	Q : 3,
+	H : 2
+};
+
+
+};
+M["QRMaskPattern"]=function(module,exports){module.exports = {
+	PATTERN000 : 0,
+	PATTERN001 : 1,
+	PATTERN010 : 2,
+	PATTERN011 : 3,
+	PATTERN100 : 4,
+	PATTERN101 : 5,
+	PATTERN110 : 6,
+	PATTERN111 : 7
+};
+
+};
+M["QRMath"]=function(module,exports){var QRMath = {
+
+	glog : function(n) {
+	
+		if (n < 1) {
+			throw new Error("glog(" + n + ")");
+		}
+		
+		return QRMath.LOG_TABLE[n];
+	},
+	
+	gexp : function(n) {
+	
+		while (n < 0) {
+			n += 255;
+		}
+	
+		while (n >= 256) {
+			n -= 255;
+		}
+	
+		return QRMath.EXP_TABLE[n];
+	},
+	
+	EXP_TABLE : new Array(256),
+	
+	LOG_TABLE : new Array(256)
+
+};
+	
+for (var i = 0; i < 8; i++) {
+	QRMath.EXP_TABLE[i] = 1 << i;
+}
+for (var i = 8; i < 256; i++) {
+	QRMath.EXP_TABLE[i] = QRMath.EXP_TABLE[i - 4]
+		^ QRMath.EXP_TABLE[i - 5]
+		^ QRMath.EXP_TABLE[i - 6]
+		^ QRMath.EXP_TABLE[i - 8];
+}
+for (var i = 0; i < 255; i++) {
+	QRMath.LOG_TABLE[QRMath.EXP_TABLE[i] ] = i;
+}
+
+module.exports = QRMath;
+
+};
+M["QRPolynomial"]=function(module,exports){var QRMath = req('./QRMath');
+
+function QRPolynomial(num, shift) {
+	if (num.length === undefined) {
+		throw new Error(num.length + "/" + shift);
+	}
+
+	var offset = 0;
+
+	while (offset < num.length && num[offset] === 0) {
+		offset++;
+	}
+
+	this.num = new Array(num.length - offset + shift);
+	for (var i = 0; i < num.length - offset; i++) {
+		this.num[i] = num[i + offset];
+	}
+}
+
+QRPolynomial.prototype = {
+
+	get : function(index) {
+		return this.num[index];
+	},
+	
+	getLength : function() {
+		return this.num.length;
+	},
+	
+	multiply : function(e) {
+	
+		var num = new Array(this.getLength() + e.getLength() - 1);
+	
+		for (var i = 0; i < this.getLength(); i++) {
+			for (var j = 0; j < e.getLength(); j++) {
+				num[i + j] ^= QRMath.gexp(QRMath.glog(this.get(i) ) + QRMath.glog(e.get(j) ) );
+			}
+		}
+	
+		return new QRPolynomial(num, 0);
+	},
+	
+	mod : function(e) {
+	
+		if (this.getLength() - e.getLength() < 0) {
+			return this;
+		}
+	
+		var ratio = QRMath.glog(this.get(0) ) - QRMath.glog(e.get(0) );
+	
+		var num = new Array(this.getLength() );
+		
+		for (var i = 0; i < this.getLength(); i++) {
+			num[i] = this.get(i);
+		}
+		
+		for (var x = 0; x < e.getLength(); x++) {
+			num[x] ^= QRMath.gexp(QRMath.glog(e.get(x) ) + ratio);
+		}
+	
+		// recursive call
+		return new QRPolynomial(num, 0).mod(e);
+	}
+};
+
+module.exports = QRPolynomial;
+
+};
+M["QRBitBuffer"]=function(module,exports){function QRBitBuffer() {
+	this.buffer = [];
+	this.length = 0;
+}
+
+QRBitBuffer.prototype = {
+
+	get : function(index) {
+		var bufIndex = Math.floor(index / 8);
+		return ( (this.buffer[bufIndex] >>> (7 - index % 8) ) & 1) == 1;
+	},
+	
+	put : function(num, length) {
+		for (var i = 0; i < length; i++) {
+			this.putBit( ( (num >>> (length - i - 1) ) & 1) == 1);
+		}
+	},
+	
+	getLengthInBits : function() {
+		return this.length;
+	},
+	
+	putBit : function(bit) {
+	
+		var bufIndex = Math.floor(this.length / 8);
+		if (this.buffer.length <= bufIndex) {
+			this.buffer.push(0);
+		}
+	
+		if (bit) {
+			this.buffer[bufIndex] |= (0x80 >>> (this.length % 8) );
+		}
+	
+		this.length++;
+	}
+};
+
+module.exports = QRBitBuffer;
+
+};
+M["QR8bitByte"]=function(module,exports){var QRMode = req('./QRMode');
+
+function QR8bitByte(data) {
+	this.mode = QRMode.MODE_8BIT_BYTE;
+	this.data = data;
+}
+
+QR8bitByte.prototype = {
+
+	getLength : function() {
+		return this.data.length;
+	},
+	
+	write : function(buffer) {
+		for (var i = 0; i < this.data.length; i++) {
+			// not JIS ...
+			buffer.put(this.data.charCodeAt(i), 8);
+		}
+	}
+};
+
+module.exports = QR8bitByte;
+
+};
+M["QRRSBlock"]=function(module,exports){var QRErrorCorrectLevel = req('./QRErrorCorrectLevel');
+
+function QRRSBlock(totalCount, dataCount) {
+	this.totalCount = totalCount;
+	this.dataCount  = dataCount;
+}
+
+QRRSBlock.RS_BLOCK_TABLE = [
+
+	// L
+	// M
+	// Q
+	// H
+
+	// 1
+	[1, 26, 19],
+	[1, 26, 16],
+	[1, 26, 13],
+	[1, 26, 9],
+	
+	// 2
+	[1, 44, 34],
+	[1, 44, 28],
+	[1, 44, 22],
+	[1, 44, 16],
+
+	// 3
+	[1, 70, 55],
+	[1, 70, 44],
+	[2, 35, 17],
+	[2, 35, 13],
+
+	// 4		
+	[1, 100, 80],
+	[2, 50, 32],
+	[2, 50, 24],
+	[4, 25, 9],
+	
+	// 5
+	[1, 134, 108],
+	[2, 67, 43],
+	[2, 33, 15, 2, 34, 16],
+	[2, 33, 11, 2, 34, 12],
+	
+	// 6
+	[2, 86, 68],
+	[4, 43, 27],
+	[4, 43, 19],
+	[4, 43, 15],
+	
+	// 7		
+	[2, 98, 78],
+	[4, 49, 31],
+	[2, 32, 14, 4, 33, 15],
+	[4, 39, 13, 1, 40, 14],
+	
+	// 8
+	[2, 121, 97],
+	[2, 60, 38, 2, 61, 39],
+	[4, 40, 18, 2, 41, 19],
+	[4, 40, 14, 2, 41, 15],
+	
+	// 9
+	[2, 146, 116],
+	[3, 58, 36, 2, 59, 37],
+	[4, 36, 16, 4, 37, 17],
+	[4, 36, 12, 4, 37, 13],
+	
+	// 10		
+	[2, 86, 68, 2, 87, 69],
+	[4, 69, 43, 1, 70, 44],
+	[6, 43, 19, 2, 44, 20],
+	[6, 43, 15, 2, 44, 16],
+
+	// 11
+	[4, 101, 81],
+	[1, 80, 50, 4, 81, 51],
+	[4, 50, 22, 4, 51, 23],
+	[3, 36, 12, 8, 37, 13],
+
+	// 12
+	[2, 116, 92, 2, 117, 93],
+	[6, 58, 36, 2, 59, 37],
+	[4, 46, 20, 6, 47, 21],
+	[7, 42, 14, 4, 43, 15],
+
+	// 13
+	[4, 133, 107],
+	[8, 59, 37, 1, 60, 38],
+	[8, 44, 20, 4, 45, 21],
+	[12, 33, 11, 4, 34, 12],
+
+	// 14
+	[3, 145, 115, 1, 146, 116],
+	[4, 64, 40, 5, 65, 41],
+	[11, 36, 16, 5, 37, 17],
+	[11, 36, 12, 5, 37, 13],
+
+	// 15
+	[5, 109, 87, 1, 110, 88],
+	[5, 65, 41, 5, 66, 42],
+	[5, 54, 24, 7, 55, 25],
+	[11, 36, 12],
+
+	// 16
+	[5, 122, 98, 1, 123, 99],
+	[7, 73, 45, 3, 74, 46],
+	[15, 43, 19, 2, 44, 20],
+	[3, 45, 15, 13, 46, 16],
+
+	// 17
+	[1, 135, 107, 5, 136, 108],
+	[10, 74, 46, 1, 75, 47],
+	[1, 50, 22, 15, 51, 23],
+	[2, 42, 14, 17, 43, 15],
+
+	// 18
+	[5, 150, 120, 1, 151, 121],
+	[9, 69, 43, 4, 70, 44],
+	[17, 50, 22, 1, 51, 23],
+	[2, 42, 14, 19, 43, 15],
+
+	// 19
+	[3, 141, 113, 4, 142, 114],
+	[3, 70, 44, 11, 71, 45],
+	[17, 47, 21, 4, 48, 22],
+	[9, 39, 13, 16, 40, 14],
+
+	// 20
+	[3, 135, 107, 5, 136, 108],
+	[3, 67, 41, 13, 68, 42],
+	[15, 54, 24, 5, 55, 25],
+	[15, 43, 15, 10, 44, 16],
+
+	// 21
+	[4, 144, 116, 4, 145, 117],
+	[17, 68, 42],
+	[17, 50, 22, 6, 51, 23],
+	[19, 46, 16, 6, 47, 17],
+
+	// 22
+	[2, 139, 111, 7, 140, 112],
+	[17, 74, 46],
+	[7, 54, 24, 16, 55, 25],
+	[34, 37, 13],
+
+	// 23
+	[4, 151, 121, 5, 152, 122],
+	[4, 75, 47, 14, 76, 48],
+	[11, 54, 24, 14, 55, 25],
+	[16, 45, 15, 14, 46, 16],
+
+	// 24
+	[6, 147, 117, 4, 148, 118],
+	[6, 73, 45, 14, 74, 46],
+	[11, 54, 24, 16, 55, 25],
+	[30, 46, 16, 2, 47, 17],
+
+	// 25
+	[8, 132, 106, 4, 133, 107],
+	[8, 75, 47, 13, 76, 48],
+	[7, 54, 24, 22, 55, 25],
+	[22, 45, 15, 13, 46, 16],
+
+	// 26
+	[10, 142, 114, 2, 143, 115],
+	[19, 74, 46, 4, 75, 47],
+	[28, 50, 22, 6, 51, 23],
+	[33, 46, 16, 4, 47, 17],
+
+	// 27
+	[8, 152, 122, 4, 153, 123],
+	[22, 73, 45, 3, 74, 46],
+	[8, 53, 23, 26, 54, 24],
+	[12, 45, 15, 28, 46, 16],
+
+	// 28
+	[3, 147, 117, 10, 148, 118],
+	[3, 73, 45, 23, 74, 46],
+	[4, 54, 24, 31, 55, 25],
+	[11, 45, 15, 31, 46, 16],
+
+	// 29
+	[7, 146, 116, 7, 147, 117],
+	[21, 73, 45, 7, 74, 46],
+	[1, 53, 23, 37, 54, 24],
+	[19, 45, 15, 26, 46, 16],
+
+	// 30
+	[5, 145, 115, 10, 146, 116],
+	[19, 75, 47, 10, 76, 48],
+	[15, 54, 24, 25, 55, 25],
+	[23, 45, 15, 25, 46, 16],
+
+	// 31
+	[13, 145, 115, 3, 146, 116],
+	[2, 74, 46, 29, 75, 47],
+	[42, 54, 24, 1, 55, 25],
+	[23, 45, 15, 28, 46, 16],
+
+	// 32
+	[17, 145, 115],
+	[10, 74, 46, 23, 75, 47],
+	[10, 54, 24, 35, 55, 25],
+	[19, 45, 15, 35, 46, 16],
+
+	// 33
+	[17, 145, 115, 1, 146, 116],
+	[14, 74, 46, 21, 75, 47],
+	[29, 54, 24, 19, 55, 25],
+	[11, 45, 15, 46, 46, 16],
+
+	// 34
+	[13, 145, 115, 6, 146, 116],
+	[14, 74, 46, 23, 75, 47],
+	[44, 54, 24, 7, 55, 25],
+	[59, 46, 16, 1, 47, 17],
+
+	// 35
+	[12, 151, 121, 7, 152, 122],
+	[12, 75, 47, 26, 76, 48],
+	[39, 54, 24, 14, 55, 25],
+	[22, 45, 15, 41, 46, 16],
+
+	// 36
+	[6, 151, 121, 14, 152, 122],
+	[6, 75, 47, 34, 76, 48],
+	[46, 54, 24, 10, 55, 25],
+	[2, 45, 15, 64, 46, 16],
+
+	// 37
+	[17, 152, 122, 4, 153, 123],
+	[29, 74, 46, 14, 75, 47],
+	[49, 54, 24, 10, 55, 25],
+	[24, 45, 15, 46, 46, 16],
+
+	// 38
+	[4, 152, 122, 18, 153, 123],
+	[13, 74, 46, 32, 75, 47],
+	[48, 54, 24, 14, 55, 25],
+	[42, 45, 15, 32, 46, 16],
+
+	// 39
+	[20, 147, 117, 4, 148, 118],
+	[40, 75, 47, 7, 76, 48],
+	[43, 54, 24, 22, 55, 25],
+	[10, 45, 15, 67, 46, 16],
+
+	// 40
+	[19, 148, 118, 6, 149, 119],
+	[18, 75, 47, 31, 76, 48],
+	[34, 54, 24, 34, 55, 25],
+	[20, 45, 15, 61, 46, 16]
+];
+
+QRRSBlock.getRSBlocks = function(typeNumber, errorCorrectLevel) {
+	
+	var rsBlock = QRRSBlock.getRsBlockTable(typeNumber, errorCorrectLevel);
+	
+	if (rsBlock === undefined) {
+		throw new Error("bad rs block @ typeNumber:" + typeNumber + "/errorCorrectLevel:" + errorCorrectLevel);
+	}
+
+	var length = rsBlock.length / 3;
+	
+	var list = [];
+	
+	for (var i = 0; i < length; i++) {
+
+		var count = rsBlock[i * 3 + 0];
+		var totalCount = rsBlock[i * 3 + 1];
+		var dataCount  = rsBlock[i * 3 + 2];
+
+		for (var j = 0; j < count; j++) {
+			list.push(new QRRSBlock(totalCount, dataCount) );	
+		}
+	}
+	
+	return list;
+};
+
+QRRSBlock.getRsBlockTable = function(typeNumber, errorCorrectLevel) {
+
+	switch(errorCorrectLevel) {
+	case QRErrorCorrectLevel.L :
+		return QRRSBlock.RS_BLOCK_TABLE[(typeNumber - 1) * 4 + 0];
+	case QRErrorCorrectLevel.M :
+		return QRRSBlock.RS_BLOCK_TABLE[(typeNumber - 1) * 4 + 1];
+	case QRErrorCorrectLevel.Q :
+		return QRRSBlock.RS_BLOCK_TABLE[(typeNumber - 1) * 4 + 2];
+	case QRErrorCorrectLevel.H :
+		return QRRSBlock.RS_BLOCK_TABLE[(typeNumber - 1) * 4 + 3];
+	default :
+		return undefined;
+	}
+};
+
+module.exports = QRRSBlock;
+
+};
+M["QRUtil"]=function(module,exports){var QRMode = req('./QRMode');
+var QRPolynomial = req('./QRPolynomial');
+var QRMath = req('./QRMath');
+var QRMaskPattern = req('./QRMaskPattern');
+
+var QRUtil = {
+
+    PATTERN_POSITION_TABLE : [
+        [],
+        [6, 18],
+        [6, 22],
+        [6, 26],
+        [6, 30],
+        [6, 34],
+        [6, 22, 38],
+        [6, 24, 42],
+        [6, 26, 46],
+        [6, 28, 50],
+        [6, 30, 54],        
+        [6, 32, 58],
+        [6, 34, 62],
+        [6, 26, 46, 66],
+        [6, 26, 48, 70],
+        [6, 26, 50, 74],
+        [6, 30, 54, 78],
+        [6, 30, 56, 82],
+        [6, 30, 58, 86],
+        [6, 34, 62, 90],
+        [6, 28, 50, 72, 94],
+        [6, 26, 50, 74, 98],
+        [6, 30, 54, 78, 102],
+        [6, 28, 54, 80, 106],
+        [6, 32, 58, 84, 110],
+        [6, 30, 58, 86, 114],
+        [6, 34, 62, 90, 118],
+        [6, 26, 50, 74, 98, 122],
+        [6, 30, 54, 78, 102, 126],
+        [6, 26, 52, 78, 104, 130],
+        [6, 30, 56, 82, 108, 134],
+        [6, 34, 60, 86, 112, 138],
+        [6, 30, 58, 86, 114, 142],
+        [6, 34, 62, 90, 118, 146],
+        [6, 30, 54, 78, 102, 126, 150],
+        [6, 24, 50, 76, 102, 128, 154],
+        [6, 28, 54, 80, 106, 132, 158],
+        [6, 32, 58, 84, 110, 136, 162],
+        [6, 26, 54, 82, 110, 138, 166],
+        [6, 30, 58, 86, 114, 142, 170]
+    ],
+
+    G15 : (1 << 10) | (1 << 8) | (1 << 5) | (1 << 4) | (1 << 2) | (1 << 1) | (1 << 0),
+    G18 : (1 << 12) | (1 << 11) | (1 << 10) | (1 << 9) | (1 << 8) | (1 << 5) | (1 << 2) | (1 << 0),
+    G15_MASK : (1 << 14) | (1 << 12) | (1 << 10)    | (1 << 4) | (1 << 1),
+
+    getBCHTypeInfo : function(data) {
+        var d = data << 10;
+        while (QRUtil.getBCHDigit(d) - QRUtil.getBCHDigit(QRUtil.G15) >= 0) {
+            d ^= (QRUtil.G15 << (QRUtil.getBCHDigit(d) - QRUtil.getBCHDigit(QRUtil.G15) ) );    
+        }
+        return ( (data << 10) | d) ^ QRUtil.G15_MASK;
+    },
+
+    getBCHTypeNumber : function(data) {
+        var d = data << 12;
+        while (QRUtil.getBCHDigit(d) - QRUtil.getBCHDigit(QRUtil.G18) >= 0) {
+            d ^= (QRUtil.G18 << (QRUtil.getBCHDigit(d) - QRUtil.getBCHDigit(QRUtil.G18) ) );    
+        }
+        return (data << 12) | d;
+    },
+
+    getBCHDigit : function(data) {
+
+        var digit = 0;
+
+        while (data !== 0) {
+            digit++;
+            data >>>= 1;
+        }
+
+        return digit;
+    },
+
+    getPatternPosition : function(typeNumber) {
+        return QRUtil.PATTERN_POSITION_TABLE[typeNumber - 1];
+    },
+
+    getMask : function(maskPattern, i, j) {
+        
+        switch (maskPattern) {
+            
+        case QRMaskPattern.PATTERN000 : return (i + j) % 2 === 0;
+        case QRMaskPattern.PATTERN001 : return i % 2 === 0;
+        case QRMaskPattern.PATTERN010 : return j % 3 === 0;
+        case QRMaskPattern.PATTERN011 : return (i + j) % 3 === 0;
+        case QRMaskPattern.PATTERN100 : return (Math.floor(i / 2) + Math.floor(j / 3) ) % 2 === 0;
+        case QRMaskPattern.PATTERN101 : return (i * j) % 2 + (i * j) % 3 === 0;
+        case QRMaskPattern.PATTERN110 : return ( (i * j) % 2 + (i * j) % 3) % 2 === 0;
+        case QRMaskPattern.PATTERN111 : return ( (i * j) % 3 + (i + j) % 2) % 2 === 0;
+
+        default :
+            throw new Error("bad maskPattern:" + maskPattern);
+        }
+    },
+
+    getErrorCorrectPolynomial : function(errorCorrectLength) {
+
+        var a = new QRPolynomial([1], 0);
+
+        for (var i = 0; i < errorCorrectLength; i++) {
+            a = a.multiply(new QRPolynomial([1, QRMath.gexp(i)], 0) );
+        }
+
+        return a;
+    },
+
+    getLengthInBits : function(mode, type) {
+
+        if (1 <= type && type < 10) {
+
+            // 1 - 9
+
+            switch(mode) {
+            case QRMode.MODE_NUMBER     : return 10;
+            case QRMode.MODE_ALPHA_NUM  : return 9;
+            case QRMode.MODE_8BIT_BYTE  : return 8;
+            case QRMode.MODE_KANJI      : return 8;
+            default :
+                throw new Error("mode:" + mode);
+            }
+
+        } else if (type < 27) {
+
+            // 10 - 26
+
+            switch(mode) {
+            case QRMode.MODE_NUMBER     : return 12;
+            case QRMode.MODE_ALPHA_NUM  : return 11;
+            case QRMode.MODE_8BIT_BYTE  : return 16;
+            case QRMode.MODE_KANJI      : return 10;
+            default :
+                throw new Error("mode:" + mode);
+            }
+
+        } else if (type < 41) {
+
+            // 27 - 40
+
+            switch(mode) {
+            case QRMode.MODE_NUMBER     : return 14;
+            case QRMode.MODE_ALPHA_NUM  : return 13;
+            case QRMode.MODE_8BIT_BYTE  : return 16;
+            case QRMode.MODE_KANJI      : return 12;
+            default :
+                throw new Error("mode:" + mode);
+            }
+
+        } else {
+            throw new Error("type:" + type);
+        }
+    },
+
+    getLostPoint : function(qrCode) {
+        
+        var moduleCount = qrCode.getModuleCount();
+        var lostPoint = 0;
+        var row = 0; 
+        var col = 0;
+
+        
+        // LEVEL1
+        
+        for (row = 0; row < moduleCount; row++) {
+
+            for (col = 0; col < moduleCount; col++) {
+
+                var sameCount = 0;
+                var dark = qrCode.isDark(row, col);
+
+                for (var r = -1; r <= 1; r++) {
+
+                    if (row + r < 0 || moduleCount <= row + r) {
+                        continue;
+                    }
+
+                    for (var c = -1; c <= 1; c++) {
+
+                        if (col + c < 0 || moduleCount <= col + c) {
+                            continue;
+                        }
+
+                        if (r === 0 && c === 0) {
+                            continue;
+                        }
+
+                        if (dark === qrCode.isDark(row + r, col + c) ) {
+                            sameCount++;
+                        }
+                    }
+                }
+
+                if (sameCount > 5) {
+                    lostPoint += (3 + sameCount - 5);
+                }
+            }
+        }
+
+        // LEVEL2
+
+        for (row = 0; row < moduleCount - 1; row++) {
+            for (col = 0; col < moduleCount - 1; col++) {
+                var count = 0;
+                if (qrCode.isDark(row,     col    ) ) count++;
+                if (qrCode.isDark(row + 1, col    ) ) count++;
+                if (qrCode.isDark(row,     col + 1) ) count++;
+                if (qrCode.isDark(row + 1, col + 1) ) count++;
+                if (count === 0 || count === 4) {
+                    lostPoint += 3;
+                }
+            }
+        }
+
+        // LEVEL3
+
+        for (row = 0; row < moduleCount; row++) {
+            for (col = 0; col < moduleCount - 6; col++) {
+                if (qrCode.isDark(row, col) && 
+                        !qrCode.isDark(row, col + 1) && 
+                         qrCode.isDark(row, col + 2) && 
+                         qrCode.isDark(row, col + 3) && 
+                         qrCode.isDark(row, col + 4) && 
+                        !qrCode.isDark(row, col + 5) && 
+                         qrCode.isDark(row, col + 6) ) {
+                    lostPoint += 40;
+                }
+            }
+        }
+
+        for (col = 0; col < moduleCount; col++) {
+            for (row = 0; row < moduleCount - 6; row++) {
+                if (qrCode.isDark(row, col) &&
+                        !qrCode.isDark(row + 1, col) &&
+                         qrCode.isDark(row + 2, col) &&
+                         qrCode.isDark(row + 3, col) &&
+                         qrCode.isDark(row + 4, col) &&
+                        !qrCode.isDark(row + 5, col) &&
+                         qrCode.isDark(row + 6, col) ) {
+                    lostPoint += 40;
+                }
+            }
+        }
+
+        // LEVEL4
+        
+        var darkCount = 0;
+
+        for (col = 0; col < moduleCount; col++) {
+            for (row = 0; row < moduleCount; row++) {
+                if (qrCode.isDark(row, col) ) {
+                    darkCount++;
+                }
+            }
+        }
+        
+        var ratio = Math.abs(100 * darkCount / moduleCount / moduleCount - 50) / 5;
+        lostPoint += ratio * 10;
+
+        return lostPoint;       
+    }
+
+};
+
+module.exports = QRUtil;
+
+};
+M["index"]=function(module,exports){//---------------------------------------------------------------------
+// QRCode for JavaScript
+//
+// Copyright (c) 2009 Kazuhiko Arase
+//
+// URL: http://www.d-project.com/
+//
+// Licensed under the MIT license:
+//   http://www.opensource.org/licenses/mit-license.php
+//
+// The word "QR Code" is registered trademark of 
+// DENSO WAVE INCORPORATED
+//   http://www.denso-wave.com/qrcode/faqpatent-e.html
+//
+//---------------------------------------------------------------------
+// Modified to work in node for this project (and some refactoring)
+//---------------------------------------------------------------------
+
+var QR8bitByte = req('./QR8bitByte');
+var QRUtil = req('./QRUtil');
+var QRPolynomial = req('./QRPolynomial');
+var QRRSBlock = req('./QRRSBlock');
+var QRBitBuffer = req('./QRBitBuffer');
+
+function QRCode(typeNumber, errorCorrectLevel) {
+	this.typeNumber = typeNumber;
+	this.errorCorrectLevel = errorCorrectLevel;
+	this.modules = null;
+	this.moduleCount = 0;
+	this.dataCache = null;
+	this.dataList = [];
+}
+
+QRCode.prototype = {
+	
+	addData : function(data) {
+		var newData = new QR8bitByte(data);
+		this.dataList.push(newData);
+		this.dataCache = null;
+	},
+	
+	isDark : function(row, col) {
+		if (row < 0 || this.moduleCount <= row || col < 0 || this.moduleCount <= col) {
+			throw new Error(row + "," + col);
+		}
+		return this.modules[row][col];
+	},
+
+	getModuleCount : function() {
+		return this.moduleCount;
+	},
+	
+	make : function() {
+		// Calculate automatically typeNumber if provided is < 1
+		if (this.typeNumber < 1 ){
+			var typeNumber = 1;
+			for (typeNumber = 1; typeNumber < 40; typeNumber++) {
+				var rsBlocks = QRRSBlock.getRSBlocks(typeNumber, this.errorCorrectLevel);
+
+				var buffer = new QRBitBuffer();
+				var totalDataCount = 0;
+				for (var i = 0; i < rsBlocks.length; i++) {
+					totalDataCount += rsBlocks[i].dataCount;
+				}
+
+				for (var x = 0; x < this.dataList.length; x++) {
+					var data = this.dataList[x];
+					buffer.put(data.mode, 4);
+					buffer.put(data.getLength(), QRUtil.getLengthInBits(data.mode, typeNumber) );
+					data.write(buffer);
+				}
+				if (buffer.getLengthInBits() <= totalDataCount * 8)
+					break;
+			}
+			this.typeNumber = typeNumber;
+		}
+		this.makeImpl(false, this.getBestMaskPattern() );
+	},
+	
+	makeImpl : function(test, maskPattern) {
+		
+		this.moduleCount = this.typeNumber * 4 + 17;
+		this.modules = new Array(this.moduleCount);
+		
+		for (var row = 0; row < this.moduleCount; row++) {
+			
+			this.modules[row] = new Array(this.moduleCount);
+			
+			for (var col = 0; col < this.moduleCount; col++) {
+				this.modules[row][col] = null;//(col + row) % 3;
+			}
+		}
+	
+		this.setupPositionProbePattern(0, 0);
+		this.setupPositionProbePattern(this.moduleCount - 7, 0);
+		this.setupPositionProbePattern(0, this.moduleCount - 7);
+		this.setupPositionAdjustPattern();
+		this.setupTimingPattern();
+		this.setupTypeInfo(test, maskPattern);
+		
+		if (this.typeNumber >= 7) {
+			this.setupTypeNumber(test);
+		}
+	
+		if (this.dataCache === null) {
+			this.dataCache = QRCode.createData(this.typeNumber, this.errorCorrectLevel, this.dataList);
+		}
+	
+		this.mapData(this.dataCache, maskPattern);
+	},
+
+	setupPositionProbePattern : function(row, col)  {
+		
+		for (var r = -1; r <= 7; r++) {
+			
+			if (row + r <= -1 || this.moduleCount <= row + r) continue;
+			
+			for (var c = -1; c <= 7; c++) {
+				
+				if (col + c <= -1 || this.moduleCount <= col + c) continue;
+				
+				if ( (0 <= r && r <= 6 && (c === 0 || c === 6) ) || 
+                     (0 <= c && c <= 6 && (r === 0 || r === 6) ) || 
+                     (2 <= r && r <= 4 && 2 <= c && c <= 4) ) {
+					this.modules[row + r][col + c] = true;
+				} else {
+					this.modules[row + r][col + c] = false;
+				}
+			}		
+		}		
+	},
+	
+	getBestMaskPattern : function() {
+	
+		var minLostPoint = 0;
+		var pattern = 0;
+	
+		for (var i = 0; i < 8; i++) {
+			
+			this.makeImpl(true, i);
+	
+			var lostPoint = QRUtil.getLostPoint(this);
+	
+			if (i === 0 || minLostPoint >  lostPoint) {
+				minLostPoint = lostPoint;
+				pattern = i;
+			}
+		}
+	
+		return pattern;
+	},
+	
+	createMovieClip : function(target_mc, instance_name, depth) {
+	
+		var qr_mc = target_mc.createEmptyMovieClip(instance_name, depth);
+		var cs = 1;
+	
+		this.make();
+
+		for (var row = 0; row < this.modules.length; row++) {
+			
+			var y = row * cs;
+			
+			for (var col = 0; col < this.modules[row].length; col++) {
+	
+				var x = col * cs;
+				var dark = this.modules[row][col];
+			
+				if (dark) {
+					qr_mc.beginFill(0, 100);
+					qr_mc.moveTo(x, y);
+					qr_mc.lineTo(x + cs, y);
+					qr_mc.lineTo(x + cs, y + cs);
+					qr_mc.lineTo(x, y + cs);
+					qr_mc.endFill();
+				}
+			}
+		}
+		
+		return qr_mc;
+	},
+
+	setupTimingPattern : function() {
+		
+		for (var r = 8; r < this.moduleCount - 8; r++) {
+			if (this.modules[r][6] !== null) {
+				continue;
+			}
+			this.modules[r][6] = (r % 2 === 0);
+		}
+	
+		for (var c = 8; c < this.moduleCount - 8; c++) {
+			if (this.modules[6][c] !== null) {
+				continue;
+			}
+			this.modules[6][c] = (c % 2 === 0);
+		}
+	},
+	
+	setupPositionAdjustPattern : function() {
+	
+		var pos = QRUtil.getPatternPosition(this.typeNumber);
+		
+		for (var i = 0; i < pos.length; i++) {
+		
+			for (var j = 0; j < pos.length; j++) {
+			
+				var row = pos[i];
+				var col = pos[j];
+				
+				if (this.modules[row][col] !== null) {
+					continue;
+				}
+				
+				for (var r = -2; r <= 2; r++) {
+				
+					for (var c = -2; c <= 2; c++) {
+					
+						if (Math.abs(r) === 2 || 
+                            Math.abs(c) === 2 ||
+                            (r === 0 && c === 0) ) {
+							this.modules[row + r][col + c] = true;
+						} else {
+							this.modules[row + r][col + c] = false;
+						}
+					}
+				}
+			}
+		}
+	},
+	
+	setupTypeNumber : function(test) {
+	
+		var bits = QRUtil.getBCHTypeNumber(this.typeNumber);
+        var mod;
+	
+		for (var i = 0; i < 18; i++) {
+			mod = (!test && ( (bits >> i) & 1) === 1);
+			this.modules[Math.floor(i / 3)][i % 3 + this.moduleCount - 8 - 3] = mod;
+		}
+	
+		for (var x = 0; x < 18; x++) {
+			mod = (!test && ( (bits >> x) & 1) === 1);
+			this.modules[x % 3 + this.moduleCount - 8 - 3][Math.floor(x / 3)] = mod;
+		}
+	},
+	
+	setupTypeInfo : function(test, maskPattern) {
+	
+		var data = (this.errorCorrectLevel << 3) | maskPattern;
+		var bits = QRUtil.getBCHTypeInfo(data);
+        var mod;
+	
+		// vertical		
+		for (var v = 0; v < 15; v++) {
+	
+			mod = (!test && ( (bits >> v) & 1) === 1);
+	
+			if (v < 6) {
+				this.modules[v][8] = mod;
+			} else if (v < 8) {
+				this.modules[v + 1][8] = mod;
+			} else {
+				this.modules[this.moduleCount - 15 + v][8] = mod;
+			}
+		}
+	
+		// horizontal
+		for (var h = 0; h < 15; h++) {
+	
+			mod = (!test && ( (bits >> h) & 1) === 1);
+			
+			if (h < 8) {
+				this.modules[8][this.moduleCount - h - 1] = mod;
+			} else if (h < 9) {
+				this.modules[8][15 - h - 1 + 1] = mod;
+			} else {
+				this.modules[8][15 - h - 1] = mod;
+			}
+		}
+	
+		// fixed module
+		this.modules[this.moduleCount - 8][8] = (!test);
+	
+	},
+	
+	mapData : function(data, maskPattern) {
+		
+		var inc = -1;
+		var row = this.moduleCount - 1;
+		var bitIndex = 7;
+		var byteIndex = 0;
+		
+		for (var col = this.moduleCount - 1; col > 0; col -= 2) {
+	
+			if (col === 6) col--;
+	
+			while (true) {
+	
+				for (var c = 0; c < 2; c++) {
+					
+					if (this.modules[row][col - c] === null) {
+						
+						var dark = false;
+	
+						if (byteIndex < data.length) {
+							dark = ( ( (data[byteIndex] >>> bitIndex) & 1) === 1);
+						}
+	
+						var mask = QRUtil.getMask(maskPattern, row, col - c);
+	
+						if (mask) {
+							dark = !dark;
+						}
+						
+						this.modules[row][col - c] = dark;
+						bitIndex--;
+	
+						if (bitIndex === -1) {
+							byteIndex++;
+							bitIndex = 7;
+						}
+					}
+				}
+								
+				row += inc;
+	
+				if (row < 0 || this.moduleCount <= row) {
+					row -= inc;
+					inc = -inc;
+					break;
+				}
+			}
+		}
+		
+	}
+
+};
+
+QRCode.PAD0 = 0xEC;
+QRCode.PAD1 = 0x11;
+
+QRCode.createData = function(typeNumber, errorCorrectLevel, dataList) {
+	
+	var rsBlocks = QRRSBlock.getRSBlocks(typeNumber, errorCorrectLevel);
+	
+	var buffer = new QRBitBuffer();
+	
+	for (var i = 0; i < dataList.length; i++) {
+		var data = dataList[i];
+		buffer.put(data.mode, 4);
+		buffer.put(data.getLength(), QRUtil.getLengthInBits(data.mode, typeNumber) );
+		data.write(buffer);
+	}
+
+	// calc num max data.
+	var totalDataCount = 0;
+	for (var x = 0; x < rsBlocks.length; x++) {
+		totalDataCount += rsBlocks[x].dataCount;
+	}
+
+	if (buffer.getLengthInBits() > totalDataCount * 8) {
+		throw new Error("code length overflow. (" + 
+            buffer.getLengthInBits() + 
+            ">" +  
+            totalDataCount * 8 + 
+            ")");
+	}
+
+	// end code
+	if (buffer.getLengthInBits() + 4 <= totalDataCount * 8) {
+		buffer.put(0, 4);
+	}
+
+	// padding
+	while (buffer.getLengthInBits() % 8 !== 0) {
+		buffer.putBit(false);
+	}
+
+	// padding
+	while (true) {
+		
+		if (buffer.getLengthInBits() >= totalDataCount * 8) {
+			break;
+		}
+		buffer.put(QRCode.PAD0, 8);
+		
+		if (buffer.getLengthInBits() >= totalDataCount * 8) {
+			break;
+		}
+		buffer.put(QRCode.PAD1, 8);
+	}
+
+	return QRCode.createBytes(buffer, rsBlocks);
+};
+
+QRCode.createBytes = function(buffer, rsBlocks) {
+
+	var offset = 0;
+	
+	var maxDcCount = 0;
+	var maxEcCount = 0;
+	
+	var dcdata = new Array(rsBlocks.length);
+	var ecdata = new Array(rsBlocks.length);
+	
+	for (var r = 0; r < rsBlocks.length; r++) {
+
+		var dcCount = rsBlocks[r].dataCount;
+		var ecCount = rsBlocks[r].totalCount - dcCount;
+
+		maxDcCount = Math.max(maxDcCount, dcCount);
+		maxEcCount = Math.max(maxEcCount, ecCount);
+		
+		dcdata[r] = new Array(dcCount);
+		
+		for (var i = 0; i < dcdata[r].length; i++) {
+			dcdata[r][i] = 0xff & buffer.buffer[i + offset];
+		}
+		offset += dcCount;
+		
+		var rsPoly = QRUtil.getErrorCorrectPolynomial(ecCount);
+		var rawPoly = new QRPolynomial(dcdata[r], rsPoly.getLength() - 1);
+
+		var modPoly = rawPoly.mod(rsPoly);
+		ecdata[r] = new Array(rsPoly.getLength() - 1);
+		for (var x = 0; x < ecdata[r].length; x++) {
+            var modIndex = x + modPoly.getLength() - ecdata[r].length;
+			ecdata[r][x] = (modIndex >= 0)? modPoly.get(modIndex) : 0;
+		}
+
+	}
+	
+	var totalCodeCount = 0;
+	for (var y = 0; y < rsBlocks.length; y++) {
+		totalCodeCount += rsBlocks[y].totalCount;
+	}
+
+	var data = new Array(totalCodeCount);
+	var index = 0;
+
+	for (var z = 0; z < maxDcCount; z++) {
+		for (var s = 0; s < rsBlocks.length; s++) {
+			if (z < dcdata[s].length) {
+				data[index++] = dcdata[s][z];
+			}
+		}
+	}
+
+	for (var xx = 0; xx < maxEcCount; xx++) {
+		for (var t = 0; t < rsBlocks.length; t++) {
+			if (xx < ecdata[t].length) {
+				data[index++] = ecdata[t][xx];
+			}
+		}
+	}
+
+	return data;
+
+};
+
+module.exports = QRCode;
+
+};
+var Q=req("index");return function(t){var q=new Q(-1,0);q.addData(t);q.make();var n=q.getModuleCount(),r=[];for(var i=0;i<n;i++){r[i]=[];for(var j=0;j<n;j++)r[i][j]=q.isDark(i,j)}return r}})();
+/* ===== order form: print / PDF / WhatsApp / interactive page / live link ===== */
+var ORD0={lang:"ar",tier:"r",img:true,desc:true,kind:"both",low:true,qr:true,title:"",note:"",live:false};
+function ordS(){SET.ord=Object.assign({},ORD0,SET.ord||{});return SET.ord}
+function X(en,a,e){return en?e:a}
+function qrSvg(t,px){
+  var m=QRM(t),n=m.length,q=2,d="",s=n+2*q;
+  for(var r=0;r<n;r++)for(var c=0;c<n;c++)if(m[r][c])d+="M"+(c+q)+" "+(r+q)+"h1v1h-1z";
+  return'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 '+s+' '+s+'" width="'+px+'" height="'+px+'" shape-rendering="crispEdges"><rect width="'+s+'" height="'+s+'" fill="#fff"/><path d="'+d+'" fill="#000"/></svg>';
+}
+function ordAvail(i){return i.qty>0&&!(i.exp&&i.exp<today())}
+function ordGroups(o){
+  var en=o.lang==="en",g={},keys=[],bk=X(en,"الباقات","Bundles"),oth=X(en,"منتجات أخرى","Other products");
+  function add(c,r){if(!g[c]){g[c]=[];keys.push(c)}g[c].push(r)}
+  items.slice().sort(S.name).forEach(function(i){
+    if(o.kind==="b"||!ordAvail(i))return;
+    var p=(o.tier==="w"&&+i.wprice>0)?+i.wprice:+i.sell;
+    add(i.cat?(en?trN(i.cat):i.cat):oth,{n:en?(i.en||trN(i.name)):i.name,d:en?(i.descEn||(i.desc?trN(i.desc):"")):(i.desc||""),u:en?(UN[i.unit]||i.unit||""):(i.unit||""),p:p,img:i.img||"",low:i.qty<=(i.min==null?5:i.min)});
+  });
+  if(o.kind!=="p")bundles.forEach(function(b){
+    var r=calc(b);if(!(r.max>0))return;
+    var d=en?(b.descEn||(b.desc?trN(b.desc):"")):(b.desc||"");
+    if(!d)d=r.rows.filter(function(x){return!x.miss}).map(function(x){return(en?(x.it.en||trN(x.it.name)):x.it.name)+" ×"+num(x.q)}).join(en?", ":"، ");
+    add(bk,{n:en?(b.en||trN(b.name)):b.name,d:d,u:X(en,"باقة","bundle"),p:r.price,img:"",low:false});
+  });
+  keys.sort(function(a,b){return a===bk?1:b===bk?-1:a===oth?1:b===oth?-1:a.localeCompare(b,en?"en":"ar")});
+  return keys.map(function(c){return{c:c,rows:g[c]}});
+}
+function ordPrep(o){
+  if(o.lang!=="en")return Promise.resolve();
+  var s=[];
+  items.forEach(function(i){if(o.kind==="b"||!ordAvail(i))return;if(!i.en)s.push(i.name);if(i.cat)s.push(i.cat);if(i.desc&&!i.descEn)s.push(i.desc)});
+  bundles.forEach(function(b){if(o.kind==="p")return;if(!b.en)s.push(b.name);if(b.desc&&!b.descEn)s.push(b.desc)});
+  return aiTranslate(s).then(function(m){Object.keys(m).forEach(function(k){TM[k]=m[k]});if(Object.keys(m).length)saveTM()}).catch(function(){});
+}
+function ordHtml(o){
+  var en=o.lang==="en",k=co(en),G=ordGroups(o),n=0,ph=SET.wa?waNum(SET.wa):"",lu=liveOn()?liveUrl():"",qt="",cs=o.img?7:6;
+  if(o.qr)qt=lu||(ph?"https://wa.me/"+ph:"");
+  var title=o.title||X(en,"نموذج طلب بضاعة","ORDER FORM"),rows="";
+  G.forEach(function(g){
+    rows+='<tr class="of-cat"><td colspan="'+cs+'">'+esc(g.c)+'</td></tr>';
+    g.rows.forEach(function(r){
+      n++;
+      rows+='<tr class="of-r"><td class="of-n">'+n+'</td>'+(o.img?'<td class="of-i">'+(r.img?'<img src="'+r.img+'" alt="">':'<span>'+esc((r.n||"").charAt(0))+'</span>')+'</td>':'')+
+      '<td class="of-p"><b>'+esc(r.n)+'</b>'+(o.low&&r.low?' <em>'+X(en,"كمية محدودة","Limited stock")+'</em>':'')+(o.desc&&r.d?'<small>'+esc(r.d)+'</small>':'')+'</td><td style="white-space:nowrap">'+esc(r.u)+'</td><td class="of-m">'+f3(r.p)+'</td><td class="of-q"></td><td class="of-a"></td></tr>';
+    });
+  });
+  if(!n)rows='<tr class="of-em"><td colspan="'+cs+'">'+X(en,"لا توجد منتجات متوفرة حالياً.","No products are available right now.")+'</td></tr>';
+  return'<div class="of" dir="'+(en?"ltr":"rtl")+'"><div class="of-h"><div class="of-co">'+(logoData?'<img src="'+logoData+'" alt="">':'')+'<div><b>'+esc(k.name)+'</b>'+(k.info?'<span>'+esc(k.info)+'</span>':'')+'</div></div>'+
+  '<div class="of-t"><b>'+esc(title)+'</b><span>'+X(en,"التاريخ","Date")+': '+today()+'</span><span>'+X(en,"الأسعار بالريال العماني","Prices in Omani Rial (OMR)")+(o.tier==="w"?X(en," - سعر الجملة"," - wholesale"):"")+'</span></div></div>'+
+  (o.note?'<div class="of-in">'+esc(o.note)+'</div>':'')+
+  '<div class="of-c"><div><small>'+X(en,"اسم الزبون:","Customer name:")+'</small></div><div><small>'+X(en,"رقم الهاتف:","Phone:")+'</small></div><div><small>'+X(en,"العنوان / الموقع:","Address / location:")+'</small></div><div><small>'+X(en,"تاريخ التسليم المطلوب:","Delivery date:")+'</small></div></div>'+
+  '<table class="of-tb"><thead><tr><th>#</th>'+(o.img?'<th></th>':'')+'<th>'+X(en,"المنتج","Product")+'</th><th>'+X(en,"الوحدة","Unit")+'</th><th>'+X(en,"السعر (ر.ع.)","Price (OMR)")+'</th><th>'+X(en,"الكمية","Qty")+'</th><th>'+X(en,"المبلغ","Amount")+'</th></tr></thead><tbody>'+rows+'</tbody></table>'+
+  '<div class="of-tot"><div><span>'+X(en,"إجمالي الطلب (ر.ع.)","Order total (OMR)")+'</span><i></i></div></div>'+
+  '<div class="of-ft"><div class="of-how"><b>'+X(en,"طريقة الطلب","How to order")+'</b><span>'+X(en,"اكتب الكميات المطلوبة ثم أرسل صورة هذا النموذج عبر واتساب إلى:","Fill in the quantities, then send a photo of this form via WhatsApp to:")+'</span>'+(SET.wa?'<strong dir="ltr">'+esc(SET.wa)+'</strong>':'')+
+  '<div class="of-nt"><small>'+X(en,"ملاحظات:","Notes:")+'</small><i></i><i></i></div></div>'+
+  (qt?'<div class="of-qr">'+qrSvg(qt,92)+'<small>'+(lu?X(en,"امسح الرمز لفتح صفحة الطلب الإلكترونية","Scan to open the online order page"):X(en,"امسح الرمز للطلب عبر واتساب","Scan to order via WhatsApp"))+'</small></div>':'<div></div>')+
+  '<div class="of-sg"><i></i>'+X(en,"توقيع الزبون","Customer signature")+'</div></div>'+
+  '<div class="of-fo">'+(SET.vat>0?esc(X(en,"الأسعار شاملة ضريبة القيمة المضافة ("+SET.vat+"%). ","Prices include VAT ("+SET.vat+"%). ")):"")+X(en,"الأسعار والتوفر حسب المخزون وقت إصدار النموذج وقد تتغير دون إشعار.","Prices and availability are as of the issue date and may change without notice.")+(k.foot?'<br>'+esc(k.foot):'')+'</div></div>';
+}
+function ordText(o){
+  var en=o.lang==="en",k=co(en),a=[],bar="━━━━━━━━━━",c0=0;
+  a.push("*"+k.name+"*");
+  a.push("📋 *"+(o.title||X(en,"قائمة المنتجات المتوفرة","Available products"))+"*");
+  a.push("📅 "+today()+" | "+X(en,"الأسعار بالريال العماني","Prices in OMR")+(o.tier==="w"?X(en," (جملة)"," (wholesale)"):""));
+  if(o.note)a.push(o.note);
+  ordGroups(o).forEach(function(g){
+    a.push(bar);a.push("*📦 "+g.c+"*");
+    g.rows.forEach(function(r){
+      c0++;
+      a.push("▪ "+r.n+" — *"+f3(r.p)+"* "+X(en,"ر.ع","OMR")+(r.u?" / "+r.u:"")+(o.low&&r.low?"  ⚠️ "+X(en,"كمية محدودة","limited"):""));
+      if(o.desc&&r.d)a.push("   "+(r.d.length>90?r.d.slice(0,88)+"…":r.d));
+    });
+  });
+  if(!c0)a.push(X(en,"لا توجد منتجات متوفرة حالياً.","No products are available right now."));
+  a.push(bar);
+  a.push("🛒 "+X(en,"للطلب: أرسل لنا اسم المنتج والكمية المطلوبة في رد على هذه الرسالة.","To order: reply with the product names and quantities you need."));
+  if(SET.wa)a.push("📞 "+SET.wa);
+  if(liveOn())a.push("🔗 "+liveUrl());
+  return a.join("\n");
+}
+function ordPdfDoc(html){
+  return pdfLibs().then(function(){
+    var box=document.createElement("div");box.id="invTmp";
+    box.style.cssText="position:fixed;left:-9999px;top:0;width:800px;background:#fff;color:#111;padding:0;font-family:Tajawal,Tahoma,sans-serif";
+    box.innerHTML=html;document.body.appendChild(box);
+    var inner=box.firstChild;if(inner&&inner.style){inner.style.boxShadow="none";inner.style.maxWidth="none";inner.style.minWidth="0"}
+    return(document.fonts&&document.fonts.ready?document.fonts.ready:Promise.resolve()).then(function(){
+      var bw=box.offsetWidth,pxmm=bw/190,PH=277*pxmm,total=box.scrollHeight,top=box.getBoundingClientRect().top,bots=[];
+      Array.prototype.forEach.call(box.querySelectorAll("tr,.of-h,.of-c,.of-tot,.of-ft"),function(e){if(e.classList.contains("of-cat"))return;bots.push(e.getBoundingClientRect().bottom-top)});
+      var cuts=[0],st=0;
+      while(total-st>PH+1){
+        var lim=st+PH,best=0;
+        bots.forEach(function(b){if(b<=lim+.5&&b>st+PH*.4&&b>best)best=b});
+        var en2=best||lim;cuts.push(en2);st=en2;
+      }
+      cuts.push(total);
+      return html2canvas(box,{scale:2,backgroundColor:"#ffffff",onclone:function(d){var b=d.getElementById("invTmp");if(b)b.style.left="0"}}).then(function(cv){
+        document.body.removeChild(box);
+        var pdf=new window.jspdf.jsPDF({unit:"mm",format:"a4",orientation:"portrait"}),W=190,H=total/pxmm,img=cv.toDataURL("image/jpeg",0.92),pages=cuts.length-1;
+        for(var p=0;p<pages;p++){
+          if(p)pdf.addPage();
+          var s0=cuts[p]/pxmm,len=(cuts[p+1]-cuts[p])/pxmm;
+          pdf.addImage(img,"JPEG",10,10-s0,W,H);
+          pdf.setFillColor(255,255,255);pdf.rect(0,0,210,10,"F");pdf.rect(0,10+len,210,297-10-len,"F");
+          pdf.setFontSize(8);pdf.setTextColor(120);pdf.text((p+1)+" / "+pages,105,292,{align:"center"});
+        }
+        return pdf;
+      });
+    }).catch(function(e){if(box.parentNode)document.body.removeChild(box);throw e});
+  });
+}
+function ordFile(o){return(o.lang==="en"?"Order-form-":"نموذج-طلب-")+today()+".pdf"}
+function ordSavePdf(html,o){return ordPdfDoc(html).then(function(pdf){return saveFile(ordFile(o),pdf.output("arraybuffer"))}).catch(function(){alert(L("تعذر إنشاء ملف PDF. تأكد من الاتصال بالإنترنت وحاول مرة أخرى.","Could not create the PDF. Check your internet connection and try again."))})}
+function ordSharePdf(html,o,text){
+  return ordPdfDoc(html).then(function(pdf){
+    var f=new File([pdf.output("blob")],ordFile(o),{type:"application/pdf"});
+    if(navigator.canShare&&navigator.canShare({files:[f]}))return navigator.share({files:[f],title:o.title||ordFile(o),text:text||""});
+    alert(L("جهازك لا يدعم مشاركة الملف مباشرة. احفظ النموذج PDF ثم أرفقه في واتساب.","Your device cannot share the file directly. Save the form as PDF and attach it in WhatsApp."));
+  }).catch(function(e){if(e&&e.name==="AbortError")return;alert(L("تعذرت المشاركة. احفظ النموذج PDF وأرسله يدوياً.","Sharing failed. Save the form as PDF and send it manually."))});
+}
+function ordWaText(text){
+  var u="https://wa.me/?text="+encodeURIComponent(text);
+  if(u.length<=6000){openExt(u,text);return}
+  waUrl="https://wa.me/";$("waTxt").value=text;
+  $("waNote").textContent=L("القائمة طويلة. انسخ الرسالة ثم افتح واتساب والصقها في المحادثة.","The list is long. Copy the message, then open WhatsApp and paste it into the chat.");
+  $("waDlg").showModal();
+}
+/* interactive customer page */
+function catHtml(o,quiet){
+  var en=o.lang==="en",k=co(en),phone=waNum(SET.wa||"");
+  if(!phone){if(!quiet)alert(L("اكتب رقم واتساب لاستقبال الطلبات في «بيانات الشركة» أولاً.","Enter the WhatsApp number for orders in “Company details” first."));return null}
+  var data=[];
+  ordGroups(o).forEach(function(g){g.rows.forEach(function(r){data.push({n:r.n,c:g.c,p:r.p,u:r.u,i:o.img?r.img:"",d:o.desc?r.d:""})})});
+  if(!data.length){if(!quiet)alert(L("لا توجد منتجات متوفرة.","No available products."));return null}
+  var T=en?{search:"Search products...",all:"All",add:"Add",order:"Send order via WhatsApp",name:"Your name",items:"items",total:"Total",hello:"New order",cust:"Customer",empty:"Add products to your order first."}:{search:"ابحث عن منتج...",all:"الكل",add:"إضافة",order:"إرسال الطلب عبر واتساب",name:"اسمك",items:"عنصر",total:"الإجمالي",hello:"طلب جديد",cust:"الزبون",empty:"أضف منتجات إلى طلبك أولاً."};
+  return CATTPL.split("__LANG__").join(en?"en":"ar").split("__DIR__").join(en?"ltr":"rtl").split("__TITLE__").join(esc(k.name)).split("__SHOP__").join(esc(k.name)).split("__INFO__").join(esc(k.info||"")).split("__LOGO__").join(logoData?'<img src="'+logoData+'" alt="">':"").split("__PHONE__").join(phone).split("__T__").join(JSON.stringify(T).split("<").join("\\u003c")).split("__DATA__").join(JSON.stringify(data).split("<").join("\\u003c"));
+}
+function exportCatalog(){
+  var o=Object.assign({},ordS(),{lang:invLang==="en"?"en":"ar"});
+  ordPrep(o).then(function(){
+    var html=catHtml(o);if(!html)return;
+    return Promise.resolve(saveFile((o.lang==="en"?"catalog-":"كتالوج-الزبائن-")+today()+".html",html)).then(function(){alert(L("تم حفظ ملف الكتالوج. أرسله لزبائنك (مثلاً عبر واتساب)، فيفتحونه ويرسلون طلباتهم إليك عبر واتساب. أعد تصديره بعد تغيير الأسعار أو الكميات.","The catalog file was saved. Send it to your customers (for example via WhatsApp); they open it and send their orders to you via WhatsApp. Export it again after changing prices or quantities."))});
+  });
+}
+/* live link (standalone app + Google Drive only) */
+function liveOn(){return !!(window.RG&&RG.call&&RG.cfg&&RG.cfg()&&ordS().live)}
+function liveUrl(){var c=RG.cfg();return c?c.u.replace(/\?.*$/,"")+"?order=1":""}
+var livePub={t:null,h:"",st:"",err:""};
+function liveSchedule(){if(!liveOn())return;clearTimeout(livePub.t);livePub.t=setTimeout(function(){livePublish(false)},4000)}
+function livePublish(force){
+  if(!liveOn())return Promise.resolve();
+  var o=Object.assign({},ordS());
+  return ordPrep(o).then(function(){
+    var h=catHtml(o,true);
+    if(!h){if(force)livePub.err=L("أضف رقم واتساب الشركة ومنتجات متوفرة أولاً.","Add the company WhatsApp number and available products first.");return}
+    if(!force&&h===livePub.h)return;
+    return RG.call("page",{html:h}).then(function(){livePub.h=h;livePub.err="";livePub.st=new Date().toLocaleTimeString("en-GB",{hour:"2-digit",minute:"2-digit"})});
+  }).catch(function(e){livePub.err=(e&&e.code==="auth")?L("المفتاح السري غير صحيح.","Incorrect secret key."):L("تعذر تحديث الرابط المباشر. تأكد من تحديث كود Google Script ثم أعد النشر.","Could not update the live link. Make sure the Google Script code was updated and redeployed.")}).then(function(){var e=$("ordLiveSt");if(e)e.textContent=liveStText()});
+}
+function liveStText(){return livePub.err||(livePub.st?L("آخر تحديث للرابط: ","Link last updated: ")+livePub.st:L("لم يُحدَّث بعد في هذه الجلسة.","Not updated yet in this session."))}
+var _psO=pushSync;pushSync=function(){_psO.apply(this,arguments);liveSchedule()};
+/* page */
+function renderOrd(){
+  var o=ordS(),el=$("pgOrd"),G=ordGroups(o),n=0;G.forEach(function(g){n+=g.rows.length});
+  var out=(o.kind==="b"?0:items.filter(function(i){return!ordAvail(i)}).length)+(o.kind==="p"?0:bundles.filter(function(b){return!(calc(b).max>0)}).length);
+  var what=o.kind==="b"?L("باقات متوفرة في النموذج","Bundles in the form"):o.kind==="p"?L("منتجات متوفرة في النموذج","Products in the form"):L("عناصر متوفرة في النموذج","Items in the form");
+  var sel=function(k,v,l){return'<option value="'+v+'"'+(o[k]===v?" selected":"")+'>'+l+'</option>'};
+  var ck=function(k,l){return'<label><input type="checkbox" data-of="'+k+'"'+(o[k]?" checked":"")+'> '+l+'</label>'};
+  var live="";
+  if(window.RG&&RG.call){
+    if(!RG.cfg())live='<p class="note">'+L("لتفعيل رابط مباشر يتحدّث تلقائياً فعّل مزامنة Google Drive أولاً (زر ☁️ أعلى الصفحة).","To enable an auto-updating live link, turn on Google Drive sync first (the ☁️ button at the top).")+'</p>';
+    else live='<div class="pcfg">'+ck("live",L("🔗 رابط مباشر محدَّث تلقائياً للزبائن","🔗 Auto-updating live link for customers"))+'</div>'+
+      (o.live?'<div class="pcfg"><input id="ordLink" readonly dir="ltr" value="'+esc(liveUrl())+'"></div><div class="bb2"><button type="button" data-oa="lcopy">'+L("نسخ الرابط","Copy link")+'</button><button type="button" class="wa" data-oa="lwa">'+L("إرسال الرابط عبر واتساب","Send link via WhatsApp")+'</button><button type="button" data-oa="lnow">'+L("تحديث الآن","Update now")+'</button></div><p class="note" id="ordLiveSt">'+esc(liveStText())+'</p>':'');
+  } else live='<p class="note">'+L("الرابط المباشر المحدَّث تلقائياً متاح في نسخة التطبيق المستقلة (آيفون) المربوطة بـ Google Drive.","The auto-updating live link is available in the standalone app (iPhone) connected to Google Drive.")+'</p>';
+  el.innerHTML='<div class="sum"><div><small>'+what+'</small><b>'+num(n)+'</b></div><div><small>'+L("غير متوفرة (مستبعدة تلقائياً)","Unavailable (auto-excluded)")+'</small><b>'+num(out)+'</b></div></div>'+
+  '<div class="ctl"><p class="note">'+L("يُبنى النموذج تلقائياً من مخزونك: يظهر فقط ما كميته أكبر من صفر وغير منتهي الصلاحية (والباقات التي يكفي مخزونها)، بأسعار البيع الحالية.","The form is built automatically from your stock: only items with quantity above zero and not expired (and bundles your stock can fill) appear, with current selling prices.")+'</p>'+
+  '<div class="pcfg"><select data-of="kind" aria-label="'+esc(L("محتوى النموذج","Form content"))+'">'+sel("kind","both",L("المنتجات المفردة + الباقات","Single products + bundles"))+sel("kind","p",L("المنتجات المفردة فقط","Single products only"))+sel("kind","b",L("الباقات فقط","Bundles only"))+'</select></div><div class="pcfg"><select data-of="lang">'+sel("lang","ar","العربية")+sel("lang","en","English")+'</select><select data-of="tier">'+sel("tier","r",L("سعر البيع (المفرد)","Retail price"))+sel("tier","w",L("سعر الجملة (إن وُجد)","Wholesale price (if set)"))+'</select></div>'+
+  '<div class="pcfg">'+ck("img",L("الصور","Images"))+ck("desc",L("الوصف","Descriptions"))+ck("low",L("تنبيه الكمية المحدودة","Limited-stock tag"))+ck("qr",L("رمز QR","QR code"))+'</div>'+
+  '<div class="pcfg"><input data-of="title" placeholder="'+esc(L("عنوان النموذج (اختياري)","Form title (optional)"))+'" value="'+esc(o.title)+'"></div>'+
+  '<div class="pcfg"><textarea data-of="note" rows="2" placeholder="'+esc(L("ملاحظة تظهر أعلى النموذج (مثال: التوصيل مجاني للطلبات فوق 50 ر.ع.)","A note shown at the top (e.g. free delivery above OMR 50)"))+'">'+esc(o.note)+'</textarea></div>'+
+  '<div class="bb2"><button type="button" class="pri" data-oa="print">🖨️ '+L("طباعة","Print")+'</button><button type="button" data-oa="pdf">📄 '+L("حفظ PDF","Save PDF")+'</button><button type="button" class="wa" data-oa="share">📲 '+L("إرسال PDF عبر واتساب","Send PDF via WhatsApp")+'</button></div>'+
+  '<div class="bb2"><button type="button" class="wa" data-oa="text">💬 '+L("إرسال القائمة كرسالة واتساب","Send list as WhatsApp message")+'</button><button type="button" data-oa="page">🌐 '+L("صفحة طلب إلكترونية (ملف)","Online order page (file)")+'</button></div>'+live+'</div>'+
+  '<div class="of-wrap" id="ordPaper"></div>';
+  ordPreview();
+}
+function ordPreview(){var e=$("ordPaper");if(!e)return;e.innerHTML=ordHtml(ordS());var p=e.firstChild,w=e.clientWidth-20;if(p&&w>0&&w<640)p.style.zoom=Math.max(.35,w/640)}
+function ordAct(a){
+  var o=Object.assign({},ordS());
+  if(a==="lcopy"){var l=liveUrl();(navigator.clipboard&&navigator.clipboard.writeText?navigator.clipboard.writeText(l):Promise.reject()).then(function(){alert(L("تم نسخ الرابط.","Link copied."))},function(){var t=$("ordLink");if(t){t.select();t.setSelectionRange(0,9999)}alert(L("انسخ الرابط يدوياً (ضغطة مطولة).","Copy the link manually (long-press)."))});return}
+  if(a==="lwa"){var m=L("مرحباً، هذا رابط قائمة منتجاتنا المتوفرة (يتحدّث تلقائياً):\n","Hello, here is the link to our available products (updates automatically):\n")+liveUrl();openExt("https://wa.me/?text="+encodeURIComponent(m),m);return}
+  if(a==="lnow"){livePublish(true);return}
+  ordPrep(o).then(function(){
+    if(a==="text"){ordWaText(ordText(o));return}
+    if(a==="page"){var h=catHtml(o);if(!h)return;return Promise.resolve(saveFile((o.lang==="en"?"order-page-":"صفحة-الطلب-")+today()+".html",h))}
+    var html=ordHtml(o);
+    if(a==="print"){docPrint(html,function(){ordSavePdf(html,o)});return}
+    if(a==="pdf"){ordSavePdf(html,o);return}
+    if(a==="share"){ordSharePdf(html,o,ordText(Object.assign({},o,{desc:false})).split("\n").slice(0,3).join("\n"))}
+  });
+}
+$("xPages").addEventListener("click",function(e){
+  var b=e.target.closest("[data-oa]");if(!b||!b.closest("#pgOrd"))return;ordAct(b.dataset.oa);
+});
+$("xPages").addEventListener("input",function(e){
+  var t=e.target;if(!t.closest||!t.closest("#pgOrd")||!t.dataset.of||(t.tagName!=="INPUT"&&t.tagName!=="TEXTAREA")||t.type==="checkbox")return;
+  ordS()[t.dataset.of]=t.value;saveSET();ordPreview();liveSchedule();
+});
+$("xPages").addEventListener("change",function(e){
+  var t=e.target;if(!t.closest||!t.closest("#pgOrd")||!t.dataset.of)return;
+  var o=ordS(),k=t.dataset.of;
+  o[k]=t.type==="checkbox"?t.checked:t.value;saveSET();
+  if(k==="live"){renderOrd();if(o.live)livePublish(true);return}
+  if(k==="kind"){ordPrep(o).then(function(){renderOrd();liveSchedule()});return}
+  if(k==="lang"){ordPrep(o).then(function(){ordPreview();liveSchedule()});return}
+  ordPreview();liveSchedule();
+});
 mkPages();applyRole();
 render();initSync();initTr();updProj();tab(CUR);
 </script>
 <script>
 /* ===== standalone UI: Google Drive sync dialog, install hint, service worker ===== */
 (function () {
-  var GS = "/*\n * مزامنة بيانات \"إدارة مشاريع الزمرة الملكية\" مع Google Drive\n * غيّر المفتاح السري أدناه، ثم انشر السكربت كتطبيق ويب.\n * (Replace the secret key below, then deploy as a Web app.)\n */\nvar KEY = \"CHANGE-ME-SECRET\";\nvar FOLDER = \"RoyalGroupApp\";\nvar FILE = \"RoyalGroup-Data.json\";\n\nfunction folder_() {\n  var it = DriveApp.getFoldersByName(FOLDER);\n  return it.hasNext() ? it.next() : DriveApp.createFolder(FOLDER);\n}\nfunction file_(fo) {\n  var it = fo.getFilesByName(FILE);\n  return it.hasNext() ? it.next() : fo.createFile(FILE, JSON.stringify({version: 0, docs: {}, del: {}}), MimeType.PLAIN_TEXT);\n}\nfunction out_(o) {\n  return ContentService.createTextOutput(JSON.stringify(o)).setMimeType(ContentService.MimeType.JSON);\n}\nfunction doGet() {\n  return ContentService.createTextOutput(\"Royal Group sync is running.\");\n}\nfunction doPost(e) {\n  var b;\n  try { b = JSON.parse(e.postData.contents); } catch (err) { return out_({error: \"bad\"}); }\n  if (b.key !== KEY) return out_({error: \"auth\"});\n  var lock = LockService.getScriptLock();\n  lock.waitLock(25000);\n  try {\n    var fo = folder_(), fl = file_(fo);\n    var txt = fl.getBlob().getDataAsString(\"UTF-8\");\n    var d = JSON.parse(txt);\n    if (b.action === \"meta\") return out_({version: d.version});\n    if (b.action === \"pull\") return out_(d);\n    if (b.action === \"push\") {\n      if (b.base !== d.version) return out_({conflict: true, version: d.version});\n      var pv = fo.getFilesByName(\"prev-\" + FILE);\n      var pf = pv.hasNext() ? pv.next() : fo.createFile(\"prev-\" + FILE, \"\", MimeType.PLAIN_TEXT);\n      pf.setContent(txt);\n      var n = {version: d.version + 1, docs: b.docs || {}, del: b.del || {}};\n      fl.setContent(JSON.stringify(n));\n      return out_({ok: true, version: n.version});\n    }\n    return out_({error: \"bad\"});\n  } finally {\n    lock.releaseLock();\n  }\n}\n";
+  var GS = "/*\n * مزامنة بيانات \"إدارة مشاريع الزمرة الملكية\" مع Google Drive\n * غيّر المفتاح السري أدناه، ثم انشر السكربت كتطبيق ويب.\n * (Replace the secret key below, then deploy as a Web app.)\n */\nvar KEY = \"CHANGE-ME-SECRET\";\nvar FOLDER = \"RoyalGroupApp\";\nvar FILE = \"RoyalGroup-Data.json\";\nvar PAGE = \"RoyalGroup-Order.html\";\n\nfunction folder_() {\n  var it = DriveApp.getFoldersByName(FOLDER);\n  return it.hasNext() ? it.next() : DriveApp.createFolder(FOLDER);\n}\nfunction file_(fo) {\n  var it = fo.getFilesByName(FILE);\n  return it.hasNext() ? it.next() : fo.createFile(FILE, JSON.stringify({version: 0, docs: {}, del: {}}), MimeType.PLAIN_TEXT);\n}\nfunction out_(o) {\n  return ContentService.createTextOutput(JSON.stringify(o)).setMimeType(ContentService.MimeType.JSON);\n}\nfunction doGet(e) {\n  if (e && e.parameter && e.parameter.order) {\n    var it = folder_().getFilesByName(PAGE);\n    var h = it.hasNext() ? it.next().getBlob().getDataAsString(\"UTF-8\")\n      : \"<meta charset='utf-8'><p style='font:16px sans-serif;padding:24px'>The product list has not been published yet.</p>\";\n    return HtmlService.createHtmlOutput(h).setTitle(\"Order\")\n      .addMetaTag(\"viewport\", \"width=device-width, initial-scale=1\")\n      .setXFrameOptionsMode(HtmlService.XFrameOptionsMode.ALLOWALL);\n  }\n  return ContentService.createTextOutput(\"Royal Group sync is running.\");\n}\nfunction doPost(e) {\n  var b;\n  try { b = JSON.parse(e.postData.contents); } catch (err) { return out_({error: \"bad\"}); }\n  if (b.key !== KEY) return out_({error: \"auth\"});\n  var lock = LockService.getScriptLock();\n  lock.waitLock(25000);\n  try {\n    var fo = folder_(), fl = file_(fo);\n    if (b.action === \"page\") {\n      var pi = fo.getFilesByName(PAGE);\n      if (pi.hasNext()) pi.next().setContent(b.html || \"\"); else fo.createFile(PAGE, b.html || \"\", MimeType.PLAIN_TEXT);\n      return out_({ok: true});\n    }\n    var txt = fl.getBlob().getDataAsString(\"UTF-8\");\n    var d = JSON.parse(txt);\n    if (b.action === \"meta\") return out_({version: d.version});\n    if (b.action === \"pull\") return out_(d);\n    if (b.action === \"push\") {\n      if (b.base !== d.version) return out_({conflict: true, version: d.version});\n      var pv = fo.getFilesByName(\"prev-\" + FILE);\n      var pf = pv.hasNext() ? pv.next() : fo.createFile(\"prev-\" + FILE, \"\", MimeType.PLAIN_TEXT);\n      pf.setContent(txt);\n      var n = {version: d.version + 1, docs: b.docs || {}, del: b.del || {}};\n      fl.setContent(JSON.stringify(n));\n      return out_({ok: true, version: n.version});\n    }\n    return out_({error: \"bad\"});\n  } finally {\n    lock.releaseLock();\n  }\n}\n";
   var dlg = document.createElement("dialog"); dlg.id = "gdDlg"; document.body.appendChild(dlg);
   function stText() {
     var s = RG.state(), c = RG.cfg();
