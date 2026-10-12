@@ -1,4 +1,4 @@
-var V = "rg-v21";
+var V = "rg-v23";
 var CORE = ["./", "./index.html", "./manifest.webmanifest", "./icon-180.png", "./icon-192.png", "./icon-512.png"];
 var CDN = [
   "https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js",
@@ -7,7 +7,9 @@ var CDN = [
 self.addEventListener("install", function (e) {
   e.waitUntil(
     caches.open(V).then(function (c) {
-      return c.addAll(CORE).then(function () {
+      return Promise.all(CORE.map(function (u) {
+        return fetch(new Request(u, {cache: "reload"})).then(function (r) { if (!r.ok) throw new Error("bad"); return c.put(u, r); });
+      })).then(function () {
         return Promise.all(CDN.map(function (u) {
           return fetch(u, {mode: "no-cors"}).then(function (r) { return c.put(u, r); }).catch(function () {});
         }));
@@ -28,9 +30,8 @@ self.addEventListener("fetch", function (e) {
   var u = new URL(r.url);
   if (u.origin === location.origin) {
     if (r.mode === "navigate") {
-      e.respondWith(fetch(r).then(function (res) {
-        var cp = res.clone();
-        caches.open(V).then(function (c) { c.put("./index.html", cp); });
+      e.respondWith(fetch(r, {cache: "no-cache"}).then(function (res) {
+        if (res.ok) { var cp = res.clone(); caches.open(V).then(function (c) { c.put("./index.html", cp); }); }
         return res;
       }).catch(function () { return caches.match("./index.html"); }));
       return;

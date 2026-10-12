@@ -5605,7 +5605,7 @@ function prodStats(){
 }
 function prodTableHtml(){
   var st=prodStats(),en=UI==="en";
-  var ls=items.slice().sort(function(a,b){return String(a.cat||"").localeCompare(String(b.cat||""))||String(a.name).localeCompare(String(b.name))});
+  var ls=items.slice().sort(function(a,b){return String(a.cat||"").localeCompare(String(b.cat||""),undefined,{numeric:true})||String(a.name).localeCompare(String(b.name),undefined,{numeric:true})});
   var T={q:0,sold:0,bought:0,cost:0,val:0},cats={},low=[],exp=[];
   var rows=ls.map(function(i,k){
     var q=+i.qty||0,buy=+i.buy||0,sell=+i.sell||0,sd=st.sold[i.id]||0,bg=st.bought[i.id]||0,pf=sell-buy,mg=sell>0?pf/sell*100:0,cost=q*buy,val=q*sell;
@@ -5846,7 +5846,23 @@ render();initSync();initTr();updProj();tab(CUR);
       var m = document.querySelector("main"); m.insertBefore(h, m.firstChild);
     }
   } catch (e) {}
-  if ("serviceWorker" in navigator && location.protocol.indexOf("http") === 0) navigator.serviceWorker.register("sw.js").catch(function () {});
+  if ("serviceWorker" in navigator && location.protocol.indexOf("http") === 0) {
+    var hadSW = !!navigator.serviceWorker.controller, rl = false;
+    navigator.serviceWorker.addEventListener("controllerchange", function () {
+      if (!hadSW || rl) return;
+      rl = true;
+      var go = function () { if (document.querySelector("dialog[open]")) { setTimeout(go, 4000); return; } location.reload(); };
+      go();
+    });
+    navigator.serviceWorker.register("sw.js", { updateViaCache: "none" }).then(function (r) { try { r.update(); } catch (e) {} }).catch(function () {});
+    document.addEventListener("visibilitychange", function () {
+      if (!document.hidden) navigator.serviceWorker.getRegistration().then(function (r) { if (r) r.update(); }).catch(function () {});
+    });
+  }
+  try {
+    var vm = document.getElementById("mnu");
+    if (vm) { var vd = document.createElement("div"); vd.className = "cat"; vd.style.cssText = "text-align:center;padding:6px 0;font-size:12px"; vd.textContent = L("الإصدار ", "Version ") + "23"; vm.appendChild(vd); }
+  } catch (e) {}
 })();
 
 </script>
