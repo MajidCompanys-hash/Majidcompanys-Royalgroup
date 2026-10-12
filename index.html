@@ -1359,7 +1359,7 @@ function savePdf(s){
 }
 function printInv(s){
   var d=$("invPrint");d.innerHTML=invoice(s);document.body.classList.add("pinv");
-  var done=function(){document.body.classList.remove("pinv");d.innerHTML=""};
+  var done=function(){clearTimeout(window.__pt);window.__pt=setTimeout(function(){document.body.classList.remove("pinv");d.innerHTML=""},180000)};window.__keep=true;
   window.onafterprint=done;
   doPrint(function(){done();savePdf(s)});
 }
@@ -1626,6 +1626,7 @@ function uiConfirm(m){return mbox(m,"confirm")}
 function uiPrompt(m,d){return mbox(m,"prompt",d)}
 window.alert=function(m){mbox(m,"alert")};
 function doPrint(fb){
+  if(!window.__keep){clearTimeout(window.__pt);document.body.classList.remove("pinv");var __d=$("invPrint");if(__d)__d.innerHTML=""}window.__keep=false;
   var ok=false,h=function(){ok=true};
   window.addEventListener("beforeprint",h,{once:true});
   try{window.print()}catch(e){}
@@ -2131,7 +2132,7 @@ $("stPrint").onclick=function(){
   prepEnC(stC).then(function(){
     renderSt();
     var d=$("invPrint");d.innerHTML=stHtmlNow();document.body.classList.add("pinv");
-    var done=function(){document.body.classList.remove("pinv");d.innerHTML=""};
+    var done=function(){clearTimeout(window.__pt);window.__pt=setTimeout(function(){document.body.classList.remove("pinv");d.innerHTML=""},180000)};window.__keep=true;
     window.onafterprint=done;
     doPrint(function(){done();pdfSt()});
   });
@@ -2580,7 +2581,7 @@ function quoteText(q){
 }
 function docPrint(html,fb){
   var d=$("invPrint");d.innerHTML=html;document.body.classList.add("pinv");
-  var done=function(){document.body.classList.remove("pinv");d.innerHTML=""};
+  var done=function(){clearTimeout(window.__pt);window.__pt=setTimeout(function(){document.body.classList.remove("pinv");d.innerHTML=""},180000)};window.__keep=true;
   window.onafterprint=done;
   doPrint(function(){done();if(fb)fb()});
 }
@@ -5861,7 +5862,7 @@ render();initSync();initTr();updProj();tab(CUR);
   }
   try {
     var vm = document.getElementById("mnu");
-    if (vm) { var vd = document.createElement("div"); vd.className = "cat"; vd.style.cssText = "text-align:center;padding:6px 0;font-size:12px"; vd.textContent = L("الإصدار ", "Version ") + "24"; vm.appendChild(vd); }
+    if (vm) { var vd = document.createElement("div"); vd.className = "cat"; vd.style.cssText = "text-align:center;padding:6px 0;font-size:12px"; vd.textContent = L("الإصدار ", "Version ") + "25"; vm.appendChild(vd); }
   } catch (e) {}
 })();
 
