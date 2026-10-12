@@ -1310,7 +1310,7 @@ function renderV(){
     '<div style="overflow-x:auto"><table class="tb"><thead><tr><th>المنتج</th><th>الكمية</th><th>السعر</th><th>المبلغ</th></tr></thead><tbody>'+s.lines.map(lineRow).join("")+'</tbody></table></div>'+
     '<div class="bst"><span>الإجمالي'+(s.disc?' (بعد خصم '+omr(s.disc)+')':'')+'<b>'+omr(t)+'</b></span><span>المدفوع<b>'+omr(s.paid)+'</b></span><span class="'+(d>0?'loss':'gain')+'">المتبقي<b>'+omr(d)+'</b></span><span>الربح<b>'+omr(t-sCost(s))+'</b></span></div>'+
     (retAmt(s)?'<div class="cat neg" style="margin-top:6px">'+L('مرتجعات: ','Returns: ')+omr(retAmt(s))+'</div>':'')+(s.note?'<div class="cat" style="margin-top:6px">'+esc(s.note)+'</div>':'')+
-    '<div class="row"><span>'+(d>0?'<button data-a="p" data-id="'+id+'">تسجيل دفعة</button> ':'')+'<button data-a="i" data-id="'+id+'">طباعة</button> <button data-a="f" data-id="'+id+'">حفظ PDF</button> <button data-a="w" data-id="'+id+'">واتساب</button>'+(s.cid?' <button data-a="t" data-id="'+id+'">كشف الحساب</button>':'')+' <button data-a="rt" data-id="'+id+'">مرتجع</button></span><button class="del" data-a="d" data-id="'+id+'">حذف</button></div></div>';
+    '<div class="row"><span>'+(d>0?'<button data-a="p" data-id="'+id+'">تسجيل دفعة</button> ':'')+'<button data-a="i" data-id="'+id+'">طباعة</button> <button data-a="f" data-id="'+id+'">حفظ PDF</button> <button data-a="w" data-id="'+id+'">واتساب</button>'+(s.cid?' <button data-a="t" data-id="'+id+'">كشف الحساب</button>':'')+' <button data-a="rt" data-id="'+id+'">مرتجع</button>'+(d>0||s.contract?' <button data-ct="'+id+'">📝 '+(s.contract?'العقد':'عقد بيع آجل')+'</button>':'')+'</span><button class="del" data-a="d" data-id="'+id+'">حذف</button></div></div>';
   }).join(""):'<div class="empty">'+(sales.length?'لا توجد مبيعات في هذه الفترة.':'لا توجد مبيعات بعد. اضغط «تسجيل بيع جديد» للبدء.')+'</div>';
 }
 var invLang="ar";try{invLang=localStorage.getItem("inv-lang")==="en"?"en":"ar"}catch(e){}
@@ -5588,6 +5588,142 @@ $("xPages").addEventListener("click",function(e){
   var b=e.target.closest("[data-rp]");if(!b||!b.closest("#pgRep"))return;
   repPrint(b.dataset.rp);
 });
+
+/* ===== v11: small clean-print button at the bottom of each page ===== */
+var NOPR=["p","c","o","w","y"];
+function prodTableHtml(){
+  var ls=items.slice().sort(function(a,b){return String(a.name).localeCompare(String(b.name))});
+  var tq=0,tc=0,ts=0;ls.forEach(function(i){tq+=+i.qty||0;tc+=(+i.qty||0)*(+i.buy||0);ts+=(+i.qty||0)*(+i.sell||0)});
+  return'<div class="sum"><div><small>'+L("عدد المنتجات","Products")+'</small><b>'+ls.length+'</b></div><div><small>'+L("تكلفة المخزون","Stock cost")+'</small><b>'+omr(tc)+'</b></div><div><small>'+L("قيمة المخزون (بيع)","Stock value (sale)")+'</small><b>'+omr(ts)+'</b></div></div>'+
+  '<table><thead><tr><th>#</th><th>'+L("المنتج","Product")+'</th><th>'+L("التصنيف","Category")+'</th><th>'+L("الكمية","Qty")+'</th><th>'+L("شراء","Buy")+'</th><th>'+L("بيع","Sell")+'</th></tr></thead><tbody>'+
+  ls.map(function(i,k){return'<tr><td>'+(k+1)+'</td><td>'+esc(i.name)+'</td><td>'+esc(i.cat||"")+'</td><td>'+num(i.qty)+' '+esc(i.unit||"")+'</td><td>'+omr(i.buy)+'</td><td>'+omr(i.sell)+'</td></tr>'}).join("")+'</tbody></table>';
+}
+function cleanPageHtml(){
+  var pg=PAGES[CUR],sec=$(pg.pg),en=UI==="en",dir=en?"ltr":"rtl",e=co(en);
+  var c=sec.cloneNode(true);if(CUR==="i")c.innerHTML=prodTableHtml();
+  c.querySelectorAll("button,input,select,textarea,.tools,.bb2,.acts,.addbtn,dialog,script,summary,details,[hidden],.qa,#vChips,a").forEach(function(x){x.parentNode&&x.parentNode.removeChild(x)});
+
+  c.querySelectorAll("[id]").forEach(function(x){x.removeAttribute("id")});
+  c.querySelectorAll("[onclick],[data-a],[data-id]").forEach(function(x){["onclick","data-a","data-id"].forEach(function(a){x.removeAttribute(a)})});
+  for(var pass=0;pass<4;pass++)c.querySelectorAll("div,span,p,small,label").forEach(function(x){if(!x.children.length&&!x.textContent.trim())x.parentNode&&x.parentNode.removeChild(x)});
+  var css='<style>@page{size:A4;margin:10mm}.pp{font-family:Tajawal,Arial,sans-serif;color:#000!important;background:#fff;font-size:13px;line-height:1.5}.pp *{color:#000!important;background:transparent!important;box-shadow:none!important;max-width:100%}.pp h1{font-size:19px;margin:0;text-align:center}.pp .c{text-align:center}.pp .item{display:block!important;border:1px solid #999;border-radius:6px;padding:6px 8px;margin:0 0 6px;break-inside:avoid;page-break-inside:avoid}.pp .top{display:flex;justify-content:space-between;gap:8px}.pp .prow,.pp .cr{display:flex;justify-content:space-between;gap:8px;border-bottom:1px solid #ddd;padding:2px 0;break-inside:avoid}.pp .sum,.pp .bst{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0}.pp .sum>div,.pp .bst>span{border:1px solid #999;border-radius:6px;padding:4px 8px;flex:1 1 22%}.pp .sum small,.pp .bst small{display:block;font-size:11px}.pp b{font-weight:800}.pp table{width:100%;border-collapse:collapse}.pp td,.pp th{border:1px solid #888;padding:3px 5px;text-align:start;font-size:12px}.pp th{background:#eee!important}.pp tr{break-inside:avoid}.pp thead{display:table-header-group}.pp img{max-height:36px;width:auto}.pp svg{max-width:100%;height:auto}.pp .cat{font-size:11px}.pp .ph{display:none!important}</style>';
+  return css+'<div class="pp" dir="'+dir+'">'+(logoData?'<div class="c"><img src="'+logoData+'" alt="" style="max-height:50px"></div>':'')+'<h1>'+esc(e.name||"")+'</h1><div class="c"><b>'+L(pg.l[0],pg.l[1])+'</b> - '+ldate()+'</div><hr style="border:0;border-top:1px solid #000;margin:6px 0 8px">'+c.innerHTML+'</div>';
+}
+function printThisPage(){
+  if(CUR==="r"){
+    var r=periodRange(repPer),to=r.to||ldate(),from=r.from||"",lbl=({month:L("هذا الشهر","This month"),last:L("الشهر الماضي","Last month"),q:L("آخر 3 أشهر","Last 3 months"),y:L("هذه السنة","This year"),all:L("كل الفترات","All time")})[repPer]||"";
+    var fmt="a4";try{fmt=localStorage.getItem(K("inv-rpf"))||"a4"}catch(x){}
+    docPrint(repPrintHtml(from,to,L("تقرير ","Report ")+lbl,fmt));return;
+  }
+  docPrint(cleanPageHtml());
+}
+(function(){
+  var st=document.createElement("style");
+  st.textContent='#ppBar{text-align:center;padding:10px 0 76px}#ppBar button{min-height:34px;padding:4px 16px;font-size:13px;border-radius:17px;opacity:.85}@media print{#ppBar{display:none!important}}';
+  document.head.appendChild(st);
+  var bar=document.createElement("div");bar.id="ppBar";bar.innerHTML='<button type="button">🖨 '+L("طباعة","Print")+'</button>';
+  bar.firstChild.onclick=printThisPage;
+  $("xPages").insertAdjacentElement("afterend",bar);
+  var _t=tab;tab=function(n){_t(n);bar.style.display=NOPR.indexOf(CUR)>-1?"none":""};
+})();
+
+/* ===== v12: bilingual credit-sale contract ===== */
+function ctAddMonths(ds,n){var d=new Date(ds+"T12:00:00");var day=d.getDate();d.setDate(1);d.setMonth(d.getMonth()+n);var last=new Date(d.getFullYear(),d.getMonth()+1,0).getDate();d.setDate(Math.min(day,last));return dstr(d)}
+function ctSched(due,n,total){
+  var out=[],per=Math.floor(total/n*1000)/1000,acc=0,i;
+  for(i=0;i<n;i++){var a=i===n-1?Math.round((total-acc)*1000)/1000:per;acc+=a;out.push({d:ctAddMonths(due,i),a:a})}
+  return out;
+}
+function contractHtml(s,c){
+  var tot=sTotal(s),paid=tot-sDue(s),bal=sDue(s),eA=co(false),eE=co(true),cno="C-"+fmtNo(s.no);
+  var inst=Math.max(1,Math.min(24,Math.round(+c.inst)||1)),sch=ctSched(c.due,inst,bal);
+  var P=function(n){return plain(n)},E=function(n){return mm(n,true)};
+  var arP=c.lang!=="en";
+  var items=s.lines.map(function(l,i){return'<tr><td>'+(i+1)+'</td><td>'+esc(l.name)+'<br><span dir="ltr">'+esc(enOf(l))+'</span></td><td>'+num(l.q)+' '+esc(l.unit||"")+'</td><td>'+n3(l.price)+'</td><td>'+n3(l.q*l.price)+'</td></tr>'}).join("");
+  var itemsT='<table class="it"><thead><tr><th>#</th><th>البيان / Description</th><th>الكمية / Qty</th><th>السعر / Price</th><th>المبلغ / Amount</th></tr></thead><tbody>'+items+'</tbody></table>';
+  var schT=inst>1?'<table class="it"><thead><tr><th>#</th><th>تاريخ الاستحقاق / Due date</th><th>القسط / Instalment (OMR)</th></tr></thead><tbody>'+sch.map(function(x,i){return'<tr><td>'+(i+1)+'</td><td>'+esc(x.d)+'</td><td>'+n3(x.a)+'</td></tr>'}).join("")+'</tbody></table>':'';
+  var B=function(a,e){return[a,e]};
+  var gA=c.gname?'<br>الضامن: <b>'+esc(c.gname)+'</b>'+(c.gid?' - رقم الهوية: '+esc(c.gid):''):'',gE=c.gname?'<br>Guarantor: <b>'+esc(c.gname)+'</b>'+(c.gid?' - ID: '+esc(c.gid):''):'';
+  var arts=[
+   ["الأطراف","Parties",
+    'الطرف الأول (البائع): <b>'+esc(eA.name||"")+'</b>'+(eA.info?' - '+esc(eA.info):'')+'.<br>الطرف الثاني (المشتري): <b>'+esc(c.bname)+'</b>'+(c.bid?'، رقم الهوية/جواز السفر: '+esc(c.bid):'')+(c.baddr?'، العنوان: '+esc(c.baddr):'')+(c.bphone?'، الهاتف: <span dir="ltr">'+esc(c.bphone)+'</span>':'')+'.'+gA,
+    'First Party (Seller): <b>'+esc(eE.name||eA.name||"")+'</b>'+(eE.info?' - '+esc(eE.info):'')+'.<br>Second Party (Buyer): <b>'+esc(c.bname)+'</b>'+(c.bid?', ID/Passport No.: '+esc(c.bid):'')+(c.baddr?', Address: '+esc(c.baddr):'')+(c.bphone?', Phone: <span dir="ltr">'+esc(c.bphone)+'</span>':'')+'.'+gE],
+   ["موضوع العقد","Subject",
+    'باع الطرف الأول إلى الطرف الثاني البضاعة الموضحة أدناه بموجب الفاتورة رقم <b>'+fmtNo(s.no)+'</b> بتاريخ <b>'+esc(s.date)+'</b>، بالبيع الآجل، والموضحة تفاصيلها في الجدول:',
+    'The Seller has sold to the Buyer the goods described below under Invoice No. <b>'+fmtNo(s.no)+'</b> dated <b>'+esc(s.date)+'</b>, on a deferred-payment (credit) basis, as detailed in the table:'],
+   ["التسليم والاستلام","Delivery",
+    'أقرّ الطرف الثاني باستلام البضاعة كاملةً وبحالة جيدة ومطابقة للمواصفات في تاريخ هذا العقد، وبأنه عاين البضاعة وقبلها قبولاً نافياً للجهالة.'+(c.retain==="1"?' وتبقى ملكية البضاعة للطرف الأول إلى حين سداد كامل الثمن.':''),
+    'The Buyer acknowledges receiving the goods in full, in good condition and as described, on the date of this Agreement, having inspected and accepted them.'+(c.retain==="1"?' Title to the goods remains with the Seller until the full price is paid.':'')],
+   ["الثمن وطريقة السداد","Price and Payment",
+    'إجمالي ثمن البضاعة: <b>'+P(tot)+'</b>؛ المدفوع حتى تاريخه: <b>'+P(paid)+'</b>؛ الرصيد المؤجل المستحق على الطرف الثاني: <b>'+P(bal)+'</b>، '+(inst>1?'يُسدَّد على <b>'+inst+'</b> أقساط شهرية متساوية وفق الجدول أدناه':'يُسدَّد دفعة واحدة بتاريخ <b>'+esc(c.due)+'</b>')+'.',
+    'Total price of the goods: <b>'+E(tot)+'</b>; amount paid to date: <b>'+E(paid)+'</b>; deferred balance owed by the Buyer: <b>'+E(bal)+'</b>, '+(inst>1?'payable in <b>'+inst+'</b> equal monthly instalments as per the schedule below':'payable in one payment on <b>'+esc(c.due)+'</b>')+'.',
+    schT],
+   ["الإقرار بالدين","Acknowledgement of Debt",
+    'يقرّ الطرف الثاني إقراراً صريحاً بأن الرصيد المبين أعلاه دَين ثابت في ذمته، حالّ الأداء في مواعيده، وغير متنازع عليه، ولا يحق له الاعتراض عليه بعد توقيعه.',
+    'The Buyer expressly acknowledges that the balance stated above is a valid debt owed by him, payable on the due dates, and not disputed, and waives any objection after signing.'],
+   ["التأخر عن السداد","Late Payment",
+    'إذا تأخر الطرف الثاني عن سداد أي مبلغ في موعده حلّ باقي الرصيد كله فوراً دون حاجة إلى إنذار، وكان للطرف الأول المطالبة به بالطرق القانونية، ويتحمل الطرف الثاني ما يترتب على ذلك من رسوم ونفقات مطالبة'+(c.late?'، إضافةً إلى: '+esc(c.late):'')+'، وذلك بالقدر الذي يسمح به القانون.',
+    'If the Buyer delays any payment beyond its due date, the entire remaining balance becomes immediately due without notice, and the Seller may claim it by legal means; the Buyer shall bear the related claim fees and costs'+(c.late?', in addition to: '+esc(c.late):'')+', to the extent permitted by law.'],
+   ["القانون والاختصاص","Governing Law",
+    'يخضع هذا العقد لقوانين سلطنة عُمان، وتختص المحاكم المختصة في السلطنة بنظر أي نزاع ينشأ عنه، وذلك بعد محاولة الحل الودي.',
+    'This Agreement is governed by the laws of the Sultanate of Oman, and the competent courts of the Sultanate shall have jurisdiction over any dispute arising from it, after an attempt at amicable settlement.'],
+   ["الإخطارات وأحكام عامة","Notices and General",
+    'تُعدّ العناوين وأرقام الهاتف وواتساب المذكورة أعلاه صالحة للإخطارات بين الطرفين. حُرر هذا العقد من نسختين بالعربية والإنجليزية، لكل طرف نسخة'+(c.lang==="en"?'، وعند الاختلاف يُعتمد النص الإنجليزي.':'، وعند الاختلاف يُعتمد النص العربي.'),
+    'The addresses, phone and WhatsApp numbers stated above are valid for notices between the parties. This Agreement is made in two copies in Arabic and English, one for each party'+(c.lang==="en"?'; in case of discrepancy the English text prevails.':'; in case of discrepancy the Arabic text prevails.')]
+  ];
+  if(c.note)arts.push(["شروط إضافية","Additional Terms",esc(c.note),esc(c.note)]);
+  var css='<style>@page{size:A4;margin:12mm}.ct{font-family:Tajawal,Arial,sans-serif;color:#111;background:#fff;font-size:12px;line-height:1.55}.ct h1{margin:0;font-size:21px;text-align:center;letter-spacing:.3px;color:#111!important;display:block!important;background:none!important;padding:4px 0}.ct .sub{text-align:center;font-size:13px;margin-top:2px}.ct .meta{display:flex;justify-content:space-between;margin:8px 0 10px;font-size:12px;border-top:2px solid #111;border-bottom:1px solid #111;padding:4px 0}.ct table.a{width:100%;border-collapse:collapse}.ct table.a>tbody>tr>td{vertical-align:top;padding:5px 8px;border:1px solid #bbb;width:50%}.ct table.a tr{break-inside:avoid;page-break-inside:avoid}.ct .h{font-weight:800;font-size:12.5px;margin-bottom:2px}.ct .en{direction:ltr;text-align:left}.ct .ar{direction:rtl;text-align:right}.ct table.it{width:100%;border-collapse:collapse;margin-top:5px;font-size:11px}.ct table.it td,.ct table.it th{border:1px solid #888;padding:2px 4px;text-align:center}.ct table.it th{background:#eee}.ct .sig{display:flex;gap:14px;margin-top:22px;break-inside:avoid}.ct .sig>div{flex:1;text-align:center;font-size:11.5px}.ct .sig .ln{border-bottom:1px solid #111;height:42px;margin-bottom:3px}.ct .ft{margin-top:10px;font-size:10px;text-align:center;color:#555}</style>';
+  var rows=arts.map(function(a,i){
+    var extra=a[4]||"";
+    return'<tr><td class="ar"><div class="h">'+(i+1)+'. '+a[0]+'</div>'+a[2]+(i===1?itemsT:'')+extra+'</td><td class="en"><div class="h">'+(i+1)+'. '+a[1]+'</div>'+a[3]+(i===1?itemsT:'')+extra+'</td></tr>';
+  }).join("");
+  var sig='<div class="sig"><div><div class="ln"></div>الطرف الأول (البائع) / First Party (Seller)<br>'+esc(eA.name||"")+'</div><div><div class="ln"></div>الطرف الثاني (المشتري) / Second Party (Buyer)<br>'+esc(c.bname)+'</div>'+(c.gname?'<div><div class="ln"></div>الضامن / Guarantor<br>'+esc(c.gname)+'</div>':'')+'</div>'+
+   '<div class="sig"><div><div class="ln"></div>الشاهد الأول / Witness 1<br>الاسم والهوية / Name &amp; ID</div><div><div class="ln"></div>الشاهد الثاني / Witness 2<br>الاسم والهوية / Name &amp; ID</div></div>';
+  return css+'<div class="ct">'+(logoData?'<div style="text-align:center"><img src="'+logoData+'" alt="" style="max-height:48px"></div>':'')+'<h1>عقد بيع بالأجل &nbsp;|&nbsp; Credit Sale Agreement</h1><div class="sub">'+esc(eA.name||"")+(eE.name&&eE.name!==eA.name?' / '+esc(eE.name):'')+'</div><div class="meta"><span>رقم العقد / No.: <b>'+cno+'</b></span><span>التاريخ / Date: <b>'+esc(c.date)+'</b></span><span>سلطنة عُمان / Sultanate of Oman</span></div>'+
+   '<table class="a"><tbody>'+rows+'</tbody></table>'+sig+'<div class="ft">'+cno+' - '+L("حُرر بتاريخ ","Prepared on ")+esc(c.date)+'</div></div>';
+}
+function contractForm(s){
+  var cu=s.cid?customers.find(function(x){return x.id===s.cid}):null,v=s.contract||{};
+  var due=v.due||ctAddMonths(ldate(),1);
+  formDlg(L("عقد بيع بالأجل - فاتورة ","Credit sale agreement - invoice ")+fmtNo(s.no),[
+    {k:"bname",l:L("اسم المشتري","Buyer name"),def:v.bname||s.cname||"",r:true},
+    {k:"bid",l:L("الرقم المدني / جواز السفر","Civil ID / passport no."),def:v.bid||"",half:true},
+    {k:"bphone",l:L("هاتف المشتري","Buyer phone"),def:v.bphone||(cu&&cu.phone)||"",half:true},
+    {k:"baddr",l:L("العنوان","Address"),def:v.baddr||(cu&&cu.loc)||""},
+    {k:"date",t:"date",l:L("تاريخ العقد","Contract date"),def:v.date||ldate(),half:true,r:true},
+    {k:"due",t:"date",l:L("تاريخ السداد (أو أول قسط)","Due date (or first instalment)"),def:due,half:true,r:true},
+    {k:"inst",t:"number",l:L("عدد الأقساط الشهرية (1 = دفعة واحدة)","Monthly instalments (1 = single payment)"),def:v.inst||1,half:true},
+    {k:"retain",t:"select",l:L("الاحتفاظ بملكية البضاعة حتى السداد","Retain title until paid"),def:v.retain||"0",half:true,o:[["0",L("لا","No")],["1",L("نعم","Yes")]]},
+    {k:"gname",l:L("اسم الضامن (اختياري)","Guarantor name (optional)"),def:v.gname||"",half:true},
+    {k:"gid",l:L("هوية الضامن","Guarantor ID"),def:v.gid||"",half:true},
+    {k:"late",l:L("تعويض التأخير (اختياري، يُكتب كنص)","Late-payment compensation (optional text)"),def:v.late||""},
+    {k:"lang",t:"select",l:L("النص المعتمد عند الاختلاف","Prevailing text"),def:v.lang||"ar",o:[["ar","العربية / Arabic"],["en","English / الإنجليزية"]]},
+    {k:"note",t:"textarea",rows:2,l:L("شروط إضافية (اختياري)","Additional terms (optional)"),def:v.note||""}
+  ],null,L("نموذج عقد جاهز للاستخدام. يُنصح بعرضه على محامٍ قبل الاعتماد عليه في مبالغ كبيرة.","A ready-to-use template. Have a lawyer review it before relying on it for large amounts.")).then(function(o){
+    if(!o)return;
+    s.contract=o;saveS();logA("contract",fmtNo(s.no)+" - "+o.bname);
+    docPrint(contractHtml(s,o));renderV();
+  });
+  $("fOk").textContent=L("حفظ وطباعة","Save & print");
+}
+ACT.contract=["عقد بيع بالأجل","Credit sale agreement"];
+$("vList").parentNode.addEventListener("click",function(e){
+  var b=e.target.closest("[data-ct]");if(!b)return;
+  var s=sales.find(function(x){return String(x.id)===b.dataset.ct});if(s)contractForm(s);
+});
+(function(){
+  var m=$("mnu");if(!m)return;
+  var b=document.createElement("button");b.type="button";b.id="ctBtn";b.textContent="📝 "+L("عقد بيع بالأجل","Credit sale contract");
+  b.onclick=function(){
+    var open=sales.filter(function(s){return sDue(s)>0.0005}).sort(function(a,b){return a.date<b.date?1:-1});
+    if(!open.length){alert(L("لا توجد فواتير بمبلغ متبقٍ لكتابة عقد لها.","No invoices with an outstanding balance."));return}
+    formDlg(L("اختر الفاتورة","Choose the invoice"),[{k:"id",t:"select",l:L("فاتورة بمبلغ متبقٍ","Invoice with a balance"),o:open.map(function(s){return[String(s.id),fmtNo(s.no)+" - "+(s.cname||L("نقدي","Cash"))+" - "+plain(sDue(s))+(s.contract?" ✔":"")]})}]).then(function(o){
+      if(!o)return;var s=sales.find(function(x){return String(x.id)===o.id});if(s)contractForm(s);
+    });
+    $("fOk").textContent=L("التالي","Next");
+  };
+  m.insertBefore(b,m.firstChild);
+})();
 
 mkPages();applyRole();
 render();initSync();initTr();updProj();tab(CUR);
