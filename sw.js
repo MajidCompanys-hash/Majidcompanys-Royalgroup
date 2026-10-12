@@ -1,4 +1,4 @@
-var V = "rg-v15";
+var V = "rg-v17";
 var CORE = ["./", "./index.html", "./manifest.webmanifest", "./icon-180.png", "./icon-192.png", "./icon-512.png"];
 var CDN = [
   "https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js",

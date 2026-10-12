@@ -2986,7 +2986,7 @@ function renderCash(){
   '<div class="sum"><div><small>'+L("الرصيد الافتتاحي","Opening balance")+'</small><b>'+omr(op)+'</b></div><div><small>'+L("المقبوضات النقدية","Cash received")+'</small><b>'+omr(c.cin)+'</b></div><div><small>'+L("المدفوعات النقدية","Cash paid out")+'</small><b>'+omr(c.cout)+'</b></div><div class="pf"><small>'+L("الرصيد المتوقع","Expected balance")+'</small><b>'+omr(exp)+'</b></div></div>'+
   '<div class="cat" style="margin-bottom:8px">'+L("مقبوضات تحويل / شيك: ","Transfers / cheques received: ")+omr(c.oth)+'</div>'+
   (cl?'<div class="item bk"><strong>'+L("تم إقفال هذا اليوم","This day is closed")+'</strong><div class="bst"><span>'+L("المعدود","Counted")+'<b>'+omr(cl.counted)+'</b></span><span class="'+(Math.abs(cl.diff)>0.0005?"loss":"gain")+'">'+L("الفرق","Difference")+'<b>'+omr(cl.diff)+'</b></span></div>'+(cl.note?'<div class="cat">'+esc(cl.note)+'</div>':'')+'</div>':'')+
-  '<div class="acts" style="margin-bottom:12px"><button id="cxOrd">🖨 '+L("طلبيات اليوم","Day orders")+'</button><button class="pri" id="cxClose">'+(cl?L("تعديل الإقفال","Edit closing"):L("إقفال اليوم","Close the day"))+'</button>'+(cl?'<button id="cxPrint">'+L("طباعة","Print")+'</button><button id="cxPdf">PDF</button>':'')+'</div>'+
+  '<div class="acts" style="margin-bottom:12px"><button class="pri" id="cxClose">'+(cl?L("تعديل الإقفال","Edit closing"):L("إقفال اليوم","Close the day"))+'</button>'+(cl?'<button id="cxPrint">'+L("طباعة","Print")+'</button><button id="cxPdf">PDF</button>':'')+'</div>'+
   '<strong>'+L("الإقفالات السابقة","Previous closings")+'</strong>'+(closings.length?closings.slice().sort(function(a,b){return a.date<b.date?1:-1}).slice(0,30).map(function(x){return'<div class="prow"><span>'+esc(x.date)+'</span><span>'+L("معدود ","Counted ")+'<b>'+omr(x.counted)+'</b> <small class="'+(Math.abs(x.diff)>0.0005?"neg":"cat")+'">('+omr(x.diff)+')</small></span></div>'}).join(""):'<div class="cat">'+L("لا توجد إقفالات بعد.","No closings yet.")+'</div>');
 }
 function closeDay(){
@@ -4623,7 +4623,7 @@ function renderHome(){
   var row=function(a,b){return'<div class="prow"><span>'+a+'</span><span>'+b+'</span></div>'};
   var h='<div class="item bk"><strong>'+L("نظرة سريعة على اليوم","Today at a glance")+'</strong><div class="cat">'+esc(td)+'</div></div>';
   h+='<div class="sum"><div><small>'+L("فواتير اليوم","Today's invoices")+'</small><b>'+num(sN)+'</b></div>'+(mgr?'<div><small>'+L("مبيعات اليوم","Today's sales")+'</small><b>'+omr(sT)+'</b></div><div><small>'+L("المحصّل اليوم","Collected today")+'</small><b>'+omr(cl)+'</b></div><div><small>'+L("مصاريف اليوم","Today's expenses")+'</small><b>'+omr(ex)+'</b></div>':'')+'</div>';
-  h+='<div class="qa"><button class="pri" data-h="sale"><i>🧾</i>'+L("تسجيل بيع جديد","New sale")+'</button><button data-h="order"><i>📥</i>'+L("استيراد طلب","Import order")+'</button><button data-h="cus"><i>👤</i>'+L("زبون جديد","New customer")+'</button><button data-h="prod"><i>📦</i>'+L("منتج جديد","New product")+'</button>'+(mgr?'<button data-h="exp"><i>💸</i>'+L("مصروف","Expense")+'</button><button data-h="pur"><i>🛒</i>'+L("شراء جديد","New purchase")+'</button>':'')+'<button data-h="ordf"><i>📋</i>'+L("نموذج الطلب","Order form")+'</button></div>';
+  h+='<div class="qa"><button class="pri" data-h="order"><i>📥</i>'+L("استيراد طلب","Import order")+'</button><button data-h="cus"><i>👤</i>'+L("زبون جديد","New customer")+'</button><button data-h="prod"><i>📦</i>'+L("منتج جديد","New product")+'</button>'+(mgr?'<button data-h="exp"><i>💸</i>'+L("مصروف","Expense")+'</button><button data-h="pur"><i>🛒</i>'+L("شراء جديد","New purchase")+'</button>':'')+'</div>';
   if(mgr)h+=homeXtra();
   if(mgr){
     h+='<div class="item bk"><div class="top"><strong>'+L("ديون الزبائن","Customer debts")+'</strong><strong class="'+(dueAll>0.0005?"neg":"pos")+'">'+omr(dueAll)+'</strong></div>'+
@@ -5514,7 +5514,81 @@ $("vCust").addEventListener("change",vQkRender);
   var b=document.createElement("button");b.type="button";b.id="fabOrd";b.innerHTML='<span style="font-size:22px;line-height:1">+</span>'+L("اطلب الآن","Order now");
   b.onclick=function(){if(!permOK("v"))return;if(CUR!=="v"&&PAGES.v)tab("v");openV()};
   document.body.appendChild(b);
+  var _t=tab;tab=function(n){_t(n);b.style.display=CUR==="v"?"none":""};
 })();
+/* ===== v10: easy print of daily / monthly reports ===== */
+function repPrintHtml(from,to,title,fmt){
+  var en=UI==="en",e=co(en),dir=en?"ltr":"rtl",pos=fmt!=="a4",w=72,fs=pos?11.5:13,single=from===to;
+  var f=finance(from,to),ss=sales.filter(function(s){return inRange(s.date,from,to)}).sort(function(a,b){return a.date<b.date?-1:a.date>b.date?1:(a.no||0)-(b.no||0)});
+  var days={},prod={},cus={},pay={},due=0,disc=0;
+  ss.forEach(function(s){
+    var t=sTotal(s);days[s.date]=days[s.date]||{n:0,v:0};days[s.date].n++;days[s.date].v+=t;due+=sDue(s);
+    s.lines.forEach(function(l){var k=l.name;prod[k]=prod[k]||{q:0,v:0};prod[k].q+=+l.q||0;prod[k].v+=l.q*l.price});
+    var c=s.cname||L("زبون نقدي","Cash customer");cus[c]=cus[c]||{n:0,v:0};cus[c].n++;cus[c].v+=t;
+  });
+  sales.forEach(function(s){payList(s).forEach(function(p){if(inRange(String(p.date||s.date),from,to)){var m=p.method||s.method||L("أخرى","Other");pay[m]=(pay[m]||0)+(+p.amt||0)}})});
+  var exps=expenses.filter(function(x){return inRange(x.date,from,to)}),ecat={};
+  exps.forEach(function(x){ecat[x.cat]=(ecat[x.cat]||0)+(+x.amt||0)});
+  var css='<style>@page{size:'+(pos?'80mm auto;margin:2mm':'A4;margin:10mm')+'}.rpt{font-family:Tajawal,Arial,sans-serif;color:#000;background:#fff;'+(pos?'width:'+w+'mm;margin:0 auto;':'')+'font-size:'+fs+'px;line-height:1.5}.rpt h1{font-size:'+(fs+4)+'px;margin:0;text-align:center}.rpt h3{font-size:'+(fs+1)+'px;margin:10px 0 4px;border-bottom:1px solid #000;padding-bottom:2px}.rpt .c{text-align:center}.rpt .r{display:flex;justify-content:space-between;gap:6px;padding:1px 0}.rpt .r b{white-space:nowrap}.rpt table{width:100%;border-collapse:collapse}.rpt td,.rpt th{border:1px solid #888;padding:3px 5px;text-align:start;font-size:'+(fs-1)+'px}.rpt th{background:#eee}.rpt .big{font-weight:800;border-top:1px solid #000;margin-top:3px;padding-top:3px}</style>';
+  var row=function(a,b,bold){return'<div class="r'+(bold?' big':'')+'"><span>'+a+'</span><b>'+b+'</b></div>'};
+  var top=function(map,n,key){return Object.keys(map).sort(function(a,b){return map[b].v-map[a].v}).slice(0,n)};
+  var h=css+'<div class="rpt" dir="'+dir+'"><h1>'+esc(e.name||"")+'</h1><div class="c"><b>'+esc(title)+'</b></div><div class="c">'+(single?esc(from):esc(from||"…")+' → '+esc(to||ldate()))+'</div>';
+  h+='<h3>'+L("ملخص","Summary")+'</h3>'+row(L("عدد الفواتير","Invoices"),num(f.n))+row(L("المبيعات","Sales"),omr(f.rev))+(f.ret?row(L("المرتجعات (مخصومة)","Returns (deducted)"),omr(f.ret)):'')+(f.vat?row(L("الضريبة","VAT"),omr(f.vat)):'')+row(L("تكلفة البضاعة","Cost of goods"),omr(f.cogs))+row(L("الربح الإجمالي","Gross profit"),omr(f.gross))+row(L("المصاريف","Expenses"),omr(f.exp))+row(L("صافي الربح","Net profit"),omr(f.net),1)+row(L("متبقي على الزبائن من هذه الفواتير","Still owed on these invoices"),omr(due));
+  var pk=Object.keys(pay);
+  if(pk.length){h+='<h3>'+L("المقبوضات","Collected")+'</h3>'+pk.map(function(k){return row(esc(k),omr(pay[k]))}).join("")+row(L("إجمالي المقبوض","Total collected"),omr(pk.reduce(function(a,k){return a+pay[k]},0)),1)}
+  if(single){
+    h+='<h3>'+L("الفواتير","Invoices")+'</h3>';
+    if(!ss.length)h+='<div class="c">-</div>';
+    else if(pos)ss.forEach(function(s){h+=row('#'+fmtNo(s.no)+' '+esc(s.cname||L("نقدي","Cash")),omr(sTotal(s)))});
+    else h+='<table><tr><th>#</th><th>'+L("الزبون","Customer")+'</th><th>'+L("الإجمالي","Total")+'</th><th>'+L("المتبقي","Due")+'</th></tr>'+ss.map(function(s){return'<tr><td>'+fmtNo(s.no)+'</td><td>'+esc(s.cname||L("زبون نقدي","Cash customer"))+'</td><td>'+omr(sTotal(s))+'</td><td>'+omr(sDue(s))+'</td></tr>'}).join("")+'</table>';
+  }else{
+    var dk=Object.keys(days).sort();
+    h+='<h3>'+L("المبيعات اليومية","Daily sales")+'</h3>';
+    if(!dk.length)h+='<div class="c">-</div>';
+    else if(pos)dk.forEach(function(d){h+=row(esc(d.slice(5))+' ('+days[d].n+')',omr(days[d].v))});
+    else h+='<table><tr><th>'+L("التاريخ","Date")+'</th><th>'+L("الفواتير","Invoices")+'</th><th>'+L("المبيعات","Sales")+'</th></tr>'+dk.map(function(d){return'<tr><td>'+esc(d)+'</td><td>'+days[d].n+'</td><td>'+omr(days[d].v)+'</td></tr>'}).join("")+'</table>';
+  }
+  var tp=top(prod,10);
+  if(tp.length)h+='<h3>'+L("أكثر المبيعات","Top sellers")+'</h3>'+tp.map(function(k){return row(esc(k)+' × '+num(prod[k].q),omr(prod[k].v))}).join("");
+  var tc=top(cus,5);
+  if(tc.length&&!single)h+='<h3>'+L("أفضل الزبائن","Top customers")+'</h3>'+tc.map(function(k){return row(esc(k)+' ('+cus[k].n+')',omr(cus[k].v))}).join("");
+  if(exps.length){
+    h+='<h3>'+L("المصاريف","Expenses")+'</h3>';
+    if(single)h+=exps.map(function(x){return row(esc(ecLbl(x.cat))+(x.note?' - '+esc(x.note):''),omr(+x.amt))}).join("");
+    else h+=Object.keys(ecat).sort(function(a,b){return ecat[b]-ecat[a]}).map(function(k){return row(esc(ecLbl(k)),omr(ecat[k]))}).join("");
+  }
+  return h+'<div class="c" style="margin-top:10px;font-size:'+(fs-2)+'px">'+L("طُبع في ","Printed ")+ldate()+'</div></div>';
+}
+function repPrint(kind){
+  var td=ldate(),y=new Date();y.setDate(y.getDate()-1);y=ld(y);
+  var fmt="a4";try{fmt=localStorage.getItem(K("inv-rpf"))||"a4"}catch(x){}
+  var sel=$("rpFmt");if(sel)fmt=sel.value;
+  var from,to,t;
+  if(kind==="today"){from=to=td;t=L("التقرير اليومي","Daily report")}
+  else if(kind==="yest"){from=to=y;t=L("تقرير أمس","Yesterday's report")}
+  else if(kind==="month"){from=td.slice(0,7)+"-01";to=td;t=L("التقرير الشهري","Monthly report")}
+  else if(kind==="last"){var r=periodRange("last");from=r.from;to=r.to;t=L("تقرير الشهر الماضي","Last month's report")}
+  else{from=$("rpFrom").value;to=$("rpTo").value;if(!from||!to){alert(L("اختر تاريخ البداية والنهاية.","Pick the start and end dates."));return}if(from>to){var z=from;from=to;to=z}t=L("تقرير فترة","Period report")}
+  try{localStorage.setItem(K("inv-rpf"),fmt)}catch(x){}
+  docPrint(repPrintHtml(from,to,t,fmt));
+}
+(function(){
+  var _r=renderRep;
+  renderRep=function(){
+    _r();
+    var fmt="a4";try{fmt=localStorage.getItem(K("inv-rpf"))||"a4"}catch(x){}
+    var td=ldate();
+    $("pgRep").insertAdjacentHTML("afterbegin",'<div class="item bk"><strong>🖨 '+L("طباعة التقارير","Print reports")+'</strong>'+
+      '<div class="bb2"><button type="button" class="pri" data-rp="today">'+L("تقرير اليوم","Today")+'</button><button type="button" data-rp="yest">'+L("تقرير أمس","Yesterday")+'</button><button type="button" class="pri" data-rp="month">'+L("تقرير هذا الشهر","This month")+'</button><button type="button" data-rp="last">'+L("الشهر الماضي","Last month")+'</button></div>'+
+      '<div class="tools" style="margin-top:8px"><label class="cat" style="flex:1 1 100%">'+L("الطابعة","Printer")+'</label><select id="rpFmt"><option value="a4"'+(fmt==="a4"?" selected":"")+'>'+L("طابعة عادية A4","Normal printer A4")+'</option><option value="p80"'+(fmt==="p80"?" selected":"")+'>'+L("طابعة POS 80 مم","POS thermal 80 mm")+'</option></select></div>'+
+      '<details style="margin-top:8px"><summary style="font-weight:700;cursor:pointer">'+L("فترة محددة","Custom period")+'</summary><div class="tools" style="margin-top:6px"><input id="rpFrom" type="date" value="'+td.slice(0,7)+'-01"><input id="rpTo" type="date" value="'+td+'"><button type="button" data-rp="range">'+L("طباعة","Print")+'</button></div></details></div>');
+  };
+})();
+$("xPages").addEventListener("click",function(e){
+  var b=e.target.closest("[data-rp]");if(!b||!b.closest("#pgRep"))return;
+  repPrint(b.dataset.rp);
+});
+
 mkPages();applyRole();
 render();initSync();initTr();updProj();tab(CUR);
 </script>
