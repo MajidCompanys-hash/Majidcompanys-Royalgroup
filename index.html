@@ -5637,7 +5637,7 @@ function cleanPageHtml(){
   c.querySelectorAll("[onclick],[data-a],[data-id]").forEach(function(x){["onclick","data-a","data-id"].forEach(function(a){x.removeAttribute(a)})});
   for(var pass=0;pass<4;pass++)c.querySelectorAll("div,span,p,small,label").forEach(function(x){if(!x.children.length&&!x.textContent.trim())x.parentNode&&x.parentNode.removeChild(x)});
   var css='<style>@page{size:A4;margin:10mm}.pp{font-family:Tajawal,Arial,sans-serif;color:#000!important;background:#fff;font-size:13px;line-height:1.5}.pp *{color:#000!important;background:transparent!important;box-shadow:none!important;max-width:100%}.pp h1{font-size:19px;margin:0;text-align:center}.pp .c{text-align:center}.pp .item{display:block!important;border:1px solid #999;border-radius:6px;padding:6px 8px;margin:0 0 6px;break-inside:avoid;page-break-inside:avoid}.pp .top{display:flex;justify-content:space-between;gap:8px}.pp .prow,.pp .cr{display:flex;justify-content:space-between;gap:8px;border-bottom:1px solid #ddd;padding:2px 0;break-inside:avoid}.pp .sum,.pp .bst{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0}.pp .sum>div,.pp .bst>span{border:1px solid #999;border-radius:6px;padding:4px 8px;flex:1 1 22%}.pp .sum small,.pp .bst small{display:block;font-size:11px}.pp b{font-weight:800}.pp table{width:100%;border-collapse:collapse}.pp td,.pp th{border:1px solid #888;padding:3px 5px;text-align:start;font-size:12px}.pp th{background:#eee!important}.pp tr{break-inside:avoid}.pp thead{display:table-header-group}.pp img{max-height:36px;width:auto}.pp svg{max-width:100%;height:auto}.pp .cat{font-size:11px}.pp .ph{display:none!important}</style>';
-  if(CUR==="i")css=css.replace("size:A4","size:A4 landscape");
+  if(CUR==="i")css=css.replace("size:A4","size:A4 landscape").replace("</style>",".pp table{table-layout:auto;width:100%}.pp td,.pp th{font-size:9px;padding:2px 1.5px;line-height:1.3}.pp td:not(:nth-child(2)),.pp th{white-space:nowrap}.pp td:nth-child(2){white-space:normal;width:26%}.pp td:nth-child(2) span{display:none}.pp .sum>div{padding:3px 6px}.pp .sum b{font-size:13px}</style>");
   return css+'<div class="pp" dir="'+dir+'">'+(logoData?'<div class="c"><img src="'+logoData+'" alt="" style="max-height:50px"></div>':'')+'<h1>'+esc(e.name||"")+'</h1><div class="c"><b>'+L(pg.l[0],pg.l[1])+'</b> - '+ldate()+'</div><hr style="border:0;border-top:1px solid #000;margin:6px 0 8px">'+c.innerHTML+'</div>';
 }
 function printThisPage(){
@@ -5861,7 +5861,7 @@ render();initSync();initTr();updProj();tab(CUR);
   }
   try {
     var vm = document.getElementById("mnu");
-    if (vm) { var vd = document.createElement("div"); vd.className = "cat"; vd.style.cssText = "text-align:center;padding:6px 0;font-size:12px"; vd.textContent = L("الإصدار ", "Version ") + "23"; vm.appendChild(vd); }
+    if (vm) { var vd = document.createElement("div"); vd.className = "cat"; vd.style.cssText = "text-align:center;padding:6px 0;font-size:12px"; vd.textContent = L("الإصدار ", "Version ") + "24"; vm.appendChild(vd); }
   } catch (e) {}
 })();
 
