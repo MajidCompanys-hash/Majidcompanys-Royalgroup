@@ -5591,12 +5591,42 @@ $("xPages").addEventListener("click",function(e){
 
 /* ===== v11: small clean-print button at the bottom of each page ===== */
 var NOPR=["p","c","o","w","y"];
+function prodStats(){
+  var sold={},bought={};
+  sales.forEach(function(sl){
+    sl.lines.forEach(function(l,idx){
+      var rq=0;(sl.ret||[]).forEach(function(r){(r.items||[]).forEach(function(x){if(x.i===idx)rq+=+x.q||0})});
+      var nq=Math.max(0,(+l.q||0)-rq);
+      lineItems(Object.assign({},l,{q:nq})).forEach(function(x){sold[x.pid]=(sold[x.pid]||0)+(+x.q||0)});
+    });
+  });
+  purchases.forEach(function(pu){(pu.lines||[]).forEach(function(l){bought[l.pid]=(bought[l.pid]||0)+(+l.q||0)})});
+  return{sold:sold,bought:bought};
+}
 function prodTableHtml(){
-  var ls=items.slice().sort(function(a,b){return String(a.name).localeCompare(String(b.name))});
-  var tq=0,tc=0,ts=0;ls.forEach(function(i){tq+=+i.qty||0;tc+=(+i.qty||0)*(+i.buy||0);ts+=(+i.qty||0)*(+i.sell||0)});
-  return'<div class="sum"><div><small>'+L("عدد المنتجات","Products")+'</small><b>'+ls.length+'</b></div><div><small>'+L("تكلفة المخزون","Stock cost")+'</small><b>'+omr(tc)+'</b></div><div><small>'+L("قيمة المخزون (بيع)","Stock value (sale)")+'</small><b>'+omr(ts)+'</b></div></div>'+
-  '<table><thead><tr><th>#</th><th>'+L("المنتج","Product")+'</th><th>'+L("التصنيف","Category")+'</th><th>'+L("الكمية","Qty")+'</th><th>'+L("شراء","Buy")+'</th><th>'+L("بيع","Sell")+'</th></tr></thead><tbody>'+
-  ls.map(function(i,k){return'<tr><td>'+(k+1)+'</td><td>'+esc(i.name)+'</td><td>'+esc(i.cat||"")+'</td><td>'+num(i.qty)+' '+esc(i.unit||"")+'</td><td>'+omr(i.buy)+'</td><td>'+omr(i.sell)+'</td></tr>'}).join("")+'</tbody></table>';
+  var st=prodStats(),en=UI==="en";
+  var ls=items.slice().sort(function(a,b){return String(a.cat||"").localeCompare(String(b.cat||""))||String(a.name).localeCompare(String(b.name))});
+  var T={q:0,sold:0,bought:0,cost:0,val:0},cats={},low=[],exp=[];
+  var rows=ls.map(function(i,k){
+    var q=+i.qty||0,buy=+i.buy||0,sell=+i.sell||0,sd=st.sold[i.id]||0,bg=st.bought[i.id]||0,pf=sell-buy,mg=sell>0?pf/sell*100:0,cost=q*buy,val=q*sell;
+    T.q+=q;T.sold+=sd;T.bought+=bg;T.cost+=cost;T.val+=val;
+    var c=i.cat||L("بدون تصنيف","Uncategorised");cats[c]=cats[c]||{n:0,q:0,cost:0,val:0,sold:0};cats[c].n++;cats[c].q+=q;cats[c].cost+=cost;cats[c].val+=val;cats[c].sold+=sd;
+    var lw=q<=0?"out":(+i.min>0&&q<=+i.min)?"low":"";if(lw)low.push({i:i,t:lw});
+    var ex="";if(i.exp){var dd=-daysSince(i.exp);ex=i.exp;if(dd<0){exp.push({i:i,d:dd,t:"x"});ex+=" ⚠"}else if(dd<=30)exp.push({i:i,d:dd,t:"s"})}
+    return'<tr><td>'+(k+1)+'</td><td style="text-align:start"><b>'+esc(i.name)+'</b>'+(i.en?'<br><span dir="ltr" style="font-size:10px">'+esc(i.en)+'</span>':'')+'</td><td>'+esc(c)+'</td><td>'+esc(i.unit||"")+'</td><td'+(lw?' style="font-weight:800"':'')+'>'+num(q)+(lw==="out"?' ⚠':lw==="low"?' ▼':'')+'</td><td>'+num(sd)+'</td><td>'+num(bg)+'</td><td>'+n3(buy)+'</td><td>'+n3(sell)+'</td><td>'+n3(pf)+'</td><td>'+Math.round(mg)+'%</td><td>'+n3(cost)+'</td><td>'+n3(val)+'</td><td>'+esc(ex)+'</td></tr>';
+  }).join("");
+  var tile=function(a,b){return'<div><small>'+a+'</small><b>'+b+'</b></div>'};
+  var h='<div class="sum">'+tile(L("عدد المنتجات","Products"),ls.length)+tile(L("إجمالي الكمية المتوفرة","Total in stock"),num(T.q))+tile(L("إجمالي الكمية المباعة","Total sold"),num(T.sold))+tile(L("إجمالي الكمية المشتراة","Total purchased"),num(T.bought))+tile(L("تكلفة المخزون (شراء)","Stock cost (buy)"),omr(T.cost))+tile(L("قيمة المخزون (بيع)","Stock value (sell)"),omr(T.val))+tile(L("الربح المتوقع من المخزون","Expected stock profit"),omr(T.val-T.cost))+tile(L("نواقص / قاربت على النفاد","Out / low"),low.length)+'</div>';
+  h+='<table><thead><tr><th>#</th><th>'+L("المنتج","Product")+'</th><th>'+L("التصنيف","Category")+'</th><th>'+L("الوحدة","Unit")+'</th><th>'+L("المتوفر","In stock")+'</th><th>'+L("المباع","Sold")+'</th><th>'+L("المشترى","Bought")+'</th><th>'+L("سعر الشراء","Buy price")+'</th><th>'+L("سعر البيع","Sell price")+'</th><th>'+L("ربح الوحدة","Unit profit")+'</th><th>'+L("الهامش","Margin")+'</th><th>'+L("تكلفة المخزون","Stock cost")+'</th><th>'+L("قيمة المخزون","Stock value")+'</th><th>'+L("الانتهاء","Expiry")+'</th></tr></thead><tbody>'+rows+
+   '<tr style="font-weight:800"><td colspan="4">'+L("الإجمالي","Total")+'</td><td>'+num(T.q)+'</td><td>'+num(T.sold)+'</td><td>'+num(T.bought)+'</td><td colspan="4"></td><td>'+n3(T.cost)+'</td><td>'+n3(T.val)+'</td><td></td></tr></tbody></table>';
+  var ck=Object.keys(cats).sort();
+  h+='<h3 style="margin:12px 0 4px">'+L("ملخص حسب التصنيف","Summary by category")+'</h3><table><thead><tr><th>'+L("التصنيف","Category")+'</th><th>'+L("عدد المنتجات","Products")+'</th><th>'+L("المتوفر","In stock")+'</th><th>'+L("المباع","Sold")+'</th><th>'+L("تكلفة المخزون","Stock cost")+'</th><th>'+L("قيمة المخزون","Stock value")+'</th></tr></thead><tbody>'+ck.map(function(k){var c=cats[k];return'<tr><td>'+esc(k)+'</td><td>'+c.n+'</td><td>'+num(c.q)+'</td><td>'+num(c.sold)+'</td><td>'+n3(c.cost)+'</td><td>'+n3(c.val)+'</td></tr>'}).join("")+'</tbody></table>';
+  var top=ls.slice().sort(function(a,b){return(st.sold[b.id]||0)-(st.sold[a.id]||0)}).filter(function(i){return st.sold[i.id]>0}).slice(0,5);
+  if(top.length)h+='<h3 style="margin:12px 0 4px">'+L("الأكثر مبيعاً","Top sellers")+'</h3><table><tbody>'+top.map(function(i,k){return'<tr><td>'+(k+1)+'</td><td style="text-align:start">'+esc(i.name)+'</td><td>'+num(st.sold[i.id])+' '+esc(i.unit||"")+'</td></tr>'}).join("")+'</tbody></table>';
+  if(low.length)h+='<h3 style="margin:12px 0 4px">'+L("تحتاج شراء (نفاد أو قارب على النفاد)","Needs restocking")+'</h3><table><tbody>'+low.map(function(x){return'<tr><td style="text-align:start">'+esc(x.i.name)+'</td><td>'+num(x.i.qty)+' '+esc(x.i.unit||"")+'</td><td>'+(x.t==="out"?L("نفد","Out of stock"):L("قارب على النفاد","Low"))+'</td></tr>'}).join("")+'</tbody></table>';
+  if(exp.length)h+='<h3 style="margin:12px 0 4px">'+L("الصلاحية","Expiry watch")+'</h3><table><tbody>'+exp.map(function(x){return'<tr><td style="text-align:start">'+esc(x.i.name)+'</td><td>'+esc(x.i.exp)+'</td><td>'+(x.t==="x"?L("منتهي","Expired"):L("ينتهي خلال "+x.d+" يوماً","Expires in "+x.d+" days"))+'</td></tr>'}).join("")+'</tbody></table>';
+  h+='<div class="cat" style="margin-top:8px">'+L("المباع = إجمالي ما بيع في كل الفواتير بعد خصم المرتجعات (يشمل القطع داخل الباقات). المشترى = مجموع فواتير الشراء المسجلة.","Sold = total sold across all invoices net of returns (including pieces inside bundles). Bought = total of recorded purchase invoices.")+'</div>';
+  return h;
 }
 function cleanPageHtml(){
   var pg=PAGES[CUR],sec=$(pg.pg),en=UI==="en",dir=en?"ltr":"rtl",e=co(en);
@@ -5607,6 +5637,7 @@ function cleanPageHtml(){
   c.querySelectorAll("[onclick],[data-a],[data-id]").forEach(function(x){["onclick","data-a","data-id"].forEach(function(a){x.removeAttribute(a)})});
   for(var pass=0;pass<4;pass++)c.querySelectorAll("div,span,p,small,label").forEach(function(x){if(!x.children.length&&!x.textContent.trim())x.parentNode&&x.parentNode.removeChild(x)});
   var css='<style>@page{size:A4;margin:10mm}.pp{font-family:Tajawal,Arial,sans-serif;color:#000!important;background:#fff;font-size:13px;line-height:1.5}.pp *{color:#000!important;background:transparent!important;box-shadow:none!important;max-width:100%}.pp h1{font-size:19px;margin:0;text-align:center}.pp .c{text-align:center}.pp .item{display:block!important;border:1px solid #999;border-radius:6px;padding:6px 8px;margin:0 0 6px;break-inside:avoid;page-break-inside:avoid}.pp .top{display:flex;justify-content:space-between;gap:8px}.pp .prow,.pp .cr{display:flex;justify-content:space-between;gap:8px;border-bottom:1px solid #ddd;padding:2px 0;break-inside:avoid}.pp .sum,.pp .bst{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0}.pp .sum>div,.pp .bst>span{border:1px solid #999;border-radius:6px;padding:4px 8px;flex:1 1 22%}.pp .sum small,.pp .bst small{display:block;font-size:11px}.pp b{font-weight:800}.pp table{width:100%;border-collapse:collapse}.pp td,.pp th{border:1px solid #888;padding:3px 5px;text-align:start;font-size:12px}.pp th{background:#eee!important}.pp tr{break-inside:avoid}.pp thead{display:table-header-group}.pp img{max-height:36px;width:auto}.pp svg{max-width:100%;height:auto}.pp .cat{font-size:11px}.pp .ph{display:none!important}</style>';
+  if(CUR==="i")css=css.replace("size:A4","size:A4 landscape");
   return css+'<div class="pp" dir="'+dir+'">'+(logoData?'<div class="c"><img src="'+logoData+'" alt="" style="max-height:50px"></div>':'')+'<h1>'+esc(e.name||"")+'</h1><div class="c"><b>'+L(pg.l[0],pg.l[1])+'</b> - '+ldate()+'</div><hr style="border:0;border-top:1px solid #000;margin:6px 0 8px">'+c.innerHTML+'</div>';
 }
 function printThisPage(){
