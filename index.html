@@ -865,6 +865,12 @@ $("f").addEventListener("submit",function(e){
   e.preventDefault();
   var o={name:$("name").value.trim(),en:$("nameEn").value.trim(),cat:$("cat").value.trim(),unit:$("unit").value,buy:+$("buy").value,sell:+$("sell").value,wprice:+$("wprice").value||0,qty:+$("qty").value,min:$("min").value===""?5:+$("min").value,exp:$("exp").value,note:$("note").value.trim(),desc:$("desc").value.trim(),descEn:$("descEn").value.trim(),hid:$("hid").checked,img:img};
   if(!o.name)return;
+  var dup=findDup(o.name,editId?items.find(function(x){return x.id===editId}):null);
+  if(dup){
+    if(editId){alert(L("يوجد منتج آخر بنفس الاسم: «"+dup.name+"». غيّر الاسم لتجنب التكرار.","Another product already has this name: “"+dup.name+"”. Change the name to avoid duplicates."));return}
+    uiConfirm(L("يوجد منتج بنفس الاسم: «"+dup.name+"» (الكمية "+num(dup.qty)+"). لتجنب التكرار سجّل مشترياتك على المنتج الموجود بدل إنشاء منتج جديد. فتح فاتورة شراء لهذا المنتج الآن؟ (إلغاء = البقاء وتغيير الاسم)","A product with this name already exists: “"+dup.name+"” (qty "+num(dup.qty)+"). To avoid duplicates, record your purchases on the existing product instead of creating a new one. Open a purchase for it now? (Cancel = stay and change the name)")).then(function(ok){if(!ok)return;$("dlg").close();openPur();var k=puList.indexOf(dup);if(k>-1){$("puProd").selectedIndex=k;puCostDefault()}});
+    return;
+  }
   if(editId){var i=items.find(function(x){return x.id===editId}),oq=i.qty;if(o.sell!==i.sell||o.buy!==i.buy)logA("price",i.name+": "+f3(i.buy)+"/"+f3(i.sell)+" → "+f3(o.buy)+"/"+f3(o.sell));Object.assign(i,o);if(o.qty!==oq)logMove(i,o.qty-oq,"adjust","","")}else{o.id=Date.now()+Math.random();items.push(o);logA("item+",o.name);if(o.qty)logMove(o,o.qty,"opening","","")}
   save();$("dlg").close();render();
 });
@@ -883,6 +889,8 @@ try{bundles=JSON.parse(localStorage.getItem(BK)||"[]")}catch(e){bundles=[]}
 function saveB(){try{localStorage.setItem(BK,JSON.stringify(bundles))}catch(e){}NDIRTY=true;pushSync()}
 function n3(n){return "\u2066"+Number(n).toLocaleString("en-US",{minimumFractionDigits:3,maximumFractionDigits:3})+"\u2069"}
 function byId(id){return items.find(function(x){return x.id===id})}
+function normN(t){return String(t==null?"":t).toLowerCase().replace(/[\u064B-\u065F\u0670\u0640]/g,"").replace(/[أإآٱ]/g,"ا").replace(/ى/g,"ي").replace(/ة/g,"ه").replace(/[٠-٩]/g,function(d){return "٠١٢٣٤٥٦٧٨٩".indexOf(d)}).replace(/\s+/g," ").trim()}
+function findDup(name,self){var n=normN(name);if(!n)return null;return items.find(function(x){return x!==self&&normN(x.name)===n})||null}
 function sellItems(){return items.filter(function(i){return!i.hid})}
 function hidP(pid){var it=byId(pid);return!!(it&&it.hid)}
 function pubComps(a){return(a||[]).filter(function(c){return!hidP(c.pid!==undefined?c.pid:c.id)})}
@@ -1087,7 +1095,7 @@ function prodImport(rows){
     var name=String(g("الاسم")==null?"":g("الاسم")).trim();if(!name)return;
     if(/^[\(\[]\s*(مثال|example)/i.test(name))return;
     var en=String(g("en")==null?"":g("en")).trim();
-    var t=pool.find(function(x){return x.name===name}),isNew=!t;
+    var t=pool.find(function(x){return normN(x.name)===normN(name)}),isNew=!t;
     if(isNew){t={id:Date.now()+Math.random(),name:name,cat:"",unit:"قطعة",qty:0,buy:0,sell:0,min:5,exp:"",note:"",img:""};pool.push(t);nn++}else nu++;
     var p={};
     [["الكمية","qty"],["سعر الشراء","buy"],["سعر البيع","sell"],["سعر الجملة","wprice"],["حد التنبيه","min"]].forEach(function(c){var raw=g(c[0]);var v=csvNum(raw);if(v!==null)p[c[1]]=v;else if(raw!==undefined&&String(raw).trim()!=="")bad++});
@@ -2268,7 +2276,8 @@ document.body.insertAdjacentHTML("beforeend",'<dialog id="fDlg"><form id="fForm"
 '<dialog id="puDlg"><form id="puForm" method="dialog"><h2 style="margin-top:0">'+L("فاتورة شراء جديدة","New purchase invoice")+'</h2><div class="g">'+
 '<div><label>'+L("المورد","Supplier")+'</label><select id="puSup"></select></div>'+
 '<div><label>'+L("تاريخ الشراء","Purchase date")+'</label><input id="puDate" type="date" required></div>'+
-'<div class="full"><label>'+L("المنتج","Product")+'</label><select id="puProd"></select></div>'+
+'<div class="full"><label>'+L("المنتج","Product")+'</label><input id="puQ" type="search" placeholder="'+L("ابحث بالاسم...","Search by name...")+'" autocomplete="off" style="margin-bottom:6px"><select id="puProd"></select><button type="button" id="puNew2" style="margin-top:6px">'+L("➕ منتج جديد غير موجود","➕ New product (not in list)")+'</button></div>'+
+'<div class="full" id="puPrev" style="padding:8px 10px;border-radius:8px;background:var(--g2);line-height:1.8;font-size:13px"></div>'+
 '<div><label>'+L("الكمية","Quantity")+'</label><input id="puQty" type="number" min="0" step="any" value="1" inputmode="decimal"></div>'+
 '<div><label>'+L("سعر الشراء للوحدة (ر.ع.)","Unit cost (OMR)")+'</label><input id="puCost" type="number" min="0" step="0.001" inputmode="decimal"></div>'+
 '<div><label>'+L("رقم الدفعة (اختياري)","Batch no. (optional)")+'</label><input id="puBatch" dir="ltr"></div>'+
@@ -2277,7 +2286,8 @@ document.body.insertAdjacentHTML("beforeend",'<dialog id="fDlg"><form id="fForm"
 '<div class="full" id="puLines"></div>'+
 '<div><label>'+L("المدفوع (فارغ = كامل)","Paid (empty = full)")+'</label><input id="puPaid" type="number" min="0" step="0.001" inputmode="decimal"></div>'+
 '<div><label>'+L("طريقة الدفع","Payment method")+'</label><select id="puMeth"><option value="نقداً">'+L("نقداً","Cash")+'</option><option value="تحويل">'+L("تحويل","Transfer")+'</option><option value="شيك">'+L("شيك","Cheque")+'</option></select></div>'+
-'<div class="full"><label>'+L("تحديث سعر شراء المنتج","Update product cost")+'</label><select id="puMode"><option value="last">'+L("آخر سعر شراء","Last purchase price")+'</option><option value="avg">'+L("متوسط مرجح","Weighted average")+'</option><option value="none">'+L("بدون تحديث","No update")+'</option></select></div>'+
+'<div class="full"><label>'+L("مصاريف إضافية على الفاتورة (نقل / جمارك) - تُوزَّع على الأصناف وتدخل في التكلفة","Extra invoice costs (shipping / customs) - spread over items and added to cost")+'</label><input id="puExtra" type="number" min="0" step="0.001" inputmode="decimal" placeholder="0.000"><small class="cat">'+L("لا تسجّلها في المصاريف مرة أخرى حتى لا تتكرر.","Do not record them again under Expenses, to avoid double counting.")+'</small></div>'+
+'<div class="full"><label>'+L("تحديث سعر شراء المنتج","Update product cost")+'</label><select id="puMode"><option value="avg">'+L("متوسط مرجح (موصى به)","Weighted average (recommended)")+'</option><option value="last">'+L("آخر سعر شراء","Last purchase price")+'</option><option value="none">'+L("بدون تحديث","No update")+'</option></select></div>'+
 '<div class="full"><label>'+L("ملاحظات (اختياري)","Notes (optional)")+'</label><input id="puNote"></div>'+
 '<div class="full" id="puTot" style="padding:8px 10px;border-radius:8px;background:var(--g2);color:var(--g);font-weight:800;line-height:1.7"></div></div>'+
 '<div class="acts"><button class="pri" type="submit">'+L("حفظ فاتورة الشراء","Save purchase")+'</button><button type="button" id="puCancel">'+L("إلغاء","Cancel")+'</button></div></form></dialog>');
@@ -2681,23 +2691,48 @@ function puDraw(){
   var paid=$("puPaid").value===""?tot:+$("puPaid").value;
   $("puTot").textContent=L("الإجمالي: ","Total: ")+omr(tot)+" | "+L("المدفوع: ","Paid: ")+omr(Math.min(paid,tot))+" | "+L("المتبقي: ","Due: ")+omr(Math.max(0,tot-paid));
 }
-function puCostDefault(){var it=items[$("puProd").selectedIndex];$("puCost").value=it?it.buy:""}
+var puList=[];
+function puItem(){return puList[$("puProd").selectedIndex]}
+function puFill(sel){
+  var q=normN($("puQ").value);
+  puList=items.filter(function(i){return!q||normN(i.name+" "+(i.en||"")).indexOf(q)>-1});
+  $("puProd").innerHTML=puList.map(function(i){return'<option>'+esc(i.name)+'</option>'}).join("")||'<option></option>';
+  if(sel){var k=puList.indexOf(sel);if(k>-1)$("puProd").selectedIndex=k}
+  puCostDefault();
+}
+function lastBuy(pid){var r=null;purchases.forEach(function(p){p.lines.forEach(function(l){if(l.pid===pid&&(!r||p.date>=r.d))r={d:p.date,c:l.land||l.cost}})});return r}
+function puPrevDraw(){
+  var it=puItem(),el=$("puPrev");if(!it){el.innerHTML="";return}
+  var q=+$("puQty").value||0,c=+$("puCost").value||0,mode=$("puMode").value,oq=Math.max(0,it.qty||0);
+  var ex=Math.max(0,+$("puExtra").value||0),bt=q*c;pl.forEach(function(l){bt+=l.q*l.cost});
+  if(ex>0&&q>0){var sh=bt>0?ex*(q*c)/bt:ex;c=c+sh/q}
+  var nb=mode==="avg"?((oq+q)>0?(oq*it.buy+q*c)/(oq+q):c):mode==="last"?c:it.buy;
+  var lb=lastBuy(it.id),mg=it.sell>0?(it.sell-nb)/it.sell*100:null,bad=it.sell>0&&it.sell<=nb;
+  el.innerHTML=L("المخزون الحالي: ","Current stock: ")+'<b>'+num(it.qty)+'</b> × '+omr(it.buy)+(lb?' | '+L("آخر شراء: ","Last purchase: ")+'<b>'+omr(lb.c)+'</b> ('+esc(lb.d)+')':'')+'<br>'+
+  L("التكلفة بعد هذا الشراء: ","Cost after this purchase: ")+'<b>'+omr(nb)+'</b> | '+L("سعر البيع: ","Selling price: ")+'<b>'+omr(it.sell)+'</b>'+(mg!==null?' | '+L("الهامش: ","Margin: ")+'<b style="color:'+(bad?'#b3261e':'inherit')+'">'+num(Math.round(mg))+'%</b>':'')+
+  (bad?'<br><span style="color:#b3261e;font-weight:800">⚠ '+L("سعر البيع أقل من أو يساوي التكلفة الجديدة! سيُقترح عليك رفعه بعد الحفظ.","Selling price is at or below the new cost! You will be offered a price update after saving.")+'</span>':'');
+}
+function puCostDefault(){var it=puItem();$("puCost").value=it?it.buy:"";puPrevDraw()}
 function openPur(si){
   if(!items.length){alert(L("أضف منتجات في المخزون أولاً.","Add products to stock first."));return}
   pl=[];
   $("puSup").innerHTML='<option value="-1">'+L("مورد نقدي (بدون تسجيل)","Cash supplier (unregistered)")+'</option>'+suppliers.map(function(x,i){return'<option value="'+i+'">'+esc(x.name)+'</option>'}).join("");
   $("puSup").value=si===undefined?"-1":String(si);
   $("puDate").value=ldate();
-  $("puProd").innerHTML=items.map(function(i){return'<option>'+esc(i.name)+'</option>'}).join("");
-  puCostDefault();
-  $("puQty").value=1;$("puBatch").value="";$("puExp").value="";$("puPaid").value="";$("puMeth").value="نقداً";$("puMode").value="last";$("puNote").value="";
+  $("puQ").value="";puFill();
+  $("puQty").value=1;$("puBatch").value="";$("puExp").value="";$("puPaid").value="";$("puMeth").value="نقداً";$("puMode").value=SET.costMode||"avg";$("puExtra").value="";$("puNote").value="";puPrevDraw();
   puDraw();$("puDlg").showModal();
 }
 $("puProd").addEventListener("change",puCostDefault);
+$("puQ").addEventListener("input",function(){puFill()});
+["puQty","puCost","puMode","puExtra"].forEach(function(k){$(k).addEventListener("input",puPrevDraw);$(k).addEventListener("change",puPrevDraw)});
+$("puMode").addEventListener("change",function(){SET.costMode=$("puMode").value;saveSET()});
+$("puNew2").onclick=function(){openForm(null)};
+$("f").addEventListener("submit",function(){setTimeout(function(){if(!$("puDlg").open)return;var n=items[items.length-1];if(n&&puList.indexOf(n)<0){$("puQ").value="";puFill(n)}},0)});
 $("puPaid").addEventListener("input",puDraw);
 $("puCancel").onclick=function(){$("puDlg").close()};
 $("puAdd").onclick=function(){
-  var it=items[$("puProd").selectedIndex],q=+$("puQty").value,c=+$("puCost").value;
+  var it=puItem(),q=+$("puQty").value,c=+$("puCost").value;
   if(!it||!(q>0)||!(c>=0))return;
   pl.push({pid:it.id,name:it.name,q:q,cost:c,batch:$("puBatch").value.trim(),exp:$("puExp").value});
   $("puQty").value=1;$("puBatch").value="";$("puExp").value="";puCostDefault();puDraw();
@@ -2709,17 +2744,33 @@ $("puForm").addEventListener("submit",function(e){
   if(isLocked($("puDate").value||ldate())){lockMsg();return}
   var tot=0;pl.forEach(function(l){tot+=l.q*l.cost});
   var paid=$("puPaid").value===""?tot:+$("puPaid").value;paid=Math.min(Math.max(0,paid),tot);
-  var si=+$("puSup").value,sp=si>=0?suppliers[si]:null,mode=$("puMode").value;
-  var p={id:Date.now()+Math.random(),no:nextPNo(),date:$("puDate").value||ldate(),sid:sp?sp.id:null,sname:sp?sp.name:L("مورد نقدي","Cash supplier"),lines:pl,paid:paid,method:$("puMeth").value,note:$("puNote").value.trim()};
+  var si=+$("puSup").value,sp=si>=0?suppliers[si]:null,mode=$("puMode").value,extra=Math.max(0,+$("puExtra").value||0);
+  var totQ=0;pl.forEach(function(l){totQ+=l.q});
+  pl.forEach(function(l){var sh=extra>0?(tot>0?extra*(l.q*l.cost)/tot:extra*l.q/totQ):0;l.land=Math.round((l.cost+(l.q>0?sh/l.q:0))*1000)/1000});
+  var p={id:Date.now()+Math.random(),no:nextPNo(),date:$("puDate").value||ldate(),sid:sp?sp.id:null,sname:sp?sp.name:L("مورد نقدي","Cash supplier"),lines:pl,paid:paid,extra:extra,method:$("puMeth").value,note:$("puNote").value.trim()};
   purchases.push(p);logA("pur+",pLabel(p)+" - "+(p.sname||"")+" - "+plain(pTotal(p)));
+  var sug=[];
   pl.forEach(function(l){
     var it=byId(l.pid);if(!it)return;
-    if(mode==="last")it.buy=l.cost;
-    else if(mode==="avg"){var tq=it.qty+l.q;it.buy=tq>0?Math.round((it.qty*it.buy+l.q*l.cost)/tq*1000)/1000:l.cost}
-    adjStock(it,l.q,"purchase",pLabel(p),"",(l.batch||l.exp)?{batch:{no:l.batch,exp:l.exp,cost:l.cost}}:null);
+    var ob=it.buy,os=it.sell,om=(os>0&&ob>0)?(os-ob)/os:null,lc=l.land;
+    if(mode==="last")it.buy=lc;
+    else if(mode==="avg"){var oq=Math.max(0,it.qty),tq=oq+l.q;it.buy=tq>0?Math.round((oq*it.buy+l.q*lc)/tq*1000)/1000:lc}
+    adjStock(it,l.q,"purchase",pLabel(p),"",(l.batch||l.exp)?{batch:{no:l.batch,exp:l.exp,cost:lc}}:null);
+    if(mode!=="none"&&it.buy>ob+0.0004){
+      var nm2=(it.sell>0)?(it.sell-it.buy)/it.sell:null,tgt=om!==null&&om>0?om:0.2;
+      if(it.sell<=it.buy||(om!==null&&nm2<om-0.02)){
+        var ns=Math.ceil(it.buy/(1-Math.min(tgt,0.9))*200)/200;
+        if(ns>it.sell+0.0004)sug.push({it:it,ob:ob,nb:it.buy,os:os,ns:ns,tm:Math.round(tgt*100)});
+      }
+    }
   });
   save();saveArr("p");render();
   $("puDlg").close();if(CUR==="u"||CUR==="s")refreshActive();
+  if(sug.length)uiConfirm(L("ارتفعت تكلفة الأصناف التالية فقل هامش الربح:\n\n","The cost of these items rose, so the margin dropped:\n\n")+sug.map(function(x){return"• "+x.it.name+": "+L("التكلفة ","cost ")+plain(x.ob)+" → "+plain(x.nb)+" | "+L("البيع ","sell ")+plain(x.os)+" → "+plain(x.ns)+" ("+x.tm+"%)"}).join("\n")+L("\n\nتحديث أسعار البيع المقترحة للحفاظ على هامشك؟","\n\nUpdate selling prices to keep your margin?")).then(function(ok){
+    if(!ok)return;
+    sug.forEach(function(x){var it=byId(x.it.id)||x.it;if(it.wprice>0&&x.os>0)it.wprice=Math.ceil(it.wprice*x.ns/x.os*200)/200;logA("price",it.name+": "+f3(x.ob)+"/"+f3(x.os)+" → "+f3(x.nb)+"/"+f3(x.ns));it.sell=x.ns});
+    save();render();
+  });
 });
 function renderPur(){
   var el=$("pgPur"),mo=ldate().slice(0,7),mt=0,pay=0;
@@ -2730,7 +2781,7 @@ function renderPur(){
   (list.length?list.map(function(p){
     var id=esc(p.id),d=pDue(p);
     return'<div class="item bk"><div class="top"><strong>'+esc(pLabel(p))+' - '+esc(p.sname||"")+'</strong><span class="cat">'+esc(p.date)+'</span></div>'+
-    '<div class="cat">'+p.lines.map(function(l){return esc(l.name)+' × '+num(l.q)}).join("، ")+'</div>'+
+    '<div class="cat">'+p.lines.map(function(l){return esc(l.name)+' × '+num(l.q)}).join("، ")+(p.extra>0?' | '+L("مصاريف إضافية: ","Extra costs: ")+omr(p.extra):'')+'</div>'+
     '<div class="bst"><span>'+L("الإجمالي","Total")+'<b>'+omr(pTotal(p))+'</b></span><span>'+L("المدفوع","Paid")+'<b>'+omr(p.paid)+'</b></span><span class="'+(d>0?"loss":"gain")+'">'+L("المتبقي","Due")+'<b>'+omr(d)+'</b></span></div>'+
     '<div class="bb2">'+(d>0?'<button data-a="y" data-id="'+id+'">'+L("تسجيل دفعة","Record payment")+'</button>':'')+'<button class="del" data-a="d" data-id="'+id+'">'+L("حذف","Delete")+'</button></div></div>';
   }).join(""):'<div class="empty">'+L("لا توجد فواتير شراء بعد.","No purchase invoices yet.")+'</div>');
@@ -6233,7 +6284,7 @@ render();initSync();initTr();updProj();tab(CUR);
   }
   try {
     var vm = document.getElementById("mnu");
-    if (vm) { var vd = document.createElement("div"); vd.className = "cat"; vd.style.cssText = "text-align:center;padding:6px 0;font-size:12px"; vd.textContent = L("الإصدار ", "Version ") + "34"; vm.appendChild(vd); }
+    if (vm) { var vd = document.createElement("div"); vd.className = "cat"; vd.style.cssText = "text-align:center;padding:6px 0;font-size:12px"; vd.textContent = L("الإصدار ", "Version ") + "35"; vm.appendChild(vd); }
   } catch (e) {}
 })();
 
